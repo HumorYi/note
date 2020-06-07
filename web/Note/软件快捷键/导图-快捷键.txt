@@ -1,0 +1,140 @@
+导图文件
+新建导图 Ctrl+N 
+打开导图 Ctrl+O 
+搜索导图 Alt+Ctrl+Shift+F 
+保存当前导图 Ctrl+S 
+另存为 F12 
+关闭当前导图 Ctrl+WCtrl+Shift+F4 
+打印预览 Ctrl+F2 
+打印当前导图 Ctrl+P 
+按照浏览顺序移动切换打开的导图 (向左, 向右) Alt+左箭头Alt+右箭头 
+导航 
+选择上下左右主题 箭头键 
+选择下一个主题 / 上一个主题 Tab/ Shift+Tab 
+移动到同级主题顶部移动到同级主题底部 HomeEnd 
+回到中心主题 CTRL + Home 
+之前选中主题往前/往后移动 Backspace / Shift+Backspace 
+查看导图窗口
+放大导图 Ctrl+= 
+缩小导图 Ctrl+- (减号) 
+自动适应导图 Ctrl+F5 
+100% 缩放 Ctrl+0 (零) 
+缓慢滚动导图 Ctrl+箭头键 
+大步滚动导图 上移或者下移 右移或者左移 Page Up 或Page Down ,Ctrl+Page Up 或Ctrl+Page Down 
+导图剧中且折叠所有主题 Ctrl+F3 
+选中对象居中 Alt+F3 
+查看下一个导图 Ctrl+F6Ctrl+Tab 
+查看上一个导图 Ctrl+Shift+F6 or Ctrl+Shift+Tab 
+导图层级及过滤
+锁定主题 F3 
+显示主题下一级 Ctrl+D 
+显示第1层级 Alt+Shift+1 
+显示第2层级 Alt+Shift+2 
+显示第3到9层级 Alt+Shift+3 ...等 (到 9) 
+显示所有层级 Alt+Shift+> 
+折叠选中主题 Alt+Shift+0 
+折叠整个分支 Alt+Shift+< 
+折叠所有导图 Ctrl+F3 
+移除过滤器 Alt+Ctrl+Shift+A 
+仅显示分支显示其他 F4 
+界面
+显示主题备注窗口显示或者隐藏主题备注窗口 F11Ctrl+T 
+浏览下一个主题备注*浏览上一个主题备注** 在主题备注窗口内 Ctrl+Shift+Page DownCtrl+Shift+Page Up 
+显示或隐藏任务面板 Ctrl+Shift+F1 
+展开或者折叠功能区 Ctrl+F1 
+显示Alt键 F10 or Alt 
+显示上下文菜单（邮件菜单） Shift+F10 
+Mindjet文件
+切换MindManager主窗口和 Mindjet文件窗口 Alt+Q 
+添加对象主题
+添加子主题 Insert or Ctrl+Enter 
+添加同级主题（向下） Enter 
+添加同级主题 (向上) Shift+Enter 
+添加父主题 Ctrl+Shift+Insert 
+添加附注主题 Ctrl+Shift+Enter 
+元素
+添加附件 * Ctrl+Shift+H 
+管理附件 * Ctrl+Shift+T 
+添加超链接 Ctrl+K 
+添加标签 Ctrl+Shift+F5 
+添加主题批注 Ctrl+F11 
+添加主题备注 Ctrl+T 
+添加边界线 Ctrl+Shift+B 
+添加图标 Ctrl+1, Ctrl+2 etc. 注:这些快捷键可以在库面板定义 
+删除所有图标 Alt+Ctrl+0 
+添加优先级图标 (优先级 1,2,等.) Ctrl+Shift+1; Ctrl+Shift+2; etc. 
+删除所有优先级图标 Ctrl+Shift+0 
+添加及循环进程图标前进/后退 Alt+Ctrl+P / Alt+Ctrl+Shift+P 
+添加导图部件 Ctrl+Shift+N 
+刷新导图部件 F5 
+刷新所有导图部件 Shift+F5 
+插入当前日期和时间 Ctrl+Shift+D 
+插入选中日期和时间 Alt+Ctrl+D 
+* 如果系统管理员禁用附件，这些快捷键将无法使用。
+编辑
+撤销上次操作 Ctrl+Z or Alt+Backspace 
+恢复上次操作 Ctrl+Y 
+选择
+选择所有主题及元素选择所有主题备注文本 (主题备注窗口)选择所有ink (主题备注窗口) Ctrl+A 
+选择其它主题 Shift+箭头键 
+选择所有同级 仅下面 仅上面 Ctrl+Shift+AShift+EndShift+Home 
+选择所有同级主题及父主题 Ctrl+Shift+左箭头或右箭头 
+选择父主题 Ctrl+Backspace 
+选择主题、子主题、边界线及关系线 Shift+F3 
+选择子主题的下一级 Ctrl+Shift+右箭头或左箭头 
+之前选中主题往前/往后移动 Backspace / Shift+Backspace 
+剪切、复制、粘贴及删除
+复制到剪贴板 Ctrl+C or Ctrl+Insert 
+复制为超链接 Alt+Ctrl+C 
+剪切到剪贴板 Ctrl+X 或 Shift+Delete 
+粘贴剪贴板中的内容 Ctrl+V 或 Shift+Insert 
+内部粘贴 Alt+Ctrl+Shift+V 
+粘贴为下一主题 (同级主题) Alt+Ctrl+V 
+粘贴为附注主题 Ctrl+Shift+V 
+删除主题或对象 Delete 
+删除选定主题(但保留子主题) Ctrl+Shift+Delete 
+主题文本
+开始编辑模式 F2, 然后在主题内点击 
+开始编辑模式，光标移动到文本开头处 Shift+空格键 
+开始编辑模式，光标移动到文本结尾处 空格键 
+主题文本编辑模式下的命令: 
+主题内换行 Shift+Enter 
+移动到行首 Home 
+移动到主题文本开头 Ctrl+Home 
+移动到主题文本结尾 Ctrl+End 
+在光标位置拆分主题创建新同级主题 Alt+Shift+Down arrow 
+在光标位置拆分主题创建新子主题 Alt+Shift+Right arrow 
+取消编辑 Esc 
+拆分主题为多个主题(根据主题文本上的空格) Alt+Ctrl+Enter 
+拆分主题为多个子主题(根据主题文本上的空格) Alt+Ctrl+Insert 
+查找 Ctrl+F 
+查找模式命令: 
+查找下一个 Enter 
+查找上一个 Shift+Enter 
+输入查找文本 Ctrl+G 
+替换 Ctrl+H 
+拼写检查 F7 
+移动主题
+向上一个位置 Alt+Ctrl+上箭头 
+向下一个位置 Alt+Ctrl+下箭头 
+到顶部 Alt+Ctrl+Home 
+到底部 Alt+Ctrl+End 
+重置所有主题位置 Alt+Ctrl+空格键 
+平衡分布导图内容 Alt+Ctrl+B 
+格式
+加粗 Ctrl+B 
+倾斜 Ctrl+I 
+下划线 Ctrl+U 
+增大字号 Ctrl+Shift+> 
+减小字号 Ctrl+Shift+< 
+删除线文本 Ctrl+Shift+S 
+清除格式 Ctrl+空格 
+填充颜色 Ctrl+Shift+C 
+字体 / ink 颜色 Ctrl+Shift+F 
+使用帮助
+显示帮助 F1 
+通用Windows命令
+关闭菜单或者对话框 Esc 
+取消操作 Esc 
+关闭MindManager Alt+F4 
+显示Windows任务列表 Ctrl+Shift+Esc

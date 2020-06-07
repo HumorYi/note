@@ -1,0 +1,17 @@
+笔试宝典：前端各方面的面试题，可以叫学生上去做下面试题
+http://www.css88.com/archives/6190#more-6190 前端开发工具手册
+知乎官网
+
+https://www.qianduan.net/ 前端观察
+http://www.okajax.com/ Ajax集合
+
+腾讯web前端团队
+http://www.alloyteam.com
+百度web前端团队
+http://fex.baidu.com
+https://whatwg.org
+h5案例
+http://www.liveapp.cn/case
+
+
+http://support.zhongsou.net/news/8317219.html前端开发必备工具-网页调试工具

@@ -1,0 +1,126 @@
+ng（AngularJS的缩写）
+
+表达式：语法{{运算的表达式}}
+
+指令：
+	指令可以作为扩展属性来使用，还可以作为标签来使用
+	<html ng-app>
+	<ng-view/>
+
+	ng-app
+		一般放置在<html>中
+		①指定作用范围
+		②启动ng，ng的指令和表达式就可以被识别的 ng-app 
+		③调用了多次ngApp，首次调用生效
+
+	ngInit	初始化数据，如果初始化多条数据，可以用分号隔开
+		可作为属性和css类， 通常用作属性: 
+		属性：<ANY ng-init=""age=20;score=80">...</ANY>
+		css类：<ANY class="ng-init: ;"> ... </ANY>
+	
+	ngBind 将表达式的值 替换调用ngBind的元素的内容
+		解决双花括号 闪烁的问题。
+
+	ngSrc: ng中特殊的一个写法，
+		Angular的{{hash}}等标记在src属性中不能正确工作：浏览器会使用包含{{hash}} 的原始文本的URL，在Angular更新{{hash}}内的表达式之前。 ngSrc 指令解决了这个问题。
+
+		有问题的写法：
+			<img src="http://www.gravatar.com/avatar/{{hash}}"/>
+
+		正确的写法：
+			<img ng-src="http://www.gravatar.com/avatar/{{hash}}"/>
+
+		<div ng-init="url='1.jpg'">
+			<img ng-src='img/{{url}}' /> //如果src前面不加ng-，虽然图片能够显示出来，但是会报404错误，所以强烈建议在src前面添加ng-。
+		</div>
+	
+	ngRepeat
+		语法1：
+		<ANY ng-repeat="tmp in list">{{tmp}}</ANY>
+		语法 2：
+		<ANY ng-repeat="(key，value) in list"></ANY>
+
+
+		注意事项：如果要遍历的集合中有重复的数据，通过加上track by $index解决报错问题。
+
+		 <ul>
+		    <li ng-repeat="item in list track by $index">{{item}}</li>
+		  </ul>
+	
+	
+	ngIf(插入到DOM或者删除)
+		<ANY ng-if=""></ANY>
+	
+	ngShow/ngHide 根据表达式的结果去显示或者隐藏调用指令的元素
+
+	ngDisabled/ngChecked/ngSelected
+	ngStyle ngClass
+	ngClick
+	事件的处理：
+	on** --> ng**
+
+AngularJS 特征（采用MVC设计模式）
+	1、什么是MVC
+	M:model 定义的模型数据（变量）
+	V: view 通过ng指令和表达式增强后的html
+	C: controller 完成对数据的增删改查的操作
+
+	2、MVC的基本工作原理
+
+	操作视图的时候，触发控制器中指定的一些方法，在方法中对模型数据做了增删改查相关的操作，由于将模型数据通过绑定完成数据和视图的绑定关系，数据更新了，视图也会跟着自动更新
+
+
+	3、ng使用MVC的基本步骤
+	①完成模块的创建和调用
+	var app = angular.module('myApp',['ng'(可写多个ng模块)])
+	ng-app="myApp"
+	②完成控制器的创建和调用
+	app.controller("myCtrl",function(){
+
+	})
+	<div ng-controller="myCtrl"></div>
+	③定义模型数据，绑定到视图
+	(将模型数据和方法都定义在$scope中)
+	$scope.num = 10;
+
+	<p>{{num}}</p>
+
+	4、注意事项：
+	①模块的名称、控制器的名称在调用时不要写错
+	②控制器有一个作用范围，就是ngController所在的元素的所有的子节点都是可以调用控制器中所定义的模型数据和方法
+	③$scope 是一个作用域控制对象，将模型数据和方法 都是放在这个对象中。
+
+
+	对事件的处理：
+	onClick=""
+	--》
+	ng-click=""
+
+	数据可以通过ngInit去初始化数据，也可以通过控制器中的$scope对象去定义数据。
+	建议使用$scope：
+	①ngInit在视图中定义数据
+	②使用$scope,清晰判断每个数据的作用范围
+
+	使用MVC构建一个ng应用基本步骤：
+	①引入必要的js(angular.js)文件
+	②创建模块
+	var app = angular.module('myApp',['ng']);
+	③调用模块
+	ng-app='myApp'
+	④创建控制器
+	app.controller('myCtrl',function($scope){})
+	⑤调用控制器
+	ng-controller='myCtrl'
+	⑥定义模型数据
+	$scope.num = 10;
+	$scope.list = [];..
+	⑦在控制器的视图范围内容调用并显示
+	<div ng-controller='myCtrl'>
+	  <p>{{num}}</p>
+	</div>
+
+	控制器是有作用域范围的，数据建议放在$scope中，若要使用的数据在控制器中，则要调用数据的容器必须在该控制器内。
+
+	1个html只能声明和使用一个ng-app，不写ng-app则不能使用angular.js。
+	angular.module('myApp',['ng'(可写多个ng模块)])
+	1个html只能声明和使用多个ng-controller.

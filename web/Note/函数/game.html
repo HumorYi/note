@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+	
+  </style>
+  <script>
+	var date = [
+		[2,4,2,4],
+		[4,2,4,2],
+		[2,4,0,4],
+		[4,2,4,2]
+	];
+	function isGameOver(){
+		for(var r=0; r<date.length; r++){
+			for(var c=0; c<date[r].length; c++){
+				if(date[r][c] == 0){
+					return false;
+				}
+				if(c<date[r].length-1 && date[r][c]==date[r][c+1]){
+					return false;
+				}
+				if(r<date.length-1 && date[r][c]==date[r+1][c]){
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+	console.log(isGameOver());
+  </script>
+ </head>
+ <body>
+  
+ </body>
+</html>

@@ -1,0 +1,35 @@
+﻿文本对齐只对块级元素有效
+text-justify: 两端文本对齐，只对大篇幅的英文有效
+
+使用Bootstrap图标
+  注意：
+	可以使用任何标签通过class类名使用图标，标签的内容必须为空
+	<span class="glyphicon glyphicon-home"></span> ok
+	<span class="glyphicon glyphicon-home">afsd</span> error
+
+	图标不显示：
+		fonts目录被修改
+		fonts目录下的文件破损
+		浏览器netwo请求不到glyphicons-halflings-regular.woff2 404/200
+		bootstrap.css下的 263行@font-face被修改或无
+	解决：重新下载bookstrap，直接替换有问题的文件
+
+
+导航条包含容器
+
+data-target="#引用的id"
+data-parent="#引用的id"
+
+官方说明偏向于mp端，但是偏向于pc端，适用于开发响应式网页。
+
+兼容性：除了不兼容window下的Safari，其它都兼容。
+
+.table-responsive 加在父元素div上。
+
+警告框：alert需要开启cookie，既是组件也是插件
+
+以下这两个不推荐使用，有bug
+	@import "tooltip.less";
+	@import "popovers.less";
+
+media媒体查询会自动把文本居中显示

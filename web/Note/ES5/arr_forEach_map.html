@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+	
+  </style>
+  <script>
+	//兼容IE8
+	if(Array.prototype.forEach === undefined)
+		Array.prototype.forEach = function(callback){
+			for(var i=0; i<this.length; i++){
+				//防稀疏数组
+				if(i in this)
+					callback(this[i],i,this);				
+			}
+		}
+	
+	var arr = [,2,3,,5];
+	arr.forEach(function(val,i,arr){arr[i]*=2});	//不修改原数组
+	document.write(String(arr)+'<br/>');
+
+	if(Array.prototype.map === undefined)
+		Array.prototype.map = function(callback){
+			for(var i=0, newArr=[]; i<this.length; i++){
+				//防稀疏数组
+				if(this[i] !== undefined)
+					newArr[i]=callback(this[i],i,this);				
+			}
+			return newArr;
+		}
+	var evens = arr.map(function(val){return val*=2});
+	document.write(String(evens));
+  </script>
+ </head>
+ <body>
+  
+ </body>
+</html>

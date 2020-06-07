@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+	
+  </style>
+  <script>
+	function decimalTobinary(dec){
+		var bin=[];
+		/*
+		while(dec>0){
+			//bin.push(dec%2);
+			bin.unshift(dec%2);
+			dec=parseInt(dec/2);
+		}
+		//bin.reverse();
+		return bin.join("");
+		*/	
+		if (dec>0){
+			for(var i=-6; i<dec; i++){	
+				//bin.push(dec%2);
+				bin.unshift(dec%2);
+				dec=parseInt(dec/2);
+			}
+		}	
+		//bin.reverse();
+		return bin.join("");
+	}
+	var n=90;
+	console.log(decimalTobinary(n));
+	console.log(n.toString(2));
+  </script>
+ </head>
+ <body>
+  
+ </body>
+</html>

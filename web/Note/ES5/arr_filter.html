@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+	
+  </style>
+  <script>
+	var arr = [1,2,3,4,5];
+	//过滤:选择原数组中符合条件的元素，组成新数组
+	var evens = arr.filter(function(val){return val%2==0});
+	var odds = arr.filter(function(val){return val%2==1});
+	console.log(String(arr));
+	console.log(String(evens));
+	console.log(String(odds));
+
+	//汇总:将原数组中每个元素统计出一个汇总结果
+	/*
+		0: 表示初始值
+		prev: 截止到目前的阶段汇总值
+		回调函数的返回值，自动作为下次的prev值
+	*/
+	var r = arr.reduce(function(prev,val){
+		//console.log('目前'+prev);
+		return prev+val
+	},0);
+	console.log(r);
+	var arr2 = [5,4,3,2,1];
+	r = arr2.reduce(function(prev,val){return prev+val},r);
+	console.log(r);
+  </script>
+ </head>
+ <body>
+  
+ </body>
+</html>

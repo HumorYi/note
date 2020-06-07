@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+	
+  </style>
+  <script>
+	/*原
+		console.log(fun());
+		function fun(){return 1}
+		console.log(fun());
+		function fun(){return 2}
+		var fun = 100;
+		console.log(fun());
+	*/
+	
+	/*
+		//声明提前(hoist) 声明部分提前，赋值部分留在原地
+		function fun(){return 1}	//window读取到fun()函数，首先创建一个fun对象，里面存储地址 0x9083
+		function fun(){return 2}	//window读取到fun()函数，想创建一个fun对象，却发现内存中早已存在了fun对象，于是该fun(0x2143)对象替换前面的fun对象，存储的地址值也替换掉，前面的fun对象被释放
+		var fun;	//window读取到fun变量的时候，发现内存中早已存在了一个fun对象，该变量无效
+		console.log(fun());	//2
+		console.log(fun());	//2
+		fun = 100;	//fun对象的地址值被替换成数字
+		console.log(fun());	//类型错误 TypeError
+	*/
+	
+	/*函数直接量
+		var fun = function(){return 1}
+		console.log(fun());	//1
+		var fun = function(){return 2}
+		console.log(fun());	//2
+		fun = 100;
+		console.log(fun());
+	*/
+
+	/*new function()*/
+	//function cmp(a,b){return a-b}
+	//var cmp = function(){return a-b}
+	var cmp = new Function('a', 'b', 'return a-b');
+	var arr = [12, 2, 4, 52, 31];
+	console.log(arr.sort(cmp));
+
+  </script>
+ </head>
+ <body>
+  
+ </body>
+</html>

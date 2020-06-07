@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+	
+  </style>
+  <script>
+	function Flyer(name,speed){
+		this.name = name;
+		this.speed = speed;
+	}
+
+	Flyer.prototype.fly = function(){
+		console.log(this.name+'以时速'+this.speed+'飞行');
+	}
+
+	function Plane(name,speed,score){
+		/*	Flyer(name,speed);	
+			如果一个函数不用任何东西调用（要对象没对象，要new没new），函数里面的this指向window，name,speed->window				
+		*/
+		//Flyer.call(this,name,speed);	//构造函数中的this指当前正在创建的新对象，call()方法可以强行借用，替换函数里面的this指向谁，替换函数里面的主角
+		Flyer.apply(this,arguments);
+		this.score = score;
+	}
+	
+	/*
+	Plane.prototype.getScore = function(){
+		console.log('击落'+this.name+'获得'+this.score);
+	}
+	*/
+
+	Plane.prototype = Object.create(Flyer.prototype, {
+		getScore: {
+			value: function(){console.log('击落'+this.name+'获得'+this.score);}
+		}
+	});
+	
+	//构造函数建立好之后，紧接着设置原型
+	Object.setPrototypeOf(
+		Plane.prototype, Flyer.prototype	//子对象，父对象	
+	);
+
+	function Bee(name,speed,award){
+		Flyer.apply(this,arguments);
+		this.award = award;
+	}
+
+	Bee.prototype.getAward = function(){
+		console.log('击落'+this.name+'奖励'+this.award);
+	}
+
+	//构造函数建立好之后，紧接着设置原型
+	Object.setPrototypeOf(
+		Bee.prototype, Flyer.prototype	//子对象，父对象	
+	);
+
+	var f16 = new Plane('f16',1000,20);
+	f16.fly();
+	f16.getScore();
+	var bee = new Bee('小蜜蜂',2000,'小苹果');
+	bee.fly();
+	bee.getAward();
+  </script>
+ </head>
+ <body>
+  
+ </body>
+</html>

@@ -1,0 +1,62 @@
+地址：广州市越秀区越秀北路319号小北御景广场A座C306
+
+Foxmail邮箱：
+账号： gzzhangxm@tedu.cn
+密码： xmwtn6tr
+
+OA系统：
+网址： http://oa.tedu.cn/
+账号： Foxmail邮箱账号--没有后缀
+密码： Foxmail邮箱密码
+
+达内客户关系管理系统--CRM系统：--五羊和体育东相同
+网址： http://crm.tarena.com.cn
+账号： gzwyxc801
+密码： QQ
+
+TTSIS--广州五羊：                    TTSIS--广州体育东
+网址： http://ttsis8.tmooc.cn        网址：http://ttsis8.tmooc.cn  
+账号： gzzhangxm     gzzxm           账号：gztydzxm
+密码： QQ            123456          密码：123456
+
+代码下载：
+网址： http://code.tarena.com.cn/
+账号： tarenacode
+密码： code_2013
+
+代码上传：
+I  P:  192.168.44.200
+账号： gzxb
+密码： tarena
+
+远程视屏--专线：                                     远程连接--以开班账号为主：
+网址： http://10.1.1.61  或  http://10.1.1.68        电信： 1.202.197.86  联通：218.247.147.212
+训练营账号： 自己所以填写
+训练营密码： 2002tedu（2014tedu）
+正式开课账号密码以邮件为主
+
+WEB设计班tmooc账号：             PHP业余账号：
+账号： web1512@tedu.cn           账号： 380493679@qq.com
+密码： 111111                    密码： 111111
+
+新版web-VIP视频匹配代码提取:
+地址： http://pan.baidu.com/s/1hsO3qss
+密码： rvmw 
+
+深圳达内：项目经理-吴坤金--15662174655  找web项目老师
+
+WEB1607开班账号：
+账号： gzwyweb1607384
+密码： RUZKMPYX
+
+vip账号-刘花:web
+账号： 179180692@qq.com
+密码： yjsffawx123abcde
+
+vip账号-向水玉:PHP
+账号： 191793234@qq.com
+密码： 40441734
+
+vip账号-试听:PHP
+账号： 380493679@qq.com
+密码： 111111

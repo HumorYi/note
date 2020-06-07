@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+	
+  </style>
+  <script>
+	var bus=[];
+	for(var i=1; i<=5; i++){
+		bus.unshift("乘客"+i);
+		console.log(String(bus));
+	}
+
+	while(bus.length>0){
+		var last=bus.shift();
+		console.log(last+"下车");
+		console.log(String(bus));
+	}
+  </script>
+ </head>
+ <body>
+  
+ </body>
+</html>

@@ -1,0 +1,87 @@
+面试题:
+	HTTP/1.1(1999)
+	HTTP/1.0(1996) 的改进有哪些?
+		1:持久连接 Connection:keep-alive 
+		2:虚拟主机 Host:tmoon.cn
+			   Host:tts.cn
+			   Host:tao.cn
+		3:代理连接 Proxy:xxx
+	
+面试题:
+	1:八种请求方法有哪些?
+		GET
+		  表示客户想获取服务器上资源
+		    无请求主体
+		POST
+		  表示客户端想传递数据给服务器
+		    有请求主体
+		PUT
+		  表示客户端想放置文件到服务器
+		    请求主体 
+		    大多数访问器禁止，因为他人很容易替换访问器上的同名网页
+		DELETE
+		  表示客户端想删除服务器上指定文件
+		    无请求主体
+		HEAD
+		  表示客户端想获取服务器上指定资的响头部，不要资源内容
+		CONNECT
+		  连接测试
+		TRACE
+		  追踪请求路径
+		OPTIONS
+		  选项，保留以后使用
+	2:GET和POST请求有什么不同?
+		GET请求: 地址输入URL 超连接
+		         JS跳转(location.href)      
+			 GET方式提交表单
+			 AJAX发送GET
+		POST请求:POST方式提交表单
+		         AJAX发送POST
+
+		GET请求把请求数据追加在请求URI后面,
+		POST请求把请求数据追回请求消息主体中.
+
+		根据HTTP协议规定:
+		请求起始行不能超过1024字节（GET）
+		POST不限
+
+		二者语义不同:
+		GET  表示客户端想获取资源.
+		POST 表示客户端想传数据给服务器.
+		
+				GET                   POST
+		语义	 客户端获取服务器资源   客户端发数据给服务器
+				无消息主体		有消息主体
+		如何发起	地址输入URL		  表单  post
+				<a href=''>		  ajax  post
+			       js 跳转 location.href
+				表单 GET
+				ajax
+		安全		不安全                不安全	明码传递
+		数据长度	 1024                 没限制	
+		编码		中文乱码              没问题
+	
+面试题:jquery中如何处理-失败-的XHR请求消息
+	注意：上面的几种函数中第三个参数，
+	回调函数，都是响应完成且成功后回调函数，
+	没有提供处理失败请求机制
+
+	$.ajax() 
+	万能的AJAX封装函数，提供了非常多的可
+	选项.
+	$.ajax({
+		type:'GET',       //POST/GET/PUT/DELETE/HEAD
+		url:'x.php',
+		data:'k=v&k1=v',  //提交给服务器数据
+		beforeSend:fn,    //请求消息发送之前回调函数
+		success:fn,       //响应完成且成功回调
+		error,fn,         //响应完成但有问题回调
+		complete:fn       //响应完成后回调(不论成败)
+	});
+
+3.面试题：请谈一下Chrome浏览器的线程模型？
+	Chrome浏览器是如何下载网页资源？
+	  Chrome浏览器中的线程模型：
+	  每个Chrome进程中至少有6个线程。
+	  为了保证浏览器请求网页内容的速度，Chrome会同时启用这6个线程——请求线程。
+	  而执行代码(HTML/CSS/JS/图片渲染...)仅有一个线程来完成——UI主线程。

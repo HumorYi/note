@@ -1,0 +1,31 @@
+1
+var number=2;
+var obj={
+	number:4,
+	fn1:(function(){
+			this.number*=2;
+			number=number*2;
+			var number=3;
+			return function(){
+			this.number*=2;
+			number*=3; 
+			
+			}
+		})(),
+	db2:function(){this.number*=2}
+};
+var fn2=obj.fn1; alert(number); //?4当成一个属性自掉，返回一个函数
+fn2(); obj.fn1(); 
+alert(window.number); //? 
+alert(obj.number); //?
+
+
+2
+function person(){
+	this.toString=function(){return 'Person'}
+}
+var per=new person();
+alert.log(per);//?
+delete per.toString;
+alert.log(per);//?
+

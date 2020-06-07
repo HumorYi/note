@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+	
+  </style>
+  <script>
+	/*	创建一个对象
+		var lilei = {
+			name: 'lilei',
+			age: 11,
+			intr(){
+				console.log(`I'm ${this.name},I'm ${this.age}`);
+			}
+		}
+	*/
+	
+	/*	创建一个构造函数
+		function Student(name,age){
+			this.name = name;
+			this.age = age;
+		}
+		Student.prototype.intr=function(){
+			console.log(this.name+this.age);
+		}
+
+		var lilei = new Student('lilei',11);
+		var hmm = new Student('Han MeiMei',12);
+		console.log(lilei.__proto__ == Student.prototype);
+		console.log(hmm.__proto__ == Student.prototype);
+		console.log(lilei.__proto__ == hmm.__proto__);
+		console.log(lilei.intr == hmm.intr);
+		console.dir(lilei);
+		console.dir(hmm);
+
+		console.log(lilei.age);
+		lilei.intr();
+		lilei.age++;
+		console.log(lilei.age);
+		lilei.intr();
+	*/
+	/*	克隆一个对象的构造函数
+		function clone(obj){
+			var newObj = {};
+			for(var key in obj){
+				newObj[key] = obj[key];
+			}
+			return newObj;
+		}
+
+		var lilei_copy = clone(lilei);
+		console.log(lilei);
+		console.log(lilei_copy);
+		console.log(lilei_copy==lilei);
+	*/
+
+	/*添加属性，判断属性是自由还是共有亦是没有*/
+
+	function Student(name,age){
+		this.name = name;
+		this.age = age;
+	}
+
+	/*
+		Student.prototype.intr=function(){
+			console.log(this.name+this.age);
+		}
+		Student.prototype.className = '初一(2)班';	//原型对象定义共有属性]
+	*/
+	
+	//如果要替换构造函数的原型对象，必须在旧的对象之前定义新的对象来替换
+	//替换构造函数的原型对象为新对象
+	var father = {bal: 10000000, car: 'infinity'};	
+	//再为新原型对象添加intr和className成员
+	Student.prototype = father;	//新
+
+	Student.prototype={	//旧
+		intr: function(){
+			console.log(this.name+this.age);
+		},
+		className: '初一(2)班'
+	}
+
+	var lilei = new Student('lilei',11);
+	var hmm = new Student('Han MeiMei',12);
+	console.log(lilei.className);
+	console.log(hmm.className);
+	/*
+		lilei.className = '初二(2)班';	//子对象修改共有属性，变为自由属性，之后不会随着原型对象的修改而更改
+		console.log(lilei.className);
+		console.log(hmm.className);
+		Student.prototype.className = '初三(2)班';
+		console.log(lilei.className);
+		console.log(hmm.className);
+	*/
+	function checkProp(obj,propName){
+		if(obj.hasOwnProperty(propName)) console.log('自有属性');
+		else if(obj[propName]) console.log('共有属性');
+		else console.log('没有');
+	}
+	
+	checkProp(lilei,'name');
+	checkProp(lilei,'className');
+	checkProp(lilei,'me');
+  </script>
+ </head>
+ <body>
+  
+ </body>
+</html>

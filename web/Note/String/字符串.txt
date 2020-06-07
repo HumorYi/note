@@ -1,0 +1,10 @@
+字符串：
+	内置对象：11个
+		Number String Boolean
+		Array Math Date RegExp
+		Error
+		Function Object
+		Global(在浏览器中被替换为window)
+
+
+	

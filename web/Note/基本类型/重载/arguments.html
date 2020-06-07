@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+	
+  </style>
+  <script>
+	//arguments有index和length
+	var checkout = function(){
+		if(arguments.length == 0) console.log('微信支付');
+		else if(arguments.length == 1) console.log('支付宝支付');
+		else if(arguments.length == 2) console.log('现金支付');
+		else console.log('刷卡支付');
+	}
+	checkout();
+	checkout('dfasd');
+	checkout('dfasd','fsad');
+	checkout('dfasd','fsad','fsda');
+
+	function add(){
+		/*
+		for(var i=0, sum=0; i<arguments.length; i++){
+			sum += arguments[i];
+		}
+		*/
+
+		for(var i=0, sum=0; i<arguments.length; sum+=arguments[i++]);
+		return sum;
+	}
+	console.log(
+		add(1,2,3,4),	//10
+		add(1,2,3,4,5,6)	//21
+	);
+  </script>
+ </head>
+ <body>
+  
+ </body>
+</html>

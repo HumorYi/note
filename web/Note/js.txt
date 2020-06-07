@@ -1,0 +1,347 @@
+要点：
+	理解不透彻，思维不够严谨。 
+	写程序先判断数据在哪里，一定要细心、周全,切记急躁
+	
+	程序的步骤来源于生活，写程序时先转换思维，把步骤先列出来，再填充代码
+
+	以后定义的变量切记要用一个文本文件保存，想使用变量时，可以避免出现全局污染，还有闭包造成的内存增多。
+	
+	用户希望先看到网页内容，再操作网页功能
+	<script></script>放在<body>结尾是为了让<script></script>加载不影响网页内容的加载
+	
+	程序调试：
+		debugger:调试信息，跟踪程序的执行过程，显示变量的内容。
+		console.dir(变量); 打桩，在关键位置显示关键信息
+		console.log(变量);
+	
+	写程序就像做菜一样，心里时刻存放着内存，数据，向家庭主妇学习。
+	1、什么是JS
+		JS时运行于 JS解释器/引擎 中的解释型脚本语言
+
+		运行环境：JS解释器/ 或 JS引擎
+
+		JS解释器 和 JS引擎：
+			1、独立安装的JS解释器
+				Node.JS
+			2、嵌入在浏览器内核中的JS解释器
+				只要有浏览器就能运行JS
+			（Node.JS 与 浏览器 效率 方式 ）
+
+		解释型脚本语言：无需编译，直接运行，出错就停止，变运行变解释
+
+		脚本语言：纯文本语言			
+	
+	汉字hash码：开始-》\u4e00 / 一  结束-》\u9fa5 / 龥
+	
+	for(var key in arr)//取键
+	for(var val in arr)//取值
+	//for循环里面的变量只在开始是创建一次
+	//调试，前提是浏览器控制台必须开着，刷新按F8
+		debugger;
+	三个关键字不能放在简写里面，必须独自占据一行
+		return,break,continue
+
+	for语句的简写方式
+		for (var i=0, max=arr[0]; i<arr.length; arr[i]>max && (max=arr[i]), i++);
+	/*for的优化写法
+	for(var i=0, sum=0; i<arguments.length; i++){
+		sum += arguments[i];
+	}
+	for(var i=0, sum=0; i<arguments.length; sum+=arguments[i++]);
+	*/
+
+	if语句的简写方式
+		fromi===undefined && (fromi=0);
+	if语句括弧内只有6个值才会转为false：-0, 0, '', NaN, undefined, null
+
+	错误处理：（总结经验，在开发过程中一定要保护好自己,代码要严谨）
+		只要能够提前预知错误，就可以用if else来代替try catch，否则只能用 try catch,抛出错误同城是为了提醒使用者错误的使用程序
+		抛出自定义错误：throw new Error('自定义错误信息');
+
+	只要不中断退出就是好的处理
+
+	自动补全位数：
+		//只能匹配数字
+		//如果u<100000，就自动补齐5位（中文解码为5位）
+		u=(u+100000+'').slice(1);
+
+	凡是一个方法可能返回null，必须先验证，
+
+	/*交换两变量的值:*/
+	var a=3,b=5;
+	/*方法1: 使用第三个变量(鄙视时禁用)
+	var t=a; a=b; b=t;*/
+	/*方法2: 异或 ——只能交换数字
+	a^=b; b^=a; a^=b;*/
+	/*方法3: 做加减 ——只能交换数字
+	a+=b; b=a-b; a-=b;*/
+	/*方法4: 万能*/
+	b=[a,a=b][0];
+
+	数组：封装一组连续的数据，并提供操作这组数据的API
+	字符串：封装一组连续的字符，并提供操作这组字符的API
+
+	学习API思路：
+		任何对象都是封装了什么，提供了什么样的API
+		任何对象使用之前都要考虑如何创建
+
+	只有两个API能够打散数组：arr.concat(); arr.apply();
+
+	//获取min~max之间的随机数
+	Math.floor(Math.random()*(max-min+1)+min);
+
+	函数其实是一个对象,里面存储的是一段逻辑、一段代码
+	                            
+	赋值表达式的结果是等号右边表达式的值
+	
+	舍入误差：算数到最后再给取8位小数	
+	var n = 555.555; n=parseFloat(n.toFixed(8)).toFixed(2);
+
+	函数：
+		function cmp(a,b){return a-b}	//比较器，何时使用：只有下面的sort()方法满足不了需求时使用
+		arr.sort(cmp);	//不加()，传入的是一个函数，可反复执行
+		arr.sort(cmp());	//加()，传入的是函数执行一次的结果，只能执行一次
+		
+		声明提前 
+			声明部分提前，赋值部分留在原地  
+			当使用完一个较大的对象的时候，主动清空，释放内存，总是好的习惯。
+
+			function fun(){} 和 var fun都是声明/创建一个变量的意思
+				如果 var fun为初始化，则该变量无效，反之，则会覆盖（替换）前面的fun函数变量，调用时需注意赋值的类型，否则会报TypeError错误。	
+	
+		只有在里面的函数体需要动态生成的时候才需要用这种方法，为什么用字符串？因为只有字符串在运行的时候可以动态拼接
+		var 函数名 = new Function('参数1', '参数2', '函数体; 返回值');
+	
+	重载:
+		js不支持重载，但是通过arguments对象接住所有传入函数的对象，arguments是一个类数组（Object）的对象，长的像数组（Array），有index、length、可遍历（for），与数组类型不同。
+	
+	自调函数：
+		三种写法：
+			(function(a,b){return a-b})(2,3); //js原生写法
+			(function(a,b){return a-b}(2,3)); //js原生写法
+			+function(a,b){return a-b}(2,3); //Angular.js写法
+
+	ECS（Execute Contect Stack）:
+		全局作用域对象：看得见摸得着的方块（对象），称为window，所有声明的全局变量一律存储在window中
+		
+		函数在定义的时候只是一个未定义的变量，不要去看函数的内容，克制自己的好奇心
+			function fun(){console.log(a+b);} //undefined 
+			//fun(); 报错	
+
+	所有的变量都是保存在作用域链中，js的作用域链是栈结构
+	
+	数组比较器写法：
+		arr.sort(function(a,b){return a-b});
+		arr.sort((a,b)=>a-b);	//ES6
+
+	闭包：
+		缺点：里面的内存无法释放，死循环
+		优点：防止变量全局污染且可重复使用
+		注意：死循环内的变量占据了多少内存？服务器端的内存有多少？-》执行速度、效率。
+	
+	参数变量也是局部变量。
+
+	只要想要重用一个变量，一定用闭包，不要用全局
+		释放闭包，把接住外层函数的变量置为null
+	
+	面向对象：
+		只要使用面向对象，都要先创建对象，再按需调用对象的方法执行操作，创建对象里面的属性用逗号分隔
+		
+		每一个变量都要想这个东西属于谁，绝对不存在一个不属于任何对象的变量，现实中亦如此，把变量和方法封装在一个对象中。
+
+		对象的本质：js对象的一切底层都是关联(hash)数组
+
+		对象中的方法也是一个属性，只不过是里面封装了一个函数，方法与属性的区别就是里面的值不一样。
+
+		js中一个对象创建之后，随时可以往里添加新的属性和功能。js和java没有半毛钱关系。
+
+		封装：将一个东西的属性和功能集中定义在一个对象中，其实是定义一个对象。
+
+		继承：父对象中的成员，子对象无需重复创建，就可直接调用
+
+		多态：同一事物，在不同的情况下，表示不同的状态
+	
+		原型对象：
+			构造器对象调用：构造器.prototype
+			子对象调用： 子对象.__proto__	注意：__这里是两个下划线
+			子对象.__proto__ == 构造器.prototype //true
+
+		内置对象的原型对象：
+			所有的内置对象都是一个构造函数，除了Math之外，只要不是构造函数，就不能new，每类内置对象都有自己的原型对象（prototype），所有内置对象的API都保存在类型.prototype对象中	
+			何时：解决浏览器兼容性问题：2步
+				if(类型.prototype.方法 === undefined){
+					类型.prototype.方法 = function(可传参){
+						this->自动获得将来调用该方法的当前对象
+					}
+				}		
+		
+		typeof只能判断基础类型和function,如果都是引用类型的对象，它就无法进入细分
+
+		内部属性不让访问，只有一个解决办法，Object.prototype,toString() -> '[object Class]'
+
+		call(要替换的对象)	强行借用一个本无法调用的方法,无所不能,替换函数里面的this指向谁，替换函数里面的主角
+		
+		call和apply：
+
+		Array.isArray(obj)里面封装了Object.prototype.toString.call(obj) == '[object Array]'
+
+		构造函数里面的this指当前正在创建的新对象（new ...）
+			function Plane(name,speed,score){
+				Flyer.call(this,name,speed);	//this->Plane
+				//Flyer(name,speed);	//this->window
+				this.score=score;	//this->Plane
+			}
+
+		继承中先有子对象，再判断子对象中是否有共有的属性和方法，接着建立父对象进行封装子对象的属性和方法。
+
+		松散耦合：一个函数，它应该只考虑和它自己有关的事情，一些细小的事情，应该分出去，找帮手来帮它做，把大问题拆为小问题。
+		js中，创建一个类型没有参数的对象时，简写如下，var obj = new Object; 或者 var obj = Object();
+
+	ES6中arguments不建议被使用,不过使用(...args)来代替arguments。
+
+	页面中获取到的一切数据都是字符串，如果想转成数字，必须强制转换(parseInt() 或 parseFloat())
+
+	在程序当中，如果要判断的一个属性是数值，则给该值起一个名字，以后都用该名字代替值，增强可读写和可记忆性。
+
+	今后只要遍历删除元素的值，都要从后往前删，避免前面出现空白，导致下标错位。
+
+	标签内的id是一个局部变量，若要访问id，则document.getElementById('id').id;
+
+	如果要想对代码优化，创建函数封装代码段必须得考虑this。
+
+	select option 中的第一项必须设置为'请选择'，避免用户误操作
+
+
+	parseInt()可以接受第二个参数，这个参数指定数字转换的基数，合法的取值范围是2~36。
+		ex：
+			parseInt('11',2); //3 (1*2 +1)
+			parseInt('ff',16); //255 (15*16 +15)
+			parseInt('077',10); //3 (7*10 +7)
+
+	alert(); 作用：若不点击确认按钮，阻止程序执行
+
+	算术运算符：
+		运算顺序：
+			var a = 1;
+			var b = (a++)+a;
+				解析：
+					第一步：计算 b
+					第二步：计算a++ -》假设值为c
+					第三步：计算a
+					第四步：计算c+a
+					第五步：b=c+a
+
+	字符串的比较是区分大小写的：所有的大写ASCII码都小于小写的ASCII码
+
+	页面动态生成的元素如果要绑定事件，则需要用下面的写法
+		$("#banner").on("click","ol li",function(){
+			_index = $(this).index();
+			common();
+		});
+	代码重构时，注意参数的作用域，return true/false 有重大作用
+
+	三目运算：若后面还需判断条件，若非条件必要，最后把第二个判断放置在第一个判断:后面进行判断
+		ex: bool==true ? true : bool1=true ? true : false;
+
+	注意：
+		1：if(a&&b&&c) 解析： 只有同时满足abc三个才执行后续程序
+		2：if(a) if(b) if(c) 解析：只有在先满足a的情况下再执行b，只有在满足ab的情况下再执行c
+		若如果if(b)有else情况下，则优先使用第2种，否则使用第1种。
+
+	表单中的submit 和 button 的区别：
+		submit
+			点击同步提交
+			 提交:1:将参数传递服务器程序
+			      2:将html刷新，所有填数据清空
+			会提交表单且刷新页面，若不需要刷新页面，则需阻止表单提交的默认事件，e.preventDefault();
+		button只是一按钮，无提交功能，需传递地址异步提交表单
+
+	以下两者的区别：
+		img.onload = fun();		立即调用=》结果
+
+		img.onload = function(){
+			fun();			一段程序
+		}
+
+	JSON.parse() VS JSON.stringify()
+		parse用于从一个字符串中解析出json对象
+			var str = '{"name":"huangxiaojian","age":"23"}'
+			JSON.parse(str)
+
+			结果：
+				Object
+					age: "23"
+					name: "huangxiaojian"
+					__proto__: Object
+
+			注意：单引号写在{}外，每个属性名都必须用双引号，否则会抛出异常。
+		
+		stringify()用于从一个对象解析出字符串
+			var a = {a:1,b:2};
+			JSON.stringify(a)
+
+			结果： "{"a":1,"b":2}"
+
+	
+	Web项目中数据的存储方式
+	  (1)服务器端数据存储——关键/核心数据
+		存储在服务器内存中：适用于用户登录相关数据——Session
+		存储在服务器磁盘中：适合于运行日志数据
+		存储在服务器端数据库中：适合于业务数据
+	  (2)客户端数据存储——浏览历史/内容定制数据
+		存储在客户端浏览器内存中：cookie/sessionStorage
+		存储在客户端浏览器对应的系统文件中：cookie/localStorage
+	  提示：Web安全性问题——用户登录信息相关的数据不应该保存在客户端！保存在服务器端。
+
+	 服务器端Session技术
+	  所有的服务器端技术都提供了Session存储：PHP、JSP、Node.js等。基本原理：
+	  Session：会话，指浏览器从打开某个网站的某个页面开始，浏览器与Web服务器之间一系列请求-响应过程。HTTP协议属于无状态协议，没有提供会话跟踪功能。某些应用（如用户登录）必需保存会话相关的数据，可以用服务器端Session技术。
+		
+	客户端只需保存一个随机的ID，每次访问服务器时都会自动出示该ID，服务器根据此编号从Session空间中找到对应的数据——当前客户端所专有的数据。
+
+	如果函数中传入的参数在函数内要多次使用，强烈要求，把单个参数赋值给单个局部变量，减少获取参数次数，提高程序执行速率。
+
+	// 注意这个特殊值
+		0 == ''  -> true
+		!isNaN('') -> true;
+
+	IIFE(Immediately-Invoked Function Expression)立即执行函数表达式,常用于函数自调、匿名函数、闭包等.
+
+	原始值的包装：
+		new Number(123);
+		new String('abc');
+		new Boolean(true);
+	原始值的去包装：// valueOf()转换为原始值
+		new Number(123).valueOf();
+		new String('abc').valueOf();
+		new Boolean(true).valueOf();
+
+	将包装对象转换为原始值时只能正确地提取出数字和字符串，而布尔值则不能。
+
+	逗号运算符会执行两边的运算数并返回right部分的结果。
+		ex: 3, 35	// return 35;
+
+	void运算符：
+		void expr ; //无论 expr是什么，执行完毕都会返回undefined
+		ex:
+			void 1+2; // same as (void 1)+2  return NaN;
+			(void 1)+2; // return undefined;
+
+		用处：
+			1、void 0 == undefined
+			2、避免表达式返回结果（URL：书签）	// javascript:void window.open('http://www.baidu.com');
+			3、IIFE(Imdiately Invoked Function Express)
+			
+	Boolean 陷阱：所有的对象都是真值
+		Boolean(new Boolean(false)); // return true
+		Boolean(new Boolean([])); // return true
+		Boolean(new Boolean({}})); // return true
+
+
+	正则：
+		/^(?![A-Z]+$)(?![a-z]+$)(?![_]+$)[A-Za-z_]{6,10}$/.test('AAAAAAA');
+
+		三者间至少二者匹配上则为 true
+
+	Number: 
+		Number('01324') === 1324;	//会默认把0去掉

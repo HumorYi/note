@@ -1,0 +1,196 @@
+html英文释译：
+
+title 标题
+
+body  身体
+
+list  列表
+
+style 样式
+
+image 图像
+
+source资源 
+
+
+width  宽度
+height 高度
+
+line 行
+
+link  链接
+
+italic 斜体
+
+bold  加粗
+
+input 输入
+
+
+under 下面的
+
+top  顶部
+
+
+
+
+CSS 英文释译：
+
+font  字体
+
+size  大小
+
+text  文本
+
+align 对齐
+
+decoration 修饰
+
+line  线
+
+through 穿过
+
+indent 缩进
+
+italic 斜体/it?lik/
+
+bold   加粗
+
+weight 加重
+
+width 宽
+
+height 高
+
+background 背景
+
+repeat 重复
+
+position 位置
+
+
+display 显示类型
+
+visibility 显示可见
+
+hidden隐藏
+
+visible显示
+
+overflow 溢出
+
+list列表
+
+style样式
+
+border 边框 
+
+
+line-height行高
+
+margin  边界
+
+padding 填充
+
+normal  正常
+
+marquee  滚动
+
+bgcolor  背景颜色   text  文本颜色
+
+<br>换行   <p></p>换段   
+   
+&nbsp;添加空格
+
+<b> </b>  <strong>  </strong>加粗
+
+<i>  </i>  <em> </em> 倾斜
+
+<u> </u>下划线
+<s> </s>  删除线
+<ul>  <li>  </li>  </ul>   列表符号●  两对要一起出现    无序列表
+  
+<ol>  <li>  </li>  </ol>   列表符号1-无穷大  两对要一起出现    有序列表
+
+<img src="file:///  添加本地图片地址格式     alt=""  图片说明
+
+ target="_blank">   在新窗口中打开
+
+
+<a name="1t"></a>    命名锚记
+<a href="#1t">刘涛老师</a>  添加锚记
+
+<table>   表格
+<tr>
+<td></td>    合并跨列添加：colspan="6"
+</tr>         合并跨行添加：rowspan="4"
+</table>
+
+type="password" /*密码*/
+
+<input type="radio"  name="face">
+        <input type="radio"  name="face">
+        <input type="radio"  name="face">     单选按钮
+
+<input type="checkbox">体育运动               复选框
+
+
+<select>
+        <option>平面设计</option>
+        <option>网页设计</option>
+        <option>WEB前端设计</option>             下拉菜单选项
+        <option>UI设计</option>
+        <option>美术设计</option>
+      </select>
+
+
+method="get"   提交方法
+
+submit提交   reset重置
+
+css:
+<style="color:red;font-size:24px; font-family:'微软雅黑';">     更改文字的字体颜色大小
+
+链接 link点击前 hover经过 visited访问过 active点击时
+
+
+html{ background:#72ad13 url(img/bt.jpg) no-repeat center bottom fixed;} 
+fixed  设置背景图片静止不动
+
+.lianjie02:link{color:#0A00FF;}
+.lianjie02:visited{color:#CC6E05;}
+.lianjie02:hover{color:#2F7D9A; text-decoration:none;}
+.lianjie02:active{color:#F72BC9;}
+
+html{ height:100%}
+                       设置body跟html高一样  
+body{ height:100%}
+
+
+letter-spacing  字符间距
+
+display:block  把标签转换为块级元素
+
+display:inline   把块级元素转为标签         padding文本框内边距，margin文本框                                              外面边距
+边框设置：
+border:#ffffff 1px solid; padding:5px 10px;
+
+文本框内文字居中： text-align:center; line-height:40px；
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

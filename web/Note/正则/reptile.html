@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+	
+  </style>
+  <script>
+	var html = "<link rel='stylesheet' href='index.css'/><div><a href='www.baidu.com'>baidu</a></div><a name='w3c' href='www.w3School.com.cn'>w3c</a><a name='tedu' href='http://tedu.cn' target='_self'>tedu</a>";
+	var reg = /<a\s+[^>]*href=(['"])([^'"]*)\1/g;
+	var arr = null;
+	while((arr=reg.exec(html)) != null){
+		//arr:[0: "<a..." , 1: '"', 2: "http://...."]
+		console.log(arr[2]);
+	}
+	while(reg.exec(html1) != null){
+		console.log(RegExp.$2);
+	}
+  </script>
+ </head>
+ <body>
+  
+ </body>
+</html>

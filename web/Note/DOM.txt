@@ -1,0 +1,420 @@
+﻿正课:
+1. 什么是DOM
+2. ***DOM Tree
+3. ***查找
+  按节点间关系
+  递归遍历
+  按HTML查找
+  按选择器查找
+
+1. 什么是DOM: document object model
+  专门操作网页内容的API
+  w3c制定的标准
+  原生js=ECMAScript(核心语法)
+          +DOM(专门操作网页内容的API)
+          +BOM(专门操作浏览器的API)
+2. ***DOM Tree
+  什么是DOM Tree: 
+   网页中一切内容在内存中都是以树型结构存储的
+   为什么: 树形结构被证明是存储上下级包含关系的最直观结构
+   树根: document对象
+   所有网页内容都是document对象的后代节点
+   每个网页内容，都是一个节点对象(Node)
+   Node对象: 三大属性: 
+     .nodeType : 节点的类型 ——数字
+       9    document
+       1    element
+       2    attribute
+       3    text
+      何时: 区分节点的类型时
+      问题: 无法进一步区分元素的名称
+     .nodeName: 节点名称 ——字符串
+      document   #document
+      element     全大写的标签名
+      attribute     属性名
+      文本节点     #text
+      何时: 进一步区分元素的名称时
+     .nodeValue: 节点值 ——了解
+      document  null
+      element    null
+      attribute    属性值
+      text         文本内容
+
+  DOM操作: 对DOM树的内容做四大操作: 增，删，改，查
+  任何DOM操作的顺序: 先找元素，再修改
+
+3. ***查找: 
+  1. 按节点关系查找: 
+   节点树: 包含一切节点的树结构
+   父子关系: node.parentNode 获得node的父节点
+            node.childNodes 获得node的所有直接子节点
+            node.firstChild   获得node下第一个子节点
+            node.lastChild   获得node下最后一个子节点
+   兄弟关系: node.previousSibling 获得node前一个兄弟
+            node.nextSibling  获得node的下一个兄弟
+   问题: 网页中一切都是节点，甚至看不见的换行和空字符也是文本节点——干扰
+   解决: 元素树:
+   元素树: 仅包含元素节点的树结构
+        不是一颗新树，仅是节点树的子集
+   父子关系: node.parentElement 
+            node.children  IE8+
+            node.firstElementChild   
+            node.lastElementChild   
+   兄弟关系: node.previousElementSibling 
+            node.nextElementSibling  
+   问题: IE9+
+  何时: 只要已知一个元素，查找其周围元素时
+ 2. 递归遍历: 
+   2步: 1. 定义函数，仅遍历直接子节点
+        2. 对每个子节点调用和父节点完全相同的方法
+   算法: 深度优先: 在同时有子节点和兄弟节点情况下，总是优先遍历子节点。所有子节点遍历完，才遍历兄弟节点。
+ 问题: 递归遍历效率极低
+ 解决: 用循环来代替递归
+ 遍历API: 节点迭代器: 
+   什么是: 按深度优先的顺序，依次遍历每个子节点的对象
+    节点迭代器的顺序，默认就是深度优先——同递归遍历
+   如何: 2步: 
+    1. 创建节点迭代器对象
+	var iterator=document.createNodeIterator(
+	       parent, NodeFilter.SHOW_ALL, null, false
+				 SHOW_ELEMENT
+	)
+    2. 用循环，反复调用节点迭代器对象的nextNode()
+      每调用一次，节点迭代器就向下跳一个节点
+     var node;
+	while((node=iterator.nextNode())!=null){
+	 node //获得当前所在的节点
+	}
+
+  children和childNodes: 类数组对象, 动态集合
+    动态集合: 不实际存储数据，每次访问集合，都要重新查找DOM树。
+    遍历: 
+     错误: for(var i=0;i<children.length;i++)
+     正确: for(var i=0,len=children.length;i<len;i++)
+ 3. 按HTML查找: 4种: 
+  1. 按id查找: 
+     何时: 如果要查找的元素上有id，可用id精确查找一个
+    var elem=document.getElementById("id");
+     在整个页面查找id为"id"的elem
+     强调: 只能使用document调用
+  2. 按标签名查找:
+    何时: 查找指定父元素下指定标签名的元素
+    var elems=parent.getElementsByTagName("标签名")
+     查找parent下所有指定"标签名"的元素
+     返回值: 动态集合
+     强调: 1. 可在任意父元素上调用
+          2. 不但查找直接子节点，且查找所有后代节点
+  3. 按name属性查找:
+    何时: 查找表单中的元素时
+    var elems=document.getElementsByName("name");
+    返回值: 动态集合
+    强调: 1. 只能用document调用
+  4. 按class属性查找:
+    何时: 按class查找元素时
+    var elems=parent.getElementsByClassName("class");
+    返回: 动态集合
+    强调: 1. 可在任意父元素上调用
+         2. 不仅查找直接子元素，而且查找后代元素
+         3. 只要class中包含要找的类，就选择
+    问题: IE9+
+正课:
+1. ***查找: 
+  按选择器查找
+2. 修改: 
+  内容:
+  属性:
+  样式:
+
+1. ***查找: 
+ 按HTML查找: 
+ 问题: 每次只能使用一个查找条件
+ 按选择器查找: 
+   何时: 当查找条件复杂时，都用选择器查找
+   如何: 
+    1. 仅查找一个元素: 
+	var elem=parent.querySelector("selector")
+    2. 找多个元素
+       var elems=parent.querySelectorAll("selector")
+     "selector" 可写css中的所有选择器
+        强调: "selector"只需要参照parent向下写
+             返回非动态集合
+          非动态集合: 实际存储数据，即使反复访问集合，也不会导致反复查找DOM树
+            优: 不会导致反复查找DOM树
+            缺: 首次查找速度慢
+鄙视: getXXX vs Selector API
+  1. 返回值: getXXX返回动态集合
+            SelectorAPI 返回非动态集合
+  2. 效率: getXXX首次查找效率高
+          Selector API 首次查找效率低
+  3. 易用: Selector API更简单
+          getXXX更繁琐
+  如果通过一个条件就可得到元素时，首选getXXX
+  如果条件复杂时，首选selectorAPI
+2. 修改: 
+内容:
+  获取或修改html代码片段(包括文本): elem.innerHTML
+  获取或修改文本: elem.textContent
+     1. 去掉内嵌的子标签，只返回文字
+     2. 将转义字符翻译为正文
+    何时: 明确希望只获取文本时
+    兼容: IE8 elem.innerText
+ 属性: 
+  补: 
+  核心DOM: 可操作一切结构化文档的API(HTML  XML)
+    优: 万能  缺: 繁琐
+  HTML DOM: 对核心DOM中部分常用API的简化
+    优: 简单  缺: 不是万能
+  开发时，不必区分概念。优先使用简单的API。如果简单的API不能实现了，再用核心DOM的API。
+
+  访问HTML标准属性
+  核心DOM: 
+   获取属性值: var value=elem.getAttribute("属性名")
+   修改属性值: elem.setAttribute("属性名","值")
+   判断是否包含属性:var bool=elem.hasAttribute("属性名")
+   移除属性: elem.removeAttribute("属性名");
+  HTML DOM: 
+   一些HTML标准属性都被HTML DOM封装在元素对象中
+   elem.属性名 -> 用法同普通对象的属性
+   获取属性值: elem.属性名
+   修改属性值: elem.属性名="值"
+   判断是否包含属性: elem.属性!=""
+   移除属性: elem.属性="";
+ 样式:
+	内联样式: 
+   获取和修改: elem.style.css属性
+       强调: css属性名: 去横线，变驼峰
+         比如: background-color -> backgroundColor
+              list-style-type -> listStyleType
+     问题: 获取时,style仅能获得内联样式,无法获得完整样式
+     解决: computed: 获得最终应用到元素上的计算后的完整样式
+       如何: var style=getComputedStyle(elem)
+             获得elem计算后的computed样式
+            var value=style.css属性
+       强调: getComputedStyle获得style对象是只读
+  总结: 只要修改样式: elem.style.css属性
+		因为优先级最高，且仅当前元素可用
+       只要获得样式: getComputedStyle(elem)
+           可获得计算后的完整样式
+2. 添加和删除: 
+添加: 3步: 
+  1. 创建新元素: 
+	var elem=document.createElement("标签名");
+	比如: var a=document.createElement("a");
+   内存中: <a></a>
+  2. 设置关键属性: 
+     比如: 
+       a.href="http://tmooc.cn"
+       a.innerHTML="go to tmooc"
+       内存中: 
+	<a href=" http://tmooc.cn "> go to tmooc </a>
+  3. 将新元素添加到DOM树
+     为什么: 一个元素对象，只有添加到DOM树才能显示在网页中
+     如何: 3种: 
+      1. 追加: 在父元素的结尾添加新元素
+         parent.appendChild(elem);
+      2. 插入: 在现有子元素之前插入新元素
+         parent.insertBefore(elem, oldElem);
+      3. 替换: 替换现有子元素
+         parent.replaceChild(elem, oldElem);
+***优化: 尽量少的操作DOM树
+为什么: 每修改一次DOM树，都会导致重新layout
+  网页加载过程: 
+   HTML -> DOM树
+                 ↓
+            renderTree -> layout(计算定位和大小)->paint
+                 ↑
+   CSS ->  CSS模型
+如何: 2种: 
+  1. 如果同时添加父元素和子元素时，都要在内存中先将子元素添加到父元素，最后再将父元素一次性添加到DOM树
+  2. 如果同时添加多个平级子元素: 
+    文档片段: 内存中临时保存多个平级子元素的虚拟父元素
+    如何: 3步:
+     1.创建文档片段: 
+       var frag=document.createDocumentFragment();
+       frag的用法和普通父元素完全一样！
+     2.将平级子元素临时追加到frag中
+       frag.appendChild(child)
+     3.将frag整体追加到DOM树
+       parent.appendChild(frag)
+        frag将子元素添加到DOM树后，自动释放！
+删除: parent.removeChild(child)
+
+练习: 
+select对象: 
+事件: onchange: 当选中项发生改变时
+属性: .selectedIndex: 标识当前选中项的下标位置
+
+3. HTML DOM常用对象: 
+Image: 代表页面上的一个img元素
+ 创建: var img=new Image();
+Select/Option
+ 属性: 
+.options : 获得select下所有option对象
+  .options.length: 表示select下option的个数
+.length : 也可直接获得option的个数
+.value : select中选中项的值: 2种情况: 
+  1. 如果选中的option有value属性，则返回value属性
+  2. 如果选中的option没有value属性, 则返回内容
+.selectedIndex : 获得当前选中项的下标
+方法: 
+  .add(option) : 向select中添加一个option
+    问题: add不支持文档片段
+解决: 添加文档片段时，只能用appendChild
+  .remove(i) : 删除select下i位置的option i->selectedIndex
+事件: onchange: 当选中项发生改变时触发
+
+Option对象: 指页面上一个option元素
+	创建: var opt=new Option(text,value); text->innerHTML
+  属性: .text
+
+正课:
+1. HTML DOM
+  Table/...
+  Form/Element
+2. BOM
+  window
+   打开和关闭窗口
+   窗口大小和窗口位置（了解）
+   三大对话框(了解)
+  ***定时器
+   *****位移动画: 
+
+1. HTML DOM
+Table: 
+  创建行分组， 删除行分组， 获取行分组
+  createXXX()  deleteXXX()  .行分组
+  比如: 
+    创建一个行分组，同时添加到table中
+var thead=table.createTHead();
+    		返回行分组的目的是，可继续向行分组中添加tr
+    删除行分组: table.deleteTHead();
+    获取行分组: table.tHead
+  特例: tBody: 一个table中可包含多个tbody
+    获得tbody: table.tBodies[i]
+    删除: 没有table.deleteTBody() table不能删除tbody
+
+  行分组: 创建，  删除，        获取行
+    .insertRow(i), .deleteRow(i),  .rows
+   简写: insertRow() 表示末尾追加一行
+   比如: 
+    添加tr: var tr=thead.insertRow()
+      返回tr的目的是，可继续向tr中添加td
+    删除tr: thead.deleteRow(i)
+    获取thead中所有行: var trs=thead.rows;
+  
+ 	行: 添加，      删除，       获取格
+    .insertCell(i), .deleteCell(i),  .cells
+    强调: insertCell只能添加td，不能添加th
+   比如: 
+    在tr中添加一个格: var td=tr.insertCell();
+    
+  删除行: 2种: 
+   tbody.deleteRow(i) i: tr在行分组内的下标
+   table.deleteRow(i) i: tr在整个表中的下标  
+因为每个tr都有tr.rowIndex，记录了tr在整个表中的下标
+通常使用: table.deleteRow(tr.rowIndex)
+
+  练习: confirm: 确认框: 
+          可执行两个操作: 确认，取消
+      var bool=confirm("确认信息");
+       如果用户点确认，就返回true，否则返回false
+
+Form/Element:
+Form对象代表网页上的一个form元素
+获取: var form=document.forms[i/id/name]
+属性: .elements 获得form中所有表单元素的结合
+				获得表单元素: var elem=form.elements[i/id/name]
+         简写: 如果表单元素有name属性: 
+                  可直接var elem=form.name
+         表单元素: 方法: elem.focus() 让elem获得焦点
+                        elem.blur() 让elem失去焦点
+
+     .length->.elements.length 获得form中表单元素个数
+方法: .submit(); 手动提交
+事件: .onsubmit(); 当表单最终提交之前自动触发
+
+2. BOM: Browser Object Model
+  什么是: 专门操作浏览器的API
+  问题: 没有标准-> 兼容性问题, 使用越来越少
+  包括: DHTML模型: 
+   window: 2个角色: 1. 代替global充当全局作用域对象
+                     2. 封装所有BOM和DOM的API
+     history: 封装当前窗口打开后的历史记录栈
+     location: 封装当前窗口正在打开的url对象
+     navigator: 封装浏览器的配置信息
+     document: DOM
+     screen: 封装了显示设备的信息
+     event: 封装了事件对象
+
+window: 
+打开和关闭窗口: window.open(...)/close()
+ 打开超链接的方式: 4种
+   1. 替换当前窗口，可后退
+			html: <a href="url" target="_self"
+     js: window.open("url","_self")
+   2. 替换当前窗口，不可后退
+     js: location.replace("新url")
+       用新url替换history中当前url，实现禁止后退！
+   3. 在新窗口打开，可打开多个
+     html: <a href="url" target="_blank"
+     js: window.open("url","_blank")
+   4. 在新窗口打开，只能打开一个
+     html: <a href="url" target="name"
+     js: window.open("url","name")
+    原理: 每个窗口都有一个name属性
+       name属性是内存中唯一标识一个窗口
+       相同name属性的窗口只能开一个，后开的会替换先开的
+     预定义name属性: _self 自动获取当前窗口的name
+                      _blank 随机生成name
+     何时: 限制一个窗口只能打开一个时
+     如何: 2种:        
+
+窗口大小和窗口位置: 
+ 窗口大小: 2组: 
+   1. 完整大小: outerWidth/outerHeight
+   2. 文档显示区大小: innerWidth/innerHeight
+  设置: 2个机会: 
+   1. 在打开窗口时，可初始化窗口大小和位置: 2步:
+     1. var config="left=?,top=?,width=?,height=?"
+     2. var pop=open("url","name",config)
+       open方法会返回弹出窗口的对象
+       目的: 为了继续修改弹出窗口的大小和位置
+   2. 在窗口打开后，也可修改大小
+     pop.resizeTo(width,height)
+     pop.resizeBy(width的增量,height的增量)
+     强调: resizeTo/By，只能修改弹出时就已经设定过大小的窗口。
+ 窗口位置: 
+  修改: 1. 在弹出窗口时: 同上
+       2. 在弹出窗口后，修改位置: 
+         pop.moveTo(left,top)
+         pop.moveBy(left的增量, top的增量)
+
+三大对话框: alert  prompt  confirm
+
+定时器: 
+ 什么是: 让浏览器按指定时间自动执行任务
+ 何时: 让浏览器自动执行任务
+ 包括: 
+   周期性定时器: 让浏览器反复执行一项任务
+   何时: 反复执行一项任务
+   如何: 3件事: 
+    1. 任务函数: 定时器每次自动调用的一个函数
+					function task(){...}
+    2. 启动定时器: var timer=setInterval(task, 时间间隔ms)
+       创建并启动一个定时器，每隔ms，自动调用一次task
+    3. 停止定时器: 2种: 
+1. 手动停止: clearInterval(timer)
+      2. 自动停止: 
+         在任务函数中判断临界值
+         如果达到临界值，就自动调用clearInterval
+
+   一次性定时器: 让浏览器等待一段时间后，自动执行一次任务
+    何时: 一项任务先等待一段时间后，只执行一次时
+    如何: 3件事:  
+     1. 任务函数: function task(){...}
+     2. 启动: var timer=setTimeout(task,等待时间ms)
+     3. 停止: clearTimeout(timer)
+
+history: 封装当前窗口打开后，成功访问过的历史记录栈
+location: 封装当前窗口正在打开的url
+  location.raplace("url");

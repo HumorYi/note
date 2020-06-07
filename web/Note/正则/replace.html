@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+	
+  </style>
+  <script>
+	
+	/*var str = 'we two who and who';
+	var kwords = str.match(/\b[a-z]+\b/ig);
+	var kwords1 = str.split(/\s/);	//分割
+	console.log(kwords);
+	把首字母转换成大写
+	str = str.replace(/\b[a-z]/g,function(kwd){
+		return kwd.toUpperCase();
+	});
+	console.log(str);
+	*/
+	
+	/*we5 two6 who7 and8 who9
+
+	var i = 5;
+	str = str.replace(/\b[a-z]+\b/g,function(kwd){
+		return kwd+i++;
+	});
+	console.log(str);*/
+
+	/*删除就是替换为空字符串
+	var str = '	\t是 你\t	';
+	function ltrim(str){
+		return str.replace(/^\s+/,"");
+	}
+	console.log(ltrim(str));
+
+	function rtrim(str){
+		return str.replace(/\s+$/ ,'');
+	}
+	console.log(rtrim(str));
+
+	function trim(str){
+		return str.replace(/^\s+|\s+$/g , "");
+	}
+	console.log(trim(str));*/
+	
+	/*格式化
+	var date = '20161223五晚2028';
+	date = date.replace(/(\d{4})(\d{2})(\d{2})([\u4e00-\u9fa5])([\u4e00-\u9fa5])(\d{2})(\d{2})/, '$1年$2月$3日 星期$4 $5上 $6:$7');
+	console.log(date);*/
+
+	/**/
+	
+  </script>
+ </head>
+ <body>
+	<ul id="emps">
+		<li>sor</li>
+		<li>sgadfuig</li>
+		<li>hlfdsa</li>
+		<li>qwreyoi</li>
+	</ul>
+
+	<script type="text/javascript">	
+		emps.innerHTML = '<li>'+emps.innerHTML.replace(/^\s+|\s+$/g,"").slice(4,-5).split(/<\/li>\s*<li>/).sort().join("</li><li>")+'</li>';
+	</script>
+ </body>
+</html>

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+	
+  </style>
+  <script>
+	//升序
+	function cmp(a,b){return a-b;}
+	//降序
+	function cmp1(a,b){return -(a-b);}
+	var arr = [12,2,24,23,1,31];
+	//var arr = ["s","d","c","a"];
+	arr.sort(cmp);
+	console.log(String(arr));
+
+	//获取最大值
+	function getMax(a,b,c){
+		var max=a;
+		max = max < b ? b : max;
+		max = max < c ? c : max;
+		return max
+	}
+
+	//排序
+	function getSort(x,y,z){
+		x>y && (x^=y, y^=x, x^=y);
+		y>z && (y^=z, z^=y, y^=z);
+		x>y && (x^=y, y^=x, x^=y);
+
+		console.log(x,y,z);
+	}
+
+	console.log(getMax(123,2,13));
+	console.log(getSort(23,12,3));
+  </script>
+ </head>
+ <body>
+  
+ </body>
+</html>

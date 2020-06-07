@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+	
+  </style>
+  <script>
+	//兼容IE8
+	if(Object.create === undefined)
+		Object.create = function(father, props){
+			document.write('调用自定义的create<br />');			
+			function Mother(){}
+			Mother.prototype = father;
+			var newObj = new Mother();
+			Mother = null;
+			if(props !== undefined){
+				for(var key in props){
+					newObj[key]=props[key].value;
+				}
+			}
+			return newObj;
+		}
+	var father = {bar: 100000, car: 'infiniti'};
+	//Object.create(father,{自定义类型})
+	var lilei = Object.create(father, {	
+		//Object.defineProperties
+		phone: {
+			value: 'iphone7s plus',
+			writable: true,
+			enumerable: true
+		},
+		house: {
+			value: '180m2',
+			writable: true,
+			enumerable: true
+		}
+	});
+
+	/*
+		var hmm = Object.create(father, {
+			bao: {
+				value: 'LV',
+				writable: true,
+				enumerable: true
+			}
+		});
+	*/
+	/*
+		console.log(lilei == father, hmm == father);
+		console.log(lilei.__proto__ == father, hmm.__proto__ == father);
+		console.log(lilei.__proto__ == hmm.__proto__);
+		console.dir(lilei);
+		console.dir(hmm);
+	*/
+	for(var key in lilei){
+		document.write(key+' : '+lilei[key]+'<br />');
+	}
+
+  </script>
+ </head>
+ <body>
+  
+ </body>
+</html>

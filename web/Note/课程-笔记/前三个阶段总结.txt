@@ -1,0 +1,33 @@
+前三个阶段课程内容总结:
+ * 课程安排
+   * 第一阶段 - HTML|CSS(2,3)|UI方面
+     * HTML+CSS - 页面布局及效果(静态)
+     * CSS3中的动画效果
+   * 第二阶段 - JAVASCRIPT(ECMA|BOM|DOM)
+     * 重点 - ECMA|DOM
+     * 难点 - ECMA(面向对象)
+   * 第三阶段 - JQUERY|HTML5|SERVER|AJAX
+     * 常用 - JQUERY(JS库)|AJAX(异步交互)
+     * 新特性 - HTML5(CANVAS|SVG|存储等)
+     * 可选项 - SERVER(面试加分|理解服务器端)
+   * 第四阶段 - BOOTSTRAP|ANGULARJS|WEBAPP
+     * BOOTSTRAP - 响应式(原生|框架)
+     * ANGULARJS - MVC模型(Model|View|Controller)
+     * WEBAPP    - JQM(JQUERY MOBILE)|TOUCH事件|移动开发环境
+ * 如何复习
+   * 第一阶段 - 通过案例实现
+   * 第二阶段 - 回顾笔记和代码
+   * 第三阶段
+     * 内容顺序 - JQUERY|AJAX|HTML5|SERVER&HTTP
+     * JQUERY - 通过案例
+     * AJAX - 原生AJAX|JSON格式|跨域
+     * SERVER - PHP|MYSQL(一到两个案例)
+       * PHP - 接收数据|操作数据库|响应结果
+       * MYSQL - DQL|DML
+     * HTTP - 请求协议|响应协议
+   * 第四阶段 - 所有的案例
+ * 建议
+   * 一定要开个技术博客 - 只写技术或工作
+     * 平时的技术积累 - 原创技术内容
+     * 将别人的比较好的 - 转载(注明出处)
+   * 平时一定要培养记笔记的习惯(积累)

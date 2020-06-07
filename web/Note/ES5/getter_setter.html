@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+	
+  </style>
+  <script>
+	var emp = {id: 1001, name: 'luoxing'};
+	//闭包	自定义一个变量
+	(function(){
+		var _age = 18;
+		Object.defineProperty(emp, 'age', {
+			//get和set自动调用
+			get: function(){
+				console.log('get');
+				return _age;
+			},
+			set: function(val){
+				console.log('set:'+val);
+				if(val<18 || val>65) throw new Error('年龄必须在18-65岁之间');
+				_age = val;
+			}
+		});
+	})();
+	console.log(emp.age);
+	//emp.age = 17;	报错
+	emp.age++;	// get +1 set
+	//未闭包前存在漏洞
+	//emp._age = 0;
+	console.log(emp.age);
+	console.dir(emp);
+  </script>
+ </head>
+ <body>
+  
+ </body>
+</html>

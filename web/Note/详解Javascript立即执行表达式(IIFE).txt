@@ -1,0 +1,8 @@
+详解Javascript立即执行表达式(IIFE)
+http://web.jobbole.com/82520/
+
+Javascript常见问题
+http://bonsaiden.github.io/JavaScript-Garden/zh/
+
+Javascript原型继承工作原理
+http://www.ituring.com.cn/article/56184

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+		
+  </style>
+  <script>
+	var chars=[];  
+	for(var i=48; i<=57; chars.push(String.fromCharCode(i++)));
+	for(var i=65; i<=90; chars.push(String.fromCharCode(i++)));
+	for(var i=97; i<=122; chars.push(String.fromCharCode(i++)));
+
+	function getCode(){
+		var code = '';
+		while(code.length < 4){
+			var r = Math.floor(Math.random()*chars.length);
+			code += chars[r];
+		}
+
+		return code;
+	}
+
+	var code = getCode();
+	while(prompt('请输入验证码：'+code).toLowerCase() != code.toLowerCase()){
+		alert('验证码错误，请重新输入！');
+		code = getCode();
+	}
+	alert('验证通过!');
+  </script>
+ </head>
+ <body>
+  
+ </body>
+</html>

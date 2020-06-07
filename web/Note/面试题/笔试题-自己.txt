@@ -1,0 +1,112 @@
+
+1、DOCTYPE的作用是什么？
+   文档类型声明，定义了浏览器使用什么模式来加载当前文档，同时用于触发标准模式、准备标准模式和混杂模式
+   标准模式：浏览器按W3C标准解析执行代码   --><!doctype html>
+   怪异模式：是使用浏览器自己的方式解析执行代码   -->不声明doctype
+   准标准模式： <!doctype transitional>
+
+2、常见的浏览器内核--你用过哪些浏览器来做调试？他们的内核分别是什么？
+   1、Trident  ：IE浏览器
+   2、Gecko    : Mozila 浏览器 Firefox
+   3、Webkit   ：Safari 、Chrome原型
+   4、Blink    ：Chrome浏览器 、Opera浏览器
+
+3、link和 @import 的区别是?
+   link属于XHTML标签，而 @import 完全是CSS提供的一种方式。link标签除了可以加载CSS外，还可以做很多其它的事情，比如定义RSS，定义rel连接属性等， @import 就只能加载CSS了。当一个页面被加载的时候（就是被浏览者浏览的时候），link引用的CSS会同时被加载，而 @import 引用的CSS会等到页面全部被下载完再被加载。兼容性的差别。 @import  是CSS2.1提出的所以老的浏览器不支持，而link标签无此问题。使用DOM控制样式时的差别。当使javascript控制dom去改变样式的时候，只能使用link标签，因为 @import 不是DOM可以控制的。
+
+4、内联样式和!important哪个优先级高？选择器优先级？
+   !important先级高最高
+   ID 100 class 10 元素 1 行内1000
+
+5、css的基本语句是？ 选择器{属性1:值1;属性2:值2;……}
+
+6、什么是css sprites(css小精灵)？
+   Css sprites是把一堆小的图片整合成一张大图片，然后通过background和background-position属性在页面中显示，目的减轻服务器对图片的请求数量，从而达到网页优化
+
+7、什么是css reset(css重置)？作用是什么？
+   简单点说就是将浏览器自带的默认样式覆盖，从而达到所有浏览器样式表现一致的目的
+
+8、怎么理解语义化标签？
+   语义化目的：直观的认识标签和属性的用途和作用。概括为：正确的标签做正确的事。
+   html语义化可以让页面的内容结构化、便于浏览器的解析、搜索引擎解析，并且提高代码可读性、可维护性、可重用性。
+
+9、清楚浮动的方式？
+   a、父级元素结尾处使用空标签清除浮动clear:both
+      简单，代码少，浏览器支持好，不容易出现怪问题，但是增加了无意义的空标签
+   b、父级元素使用overflow:auto
+      简单，代码少，浏览器支持好，但是不能和position配合使用，因为超出的尺寸的会被隐藏
+   c、父级元素定义display:table，将元素属性变成表格，只做了解
+
+10、什么是盒子模型？--那个盒子图
+   元素的内容（content），元素的内边距（padding），元素的边框（border），元素的外边距（margin）四个部分
+
+11、什么是CSS Hack?
+   一般来说是针对不同的浏览器写不同的CSS,就是 CSS Hack。
+   IE浏览器Hack一般又分为三种，条件Hack、属性级Hack、选择符Hack
+      // 1、条件Hack
+      <!--[if IE]>
+         <style>
+            .test{color:red;}
+         </style>
+      <![endif]-->
+      // 2、属性Hack
+      .test{
+         color:#090\9; /* For IE8+ */
+         *color:#f00;  /* For IE7 and earlier */
+         _color:#ff0;  /* For IE6 and earlier */
+      }
+      // 3、选择符Hack
+      * html .test{color:#090;}       /* For IE6 and earlier */
+      * + html .test{color:#ff0;}     /* For IE7 */
+
+12、relative和absolute的区别？
+   1、定位的初始化位置
+      relative ：在元素本身该出现的位置实现微调
+      absolute ：根据离它最近的已定位的祖先元素做初始化的位置，如果祖先元素中没有已定位的，则以body作为初始化位置
+   2、文档流问题
+      relative：原始位置会保留，不会脱离文档流
+      absolute：脱离文档流，有可能压住其他的元素
+
+13、display:none;和visibility:hidden;的区别？
+   同：二者用于隐藏元素
+   异：display:none;隐藏的元素已经脱离文档流，不占据页面空间，后面元素可以对其位置进行站位；visibility:hidden;隐藏的元素还在文档流中，还占据页面空间，仅仅是视觉上的隐藏。
+
+14、get和post请求方式的区别是什么？
+   1、GET明文传输，请求的数据会附在URL之后，以?分割URL和传输数据，参数之间以&相连；POST密文传输，提交的数据放置在HTTP包的包体中
+   2、GET发送方式提交的数据最多只是1024字节（因为GET是通过URL提交数据的），理论上POST没有限制，可传较大量的数据，IIS4中最大为80KB
+   3、POST的安全性要比GET的安全性高
+
+15、line-height和vertical-align的区别？
+   line-height一般用于文字的垂直居中，vertical-align一般用于图片(display:inline-block;的依赖性)的垂直居中，会导致文字基线和图片基线的不同而引发居中不了
+
+16、H5的结构标记？
+   <header> 元素：用于定义文档的头部
+   <nav>    元素：用于定义页面的导航栏
+   <section>元素：用于定义文档中的节，表示文档中的一个具体的组成部分
+   <article>元素：用于定义独立于文档的其他部分的内容
+   <footer> 元素：用于定义页脚部分
+   <aside>  元素：用于定义页面的额外组成部分，如广告栏、边侧栏
+
+17、元素的定位方式有哪些？
+   浮动定位，绝对定位，相对定位和固定定位
+
+18、前端页面有哪三层构成，分别是什么？作用是什么？
+   结构层：HTML--负责创建页面内容
+   表现层：css--描述页面内容应该如何呈现
+   行为层：js--负责内容应该如何响应事件
+
+19、为什么建议设置背景图片的时候设置背景颜色？
+   建议设置背景图片的同时设置和图片颜色类似的背景颜色，这样设置如果因为各种理由无法显示背景图像时，页面可以使用这种颜色作为背景色
+
+20、HTML5的离线储存？
+ localStorage：长期存储数据，浏览器关闭后数据不丢失；
+sessionStorage：数据在浏览器关闭后自动删除。
+
+21、HTML5\CSS3有哪些新特性？ 
+   HTML5现在已经不是SGML的子集，主要是关于图像、位置、存储、地理定位等功能的增加。新特性有：
+    绘画canvas元素
+    用于媒介回放的 video 和 audio 元素
+    本地离线存储：localStorage 长期存储数据，浏览器关闭后数据不丢失；sessionStorage 的数据在浏览器关闭后自动删除
+    语意化更好的内容元素，比如 article、footer、header、nav、section
+    表单控件，calendar、date、time、email、url、search
+   CSS3实现圆角、文字阴影、对文字加特效，增加了更多的CSS选择器，多背景rgba，新的技术有webworker、websockt、Geolocation。

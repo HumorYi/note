@@ -1,0 +1,282 @@
+
+第一天：9月28日
+一、兄弟选择器：
+   -相邻兄弟选择器：匹配指定元素的相邻兄弟元素 用"+"相连
+   -通用兄弟选择器：匹配某元素后面的所有兄弟元素 用"~"相连
+二、属性选择器：将元素属性用于选择器中，从而获取指定
+   语法：
+   -[属性]：具备指定属性的所有元素全部匹配出来
+   -元素[属性]：匹配具备属性的制定元素
+      p[id]:匹配具备id属性的p元素
+   -元素[属性1][属性2]：
+      p[id][class]:匹配所有即具备id属性又具备class属性的p元素
+   -元素[属性=值] : 
+      input[type="text"] : 匹配type的值为text的input元素
+   -元素[属性~=值] :
+      input[class ~= second] : 
+	<input class="first second" />
+	<input class="myseconddiv" />
+      ~= : 包含指定的数据（独立）
+      =  : 只有指定的数据
+   -元素[属性^=值] : 匹配指定属性以指定值开始的指定元素
+      -p[class^=f] : 匹配class以f开始的p元素
+      <p class="first"></p>可以匹配
+      <p class="fast"></p>可以匹配
+      <p class="second"></p>不能匹配
+   -元素[属性*=值] : 属性包含值元素
+      p[class*="valid"];
+      <p class="myvalid"></p>
+   -元素[属性$=值] : 匹配属性以指定值结束的元素
+   -元素[属性!=值] : 匹配属性不等于具体值得元素
+   eg:
+      input[id] : 获取具备id属性的input元素
+      <input type="text" />
+      <input type="radio" id="rdoGender" />
+
+
+三、伪类选择器器：更改元素的不同状态的样式-:link :visited :hover :active
+   1、目标伪类：突出显示活动的HTML锚，用于选取当前活动的目标元素
+   -语法：
+      -:target
+      -元素:taget
+   2、元素状态伪类：主要匹配元素的禁用、启用、选中状态-多用于表单元素上
+   -常用状态伪类：
+      -:disabled  匹配每个被禁用的元素
+      -:enabled   匹配每个已启用的元素
+      -:chacked   匹配每个已被选中的元素（只用于单选按钮和复选框）
+   3、结构伪类：主要是从元素的结构(层级结构)上来进行划分的
+   -什么时候用结构伪类：找 第一个子元素、最后一个子元素、没有子元素、仅仅只包含一个子元素 时优先使用结构伪类
+   -如何使用结构伪类：
+      -:first-child  匹配属于其父元素的首个子元素
+      -:last-child   匹配属于其父元素的最后一个子元素
+      -:empty        匹配没有子元素(包括文本)的元素
+         列如：
+	 -<p>这是一个P元素</p> 非empty
+	 -<div></div> 是empty 
+      -:only-child   匹配属于其父元素的唯一子元素
+         列如：
+	 -<p>
+             <p></p>
+	     <p></p>
+	  </p> 非only-child
+	 -<p>
+             <p></p>
+	  </p> 是only-child 
+   4、否定伪类：匹配非指定元素/选择器的每个元素
+      -语法: 
+           :not(selecotr)
+      eg:
+        1、获取 input 但是 type不是text的所有元素
+	   input[type=text]
+	   input:not([type=text])
+	2、获取除第一个div子元素意外的其他div子元素
+	   div:first-child
+	   div:not(div:first-child)
+四、伪元素选择器：主要针对元素中的文本内容进行匹配的。
+   1、:first-letter-选取指定选择器的首字母  一般用于 排版、首字符突出等操作
+      eg:
+        p:first-letter{
+	
+	}
+   2、:first-line-选取指定选择器的首行
+   3、::selection-匹配用户选取的部分
+五、添加内容
+   1、内容生成：通过css 向元素的前面或后面增加一部分内容
+      -伪元素
+         :before 匹配到某一元素的最前面  例如：p:before
+         :after 匹配到某一元素的最后面   列如：p:after
+      -内容生成
+         -content : 配合 :before 或 :after伪元素，插入生成内容
+         -content的常用取值:
+            1、字符串:纯文本，插入到指定的位置处  例如-p:before{content:"至尊宝:";}
+            2、url:生成的图像 例如-a:before{content:url(Images/i1.jpg);}
+   2、计数器：作用是向已存在的html文本内容增添序号
+      -定义计数器：
+         -属性   :counter-reset
+	 -作用   定义一个计数器，并且设置初始值为0
+	    body{
+		counter-reset:计数器名称 初始值 计数器名称 初始值;
+	    }
+	   例如：body{counter-reset:count 10; }
+	 
+      -设置计数器增量：可以单独设置某一选择器使用计数器是的增量，默认值是1
+         -属性   :counter-increment(谁用计数器就设置谁的增量)--格式：元素{counter-increment:计数器名 增量}
+	 列如：div{counter-increment:count 10;}
+      -使用计数器：通过 counter(计数器名) 来使用计数器--格式：元素:位置{counter(计数器名)}
+         例如：div:before{content:"第"counter(count)"章"}
+   3、多列
+      -分隔列：把一段文本拆分成几列
+         column-count:规定元素被分隔的列数
+      -列间隔：设置列与列之间的距离
+         column-gap:间隔;
+      -列规则
+         可以在列与列之间设置一条间隔线，列规则可以设置间隔线的样式、颜色、粗细
+         column-rule:大小 样式 颜色;
+         column-rule-width:
+         column-rule-style:
+         column-rule-color:
+   4、浏览器兼容
+      -IE10 以及 Opera 浏览器支持多列属性
+      -FireFox 需使用前缀 -moz-
+         -moz-column-count:
+	 -moz-column-gap:
+	 -moz-column-rule:
+      -Chrome 和 Safari
+         -webkit-column-count:
+	 -webkit-column-gap:
+	 -webkit-column-rule:
+六、css Hack
+   1、css Hack是浏览器兼容性问题所引发运用而生成的属性
+   2、浏览器运行模式
+      -混杂模式
+      -标准模式(Standard Mode)
+      -准标准模式(Almost Standard Mode)：可以使用非标准代码，代码书写严格度不是太高
+   3、浏览器主要通过DOCTYPE进行模式选择
+      -触发混杂模式：不声明DOCTYPE-不建议使用
+      -触发准标准模式：
+      -触发标准模式：文档声明中存在"Strict"
+   4、浏览器兼容问题
+      1、margin和padding：ie6中默认的margin偏大，解决方案是设置：body{margin:0px;}
+      2、居中布局
+         -ie6及低版本浏览器可以通过元素的父元素设置text-align:center属性使其居中(ie6的水平居中一般使用这个方法)
+	 ie6，ie7，chrome，Firefox，opera，Safari：通过当前元素的margin实现居中，即margin:0px auto;
+      3、元素高度与内容问题
+         -ie6及低版本浏览器：元素的高度至少包括内容的高度
+	 -其他版本：元素高度会超出容器，解决方案：使用overflow属性
+      4、子元素设置上外边距时
+         -ie6及低版本浏览器正常显示
+	 -其他版本：子元素的上外边距会认为是父元素的上外边距，
+	    解决方案是：1、给父元素设置边框  2、设置父元素的的padding-bottom
+      5、HTML头部引用Hack:通过HTML条件注释完成
+         -语法：<!--[if 条件]><![endif]-->
+	 -例如：IE6 <!--[if IE 6]>编写HTML 或 引入css<![endif]-->
+
+第二日：9月29日
+一、变形 - transform 迅速变形
+   -transform-origin:设置装换点原点的位置，默认原点实在当前物体中心点上
+      取值如下：
+      -坐标：x坐标 y坐标==>当前物体的左上点为x=0 y=0
+      -百分比：宽度百分比 高度百分比==>左上点：0% 0%，中心点：50% 50%
+      -关键字(top:上 bottom:下 left:左 right:右 center:中间)：值 值==>left top：左上
+      -特殊情况：
+         -取值只有一个--transform-origin:0; 表示所有轴位置豆浆归到0点处
+         -取值为象数  --transform-origin:50px 50px; 表示x轴在50象数处，y轴在50象数处
+         -取值为三个数--transform-origin:50px 50px 50px; 表示x轴 y轴 z轴（必须转为3D模型）
+   -转换：即变形，是指使元素改变形状，尺寸和位置的一种效果
+      -旋转：是指元素围绕一个参照原点(transform-origin)旋转指定角度，默认为顺时针旋转
+         -语法：transform:rotate(ndeg);
+	    -n为正 则按顺时针方向旋转;n为负 则按逆时针方向旋转
+	 -注意：rotate在旋转的过程中，不但能够旋转元素，同时能够旋转绘图的坐标系方向。如果配合着其他的变形一起来做的话，rotate在前的话，会影响之后沿坐标轴的其他变形。
+	 -解决方案：如果配合变形一起来做，最好将rotate放在最后一个函数上
+      -位移：是指沿坐标轴方向移动指定的距离
+         -语法：transform:translate(x轴,y轴);
+	    -x轴 正向右，负向下;y轴 正向下，负向上;
+	 -单方向位移：transform:translateX(距离); transform:translateY(距离);
+	 -注意：位移不会英雄其他元素的位置，但是可能会盖住周围元素
+      -缩放：是指将指定坐标轴上的坐标缩放指定的倍数（等比缩放）
+         -语法：transform:scale(倍数);
+	    -倍数取值：0-1之间的小数，缩小;>1，放大
+	 -单方向缩放：transform:scaleX(倍数); transform:scaleY(倍数);
+      -倾斜：沿着坐标轴方向，倾斜指定角度
+         -语法：transform:skew(ndeg);仅沿x轴倾斜  transform:skew(ndeg,ndeg);沿x轴y轴倾斜
+	    -角度(ndeg)取值：
+	       -x轴方向：角度为正向左倾斜;角度为负向右倾斜;
+	       -y轴方向：角度为正向上倾斜;角度为负向下倾斜;
+	 -单方倾斜：transform:skewX(ndeg);x轴  transform:skewY(ndeg);y轴
+   -3d变形：元素，从立体角度观察，坐标轴为x轴 y轴 z轴
+      -属性：perspective-设定假定人眼位置到投影平面的距离
+      -使用：设置在父元素上，同时给定一个值
+      -浏览器兼容性；
+         -Chrom, Safari: -webkit-perspective
+	 -Firefox: -moz-pespective
+      1、位移：3D位移可以改变元素在Z轴上的位置
+         -translateZ(z);
+	 -translate3d(x,y,z);
+      2、旋转:
+	 -transform:
+	     rotateX(ndeg);
+	     rotateY(ndeg);
+	     rotateZ(ndeg);
+      3、缩放:
+         -transform:
+           scaleZ(z);
+	   scale3d(x,y,z);
+
+二、过渡 - transition 缓慢变化：css属性在一段时间内进行平滑的过渡
+   -过渡四要素：
+      1、过渡属性：
+         -属性名：transition-property 
+	    例如：transition-property:background; transition-property:color,background;
+      2、过渡所需要的时间：
+         -属性名：transition-duration 一般以秒(s)或毫秒(ms)为单位，默认是0s，直接转变
+	    例如：transition-duration:5s; 一般一一对应，如果过度属性有两个即以上，过渡时间仅一个表示它们的过度时间都为同一值
+      3、过渡的函数：主要指过渡的速度和方式（单位一般用s/ms）
+         -属性名：transition-timing-function
+	    备选值：
+	    -ease:默认值，慢速开始，快速变快，慢速结束
+	    -linear:以相同速度开始结束
+	    -ease-in:慢速开始，加速效果
+	    -ease-out:慢速结束，减速效果
+	    -ease-in-out:以慢速开始和结束，先加速后减速
+      4、过渡的延迟时间：触发操作到过度状态开始之间的时间（单位一般用s/ms）
+         -属性名：transition-delay:
+      5、整合transition属性
+         transition:属性名 持续时间 过度函数 延迟,属性名 持续时间 过度函数 延迟;-其中延迟可有可无
+三、动画 - animation 关键帧动画
+   -关键帧：动画在执行过程中，物体在某一位置上的特殊状态
+   -关键帧动画：使用连续的关键帧，控制物体联系的状态变化
+   使用关键帧动画的情况：
+      1、连续，有规律的过渡--过渡 transition
+      2、无规律的连续变化  --动画 animation
+   如何实现关键帧动画：
+      1、定义关键帧：
+         @keyframes 动画名{
+	    from{css样式，动画开始的状态(0%)}
+	    precent{(可以写动画开始到结束之间的任何时间段)}
+	    to{css样式，动画结束的状态(100%)}
+	 }
+         例如： 
+	    @keyframes change{
+	      from{background:red;}
+	      10%{background:yellow;}
+	      50%{background:green;}
+	      to{background:pink;}
+            }
+
+	 浏览器兼容性：
+	 @keyframes 是适用于IE、火狐
+	 @-webkit-keyframes 是适用于Chrome、Safari
+	 @-o-keyframes 是适用于Opera
+   触发动画（调用动画）
+      属性：animation
+         animation:动画名 持续时间 速度类型；
+      注意：
+         -触发动画属性写在非伪类选择器中，页面加载时就执行动画
+	 -触发动画属性写在伪类选择器中，伪类触发时才播放动画
+      -浏览器兼容性问题：
+         -webkit-animation:Chrome,Safari
+	 -o-animation:Opera
+   动画子属性：
+      -animation-name: @keyframes(动画)名称
+      -animation-duration:动画时长
+      -animation-timing-function:动画速度函数
+      -animation-delay:动画的延迟时间
+      自属性集合:animation:name duration timing-function;
+      -animation-iteration-count:播放次数（取值：具体数值或者infinite(无限循环)）
+      -animation-direction:动画播放方向
+         -取值：normal正常播放 alternate 轮流播放(奇数次数：正向播放;偶数次数：正向播放;)
+      自属性集合:animation:name duration timing-function delay iteration-count direction;
+      -animation-fill-mode:动画播放后的效果
+         备选值：
+         1、none:不改变默认行为
+         2、forwards:动画完成后保持最后一个属性状态
+         3、backwards:动画播放前，显示开始属性值
+         4、both:
+      -animation-play-state
+         控制动画播放与暂停
+	 备选值:
+	   1、paused : 暂停动画
+	   2、running : 播放动画
+	 使用场合:
+	   1、配合伪类选择器
+	   2、结合Javascript使用

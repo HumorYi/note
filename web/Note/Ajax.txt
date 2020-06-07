@@ -1,0 +1,270 @@
+Server Query Language
+	#数据库服务器概念
+		数据库是一个软件：极为特殊软件
+		解决二个问题:
+		1:海量数据存储
+		2:高速查询
+
+		分类
+		1: 网状数据库
+		2: 树形数据库
+		3：关系型数据库 -- 
+		   SQLite/Mysql***/SqlServer/Oracle/DB2
+		   互联网软件系统标配.
+		4: 对象型数据库
+
+	mysql数据库安装使用
+	xampp  软件工具包
+		1:apache  web 服务器
+		2:mysql   数据库服务器
+		3:php     web 服务器语言
+
+	安装：下一步
+	使用:
+		1:启动数据库服务器  打开控制面板
+		  mysql     [start]
+		2:进入mysql 系统
+		 第一种：
+			 2.1:打开windows控制台 
+			 2.2:控制面板点击 Explorer
+			 2.3:mysql>bin>mysql.exe
+			 2.4:将mysql.exe 拖动
+			     windows控制台回车
+		 第二种：
+			找到mysql>bin目录，地址栏输入cmd进入控制台，输入mysql.exe -uroot
+
+
+	关系型数据库概念
+		1:逻辑结构
+		  mysql服务器软件-->库(database)-->表(table)-->行(row)-->列(column)
+		2:物理文件
+		  目录结构  
+		   mysql
+		    mysql.ini
+		    bin{所有mysql命令}
+		  启动文件      mysqld.exe deamon
+		  数据文件      data
+		  客户端的软件  mysql.exe
+
+		3:访问数据库路径{标准访问路径}
+		  mysql.exe -h 127.0.0.1 -uroot -p -P3306
+		  简单 
+		  mysql.exe 回车
+
+		  -h:host   指定mysql服务器所在主机名
+		  127.0.0.1 / localhost 主机
+		  -u:user      指定登录mysql服务器用户名
+		  -p:password  指定登录mysql服务器密码
+		  -P:端口号    3306
+
+	mysql管理指令
+		1:显示当前mysql服务器所有库名称
+		  show databases;
+		2:进入指定库当中
+		  use  库名称; 
+		3:显示当前正在使用库名称
+		  select database();
+		#使用mysql指令后面加分号,结束
+		4:退出当前mysql程序
+		  exit
+		5:查询当前库中所有表名称
+		  show tables;
+		6:查询指定表中所有记录
+		  select * from 表名;
+		7:查询当前mysql编码
+		  status
+
+
+	SQL语句的分类
+		1:DDL Data Define Language
+		  定义库的特征，表的结构--操作列
+		  CREATE/DROP/ALTER/TRUNCATE
+		2:DML Data Manipulate Language
+		  操作表中的记录行--操作行
+		  INSERT/DELETE/UPDATE
+		3:DQL Data Query Language***
+		  SELECT 
+		4:DCL Data Control Language
+		  控制数据库用户的权限
+		  GRANT/REVOKE
+
+
+		#CREATE   创建一个`库创建一个表
+		#创建一个库
+		 CREATE DATABASE 库名称;
+		示例:
+		 CREATE DATABASE crm;
+		 专家级创建库语句;
+		 CREATE DATABASE crm1 CHARACTER SET utf8;
+
+		#创建一个表
+		 CREATE TABLE 表名称(
+		  列名称1  类型,
+		  列名称2  类型,
+		  列名称3  类型,
+		  ....
+		  列名称n  类型
+		 ); 
+
+		 表名称/列名称:必须英文数字不能数字开头
+		 类型
+		 int      整型
+		 varchar  字符串
+		 datetime 日期
+		 double   浮点小数
+
+		 #mysql管理指令
+		 #查询表结构
+		 desc   表名;
+
+		 #删除表、删除库
+		 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		 #在数据库指令执行删除一定小心小心
+		 #删除非常难恢复
+		 --删除库
+		 drop database 库名;
+		 --删除表
+		 drop table 表名;
+
+		 #修改表结构,修改数据库结构
+		 #添加一列或者多列
+		 #删除一列或者多列
+		 #修改一个列属性
+		 ALTER 
+
+		 CREATE DATABASE crm1 CHARACTER SET utf8;
+		 CREATE TABLE t_emp(
+		  id   int,
+		  name varchar(25),
+		  age  int,
+		  rdate datetime,
+		  sal  double(10,2),
+		  comm double(10,2)
+		 );  
+
+		 a:添加一列 为t_emp添加一列 state 状态 int
+		 ALTER TABLE 表名 ADD 列名 类型;
+		 ALTER TABLE t_emp ADD state int;    
+		 b:删除一列
+		 ALTER TABLE 表名 DROP 列名;
+		 ALTER TABLE t_emp DROP age;
+		 c:修改列属性
+		 ALTER TABLE 表名 MODIFY 列名 类型;
+		 ALTER TABLE t_emp MODIFY sal int;  
+
+		练习：14:22----14:25 
+		 0:创建库crm1;
+		   create database crm1 CHARACTER SET utf8;
+		 1:删除表 t_emp
+		 2:创建表 t_emp
+		 3:添加一列 list int;
+		   ALTER TABLE t_emp ADD list int;
+		 4:删除一列 age
+		   ALTER TABLE t_emp DROP age;
+		 5:修改一列 sal  整型
+		   ALTER TABLE t_emp MODIFY sal int;
+
+
+		 #清空表内容!!
+		  TRUNCATE
+		 
+		 #向表中添加记录 INSERT
+		 a:向表中所有列添加记录
+		 INSERT INTO 表名 values(值1,值2,...);
+		 b:向表中一部分列添加记录
+		 INSERT INTO 表名(列名,) values(值1,值2);
+		 INSERT INTO t_emp(id,name) VALUES(10,'coco');
+
+		 #注意事项
+		 -字符串和日期类型数据库添加单引号
+		 -命令不区分大小写，习惯上关键字大写，非关键字小写
+		 -所有语句必须以分号结尾
+		 -注释:单行注释  #    单行
+		       多行      /**/ 多行
+		 -#在数据库指令执行删除一定小心小心
+		  #删除非常难恢复
+
+
+		  #删除记录指令
+		  #!!!!!恢复很困难
+		   DELETE FROM 表名 WHERE 条件;
+		   DELETE FROM t_emp WHERE id=10;
+		  #更新记录指令
+		   UPDATE 表名 SET 列名1=值,列名2=值.. WHERE 条件;
+		   UPDATE t_emp SET sal = sal*1.2 WHERE id = 1;
+
+
+		   练习:15:00--15:05
+		   休息:15:05--15:15
+		   1:向t_emp 添加三条记录
+		   2:更新 id = 2 员工工资涨 20%
+		   3:删除最后一条记录
+
+
+		   #查询所有记录
+		   SELECT * FROM 表名称
+		   #查询符合条件的指定列
+		   SELECT 列名称1,列名称2,... FROM 表名称 WHERE 条件;
+		   #查询符合条件的所有列
+		   SELECT * FROM 表名称 WHERE 条件;
+
+		   1:查询所有记录
+		   SELECT * FROM t_emp;
+		   2:查询所有记录 编号 姓名
+		   SELECT id,name FROM t_emp;
+		   3:查询所有记录 编号 姓名 工资 工资涨20%
+		   SELECT id,name,sal,sal*1.2 FROM t_emp;
+		   4:查询所有记录工资大于10000
+		   SELECT * FROM t_emp WHERE sal > 11000;
+		   5:查询所有记录年龄大于等于19 并且 小于等于20
+		   SELECT * FROM t_emp WHERE age >= 19 AND age <= 20;
+		   6:查询所有记录入职时间为2001-10-10
+		   SELECT * FROM t_emp WHERE rdate = '2001-10-10';
+		   7:查询所有记录按薪水排序
+		   升序(默认)ASC   15:26---15:31 练习
+		   SELECT * FROM t_emp ORDER BY sal;
+		   降序 DESC
+		   SELECT * FROM t_emp ORDER BY sal DESC;
+
+
+		   综合示例1 操作jd库;
+
+		   登录表:
+		   create table t_login(
+		    id     int PRIMARY KEY AUTO_INCREMENT,
+		    name   varchar(25),
+		    pwd    varchar(32)
+		   );
+
+		INSERT INTO t_login VALUES(1,'tom',md5('123'));
+		INSERT INTO t_login VALUES(2,'jerry',md5('123'));
+
+	Bug:
+		ERROR 2003 (HY000): Can't connect to MySQL server on 'localhost' (10061 "error")
+
+		错误一
+		场景: 进入mysql显示这样错误
+		文字意义:连接mysql服务器不成功
+		根源:
+		1:mysql服务器软件停止不启动
+		2:mysql服务器启动失败
+
+
+		ERROR 1044 (42000): Access denied for user ''@'localhost' to database 'crm1'
+		错误二:
+		场景:进入mysql创建库指令
+		文字意义:访问mysql被拒绝
+		根源:
+		创建库创建表在mysql高级操作，必须权限很高用户
+		才做这样的操作.
+		权限太低
+
+		解决:
+		1:exit
+		2:mysql.exe -uroot
+
+
+		ERROR 1007 (HY000): Can't create database 'crm1'; database exists
+		错误三:
+		场景:创建数据库时出现
+		根源:当前库己经存在

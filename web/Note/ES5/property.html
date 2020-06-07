@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+	
+  </style>
+  <script>
+	'use strict';	//对整段代码使用严格模式
+	var emp = {id: 1001, name: 'eric', salary: 1000};
+	//获取指定对象的四大特性：value、writable(可否读写)、enumerable(可否遍历)、configurable(可否设置)
+	var attrs = Object.getOwnPropertyDescriptor(emp, 'id');
+	console.dir(attrs);
+	/*
+		Object.defineProperty(emp, 'id', {
+			writable: false,	//只读	1
+			configurable: false	//不可设置 4	只可定义一遍
+		});
+	*/
+	/* 2 报错
+		Object.defineProperty(emp, 'id', {
+			writable: true,	//只读
+			configurable: true
+		});
+	*/
+	/* 报错
+		emp.id = 1002;
+		delete emp.id;
+		console.dir(emp);
+	*/
+	/* 3 报错
+		Object.defineProperty(emp, 'id', {
+			writable: false	//只读
+		});
+	
+		console.dir(emp);
+	*/
+	
+	/*
+		Object.defineProperty(emp, 'salary', {
+			enumerable: false,	//只读
+			configurable: false
+		});
+	*/
+	Object.defineProperties(emp,{
+		id: {writable: false, configurable: false},
+		name: {configurable: false},
+		salary: {enumerable: false, configurable: false}
+	});
+	for(var key in emp){
+		console.log(key+' : '+emp[key]);
+	}
+	console.log(emp.salary);
+	console.dir(emp);
+	//emp.id = 1002;
+	//delete emp.name;
+
+	//为emp对象添加一个新属性age
+	Object.defineProperty(emp, 'age', {
+		value: 25
+		//writable: false
+		//enumerable: false
+		//configurable: false
+	});
+	attrs = Object.getOwnPropertyDescriptor(emp, 'age');
+	console.dir(attrs);
+  </script>
+ </head>
+ <body>
+  
+ </body>
+</html>

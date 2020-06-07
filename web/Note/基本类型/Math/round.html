@@ -1,0 +1,54 @@
+ <!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+	
+  </style>
+  <script>
+	//指定小数位数
+	//返回数字
+	function round(num, d){
+		/*
+		//num* 10的d次方
+		num*=Math.pow(10,d);
+		//对num四舍五入取整
+		num=Math.round(num);
+		//num/ 10的d次方
+		num/=Math.pow(10,d);
+		return num;
+		*/
+		return Math.round(num*Math.pow(10,d))/Math.pow(10,d);
+	}
+	console.log(
+		round(234.567, 2),
+		round(234.567, 0),
+		round(234.567, -1)
+	);
+	
+	/*抛出错误，如果不处理，直接中断程序
+	//框架定义者
+	function round1(num,d){
+		if(!isNaN(num) && !isNaN(d)) return Math.round(num*Math.pow(10,d))/Math.pow(10,d);
+		else throw new Error('您好，参数必须是数字，请自行修改，否则参数将无法调用，谢谢！');
+	}
+	
+	//开发人员调用者
+	while(true){
+		var num = prompt('请输入数子');
+		var d = prompt('请输入小数位数');
+		try{console.log(round1(num,d));}catch(err){alert(err);}
+	}
+	*/
+
+  </script>
+ </head>
+ <body>
+  
+ </body>
+</html>

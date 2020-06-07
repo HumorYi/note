@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+	
+  </style>
+  <script>
+	function doubleBall(){
+		var reds = [];
+		while(reds.length<6){
+			var r = Math.floor(Math.random()*33+1);
+			for(var i=0; i<reds.length; i++){
+				if(r==reds[i]){break;}
+			}
+			if(i==reds.length) reds.push(r);
+		}
+
+		function cmp(a,b){return a-b;}
+		reds.sort(cmp);
+		var blue = Math.floor(Math.random()*16+1);
+		alert(String(reds)+' | '+blue);
+	} 
+
+	doubleBall();
+  </script>
+ </head>
+ <body>
+  
+ </body>
+</html>

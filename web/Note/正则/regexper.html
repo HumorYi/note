@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+	
+  </style>
+  <script>
+	/*
+		var reply = prompt('输入回复:');
+		//查找reply中是否包含正则里面的敏感词
+		var str = reply.search(/[我卧][操草槽艹]/);
+		if(str!=-1) alert('包好敏感词，关小黑屋');
+		else alert('clear! 回复成功');
+	*/
+
+	//加g，获取关键字内容
+	var str1 = 'no zuo no die No can no bibi';
+	var kwords = str1.match(/no/ig);
+	console.log(String(kwords));
+	console.dir(kwords);
+	
+	/*
+	//不加g，获取关键字位置和内容
+	var kwords1 = str1.match(/i/i);
+	if(kwords1) alert('在位置'+kwords1.index+'发现敏感词'+kwords1[0]);
+	else alert("asf");
+	*/
+	
+	//获取所有关键字的内容
+	var kwords2 = str1.match(/yes/ig);	//如果str1.match(/**/ig) 里面的内容获取不到，将返回null
+	str1 = str1.replace(/yes/ig, '**');
+	console.log(str1);
+	alert('共替换'+(kwords2!=null ? kwords2.length:0)+'处');	//这里将会报错null&undefined之间不能加.[]()等什么都不能加
+
+	//
+  </script>
+ </head>
+ <body>
+ </body>
+</html>

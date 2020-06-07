@@ -1,0 +1,476 @@
+正课: 
+1. 什么是JQUERY
+2. 为什么用JQUERY
+3. 如何使用:
+4. 查询:
+
+1. 什么是JQUERY: 第三方开发的，极简化的DOM操作的函数库
+2. 为什么:
+ 1. 是DOM操作的终极简化: write less do more
+   1.增删改查
+   2.事件
+   3.动画
+   4.AJAX
+   学习jQuery其实还是在学DOM操作，只不过API简化
+ 2. 解决了兼容性问题: 
+   凡是jQuery允许使用的，都解决了兼容性问题
+3. 如何: 
+ 下载: 官网
+   版本: 1.x 兼容旧浏览器
+            jquery-1.11.3.js     未压缩 体积大 可读性好
+            jquery-1.11.3.min.js 压缩  体积小 可读性差
+               差别: 去掉了注释和空字符(空格，缩进，换行)
+                     极简化了变量和参数名
+               使用专门的压缩软件生成的
+        2.x 不再兼容旧浏览器
+ 引入: <script src="jquery-1.11.3.js"></script>
+   1. 向window中加入了一个jQuery函数(查找，创建)
+      构造/工厂函数
+   2. 为今后生成的jQuery对象添加了公共的原型对象: 
+      jQuery.fn: 其中封装了所有jQuery的简化版API
+
+ CDN: 内容分发网络: 根据客户端距离某台服务器的网络状况，智能选择最优的服务器下载资源
+
+使用API: 
+   1. 都要使用工厂函数创建一个jQuery对象
+     2种: 
+	1. 直接用jQuery("selector")
+	       查找符合selector要求的DOM元素，封装进jQuery对象中。
+	       jQuery对象其实是一个封装DOM元素对象的类数组对象
+	       为什么: 原生的DOM元素不具有jQuery的简化版API。必须封装进jQuery对象，才能调用简化版API
+	      2. 如果已经获得一个DOM对象: 
+		可用jQuery函数封装DOM对象为jQuery对象: 
+		 jQuery(DOM对象)
+	     终极简化: 所有jQuery(...), 都可简化为$(...)
+	       window.jQuery=window.$=jQuery;
+
+	2. 调用jQuery对象的简化版API，操作DOM
+
+4. ***查找: 
+ 1. 按选择器查找: 
+  基本选择器: 5个: 同CSS
+	#id  element  .class  *  selector1,selector2,...
+  练习: 补充: 
+   修改css样式: DOM: elem.style.css属性=值
+	JQ: $(...).css("属性名",值)
+   绑定事件: DOM: elem.onclick=function(){...}
+            JQ: $(...).click(function(){...})
+  层级选择器: 2组 4个: 同CSS
+    父子: parent child  所有后代  
+	  parent>child 直接子代
+    兄弟: child1+next  紧邻child1的下一个，且满足next的要求
+          child1~nextsiblings 不必紧邻，只要满足nextsiblings的要求
+  
+  过滤选择器: 
+   子元素过滤: 同CSS
+       选择在父元素下指定位置的子元素
+        :first-child 第一个子元素
+	:last-child 最后一个子元素
+	:nth-child(n/even/odd/2n/2n+1)
+	:only-child 仅有的一个子元素
+    问题: 旧浏览器不支持:last-child,:nth-child
+    解决: 凡是jQuery让使用的，都已经解决了兼容性问题
+   基本过滤: CSS中没有！
+     选择查找结果中指定位置的元素
+     :first/last 
+     :even/odd
+     :eq/gt/lt(i) 
+     :not(selector) 反选一切选择器
+  基本过滤 vs 子元素过滤:
+   子元素过滤 相对于自己的父元素内定位，下标从1开始
+   基本过滤  先将所有元素放入结果集合，再在结果集合中定义，下标从0开始
+
+  练习: 同时修改多个css属性; 
+    $(...).css({
+      属性名:值,
+      属性名:值,
+       ...
+    })
+		强调: jQuery中的css属性名都要去横线变驼峰
+        数字属性值，不用加单位
+   内容过滤: 根据元素的内容，选择满足条件的父元素
+    :parent  选择只要包含内容（文字,子元素）的任意父元素   
+    :empty  选择不包含任何内容的空的父元素
+    :contains(text) 选择内容中包含指定文本的父元素
+    比如: span:contains("购物车")
+    :has(selector)  选择内容中包含符合selector要求的子元素的父元素
+	<li><a
+	<li><a class=active;   li:has(a.active)
+	<li><a
+   可见性过滤: :visible
+         :hidden 只能选择dispaly为none的
+                  和input type=hidden的
+   属性选择器: 同CSS
+    [属性名]   选择包含指定属性的元素
+    [属性名=值] 选择包含指定属性且属性值为指定值的元素
+    [属性名^=值] 以值开头
+    [属性名$=值] 以值结尾
+    [属性名*=值]  包含值
+    [属性名!=值]  :not([属性名=值])
+    selector1selector2... 而且
+
+   练习: jQuery事件处理函数的this可获得当前DOM对象
+        但无法使用jQuery简化版API
+        需要$(this)
+   练习: 添加/移除/判断class
+     $(...).addClass("class")
+     $(...).removeClass("class")
+     $(...).hasClass("class")
+     $(...).toggleClass("class"):
+        if($(...).hasClass("class")) $(...).removeClass("class")
+        else $(...).addClass("class")
+jQuery API通用规律: 
+  1. 所有API自带遍历: 
+    对jQuery对象调用的修改，会自动应用到集合中每个DOM元素上
+  2. 所有API都返回正在查询的结果集合，可使用链式操作对同一个结果集合执行多个操作。
+  3. 一个API两用: 如果提供了新值，就修改。
+                   每提供新值就获取
+    修改: $(...).css(属性名,值)
+    获取: var value=$(...).css(属性名)
+正课:
+1. ***查找
+ 按选择器查找: 
+  表单选择器，状态选择器
+ 按节点间关系查找: 
+2. 修改: 
+ 内容，属性，样式
+3. 插入,删除: 
+4. 事件:
+
+1. ***查找
+按选择器查找: 
+ 表单元素选择器: 
+  :input 选择所有表单元素（input select textarea button）
+  :[type] 按type属性查找: 
+    比如: :text  :password   :checkbox   :radio   
+	:submit  :reset  :button   :hidden  :file  :image
+ 状态过滤选择器: 
+  :enabled  :disabled  :checked  :selected
+按节点间关系: 
+ 1. 父子: $(child).parent()              child.parentNode
+         获得parent下直接子元素中符合selector条件的
+         $(parent).children([selector])  parent.children
+         获得parent下所有后代元素中符合selector条件的
+         $(parent).find(selector)
+	 //查找父元素下所有子元素的第一个元素
+         $(parent).children().first()    parent.firstChild
+	 //查找父元素下所有子元素的最后一个元素
+         $(parent).children().last()    parent.lastChild
+ 2. 兄弟: $(...).next([selector])   +selector
+         $(...).nextAll([selector]) ~selector
+         $(...).prev([selector])  选择当前元素的前一个
+         $(...).prevAll([selector]) 选择之前所有
+         $(...).siblings([selector]) 选择除自己之外前后所有
+2. 修改: 
+内容: $(...).html(["新的html片段"]) 
+	获取或设置元素的innerHTML
+     $(...).text(["新的文本内容"])  
+	获取或设置元素的textContent
+     $(...).val(值) 获取或设置表单元素的值
+     $(...).empty() 清空元素的内容
+
+属性: $(...).attr("属性名"[,值])
+  三大状态: 不属于attribute，不能用.attr操作
+       解决: $(...).prop()
+样式: 
+  直接修改css属性: 
+   修改一个css属性: $(...).css("css属性名"[,值])
+			如果不给值，就获取css属性的值
+     强调: jq: 修改: $(...).css(...,值) => elem.style.css属性
+             获取: $(...).css(...) =>getComputedStyle(elem)
+   同时修改多个css属性: 
+	$(...).css({
+	  css属性: 值,
+	      ... : ...
+	})
+  修改class: 
+   $(...).hasClass("class")
+   $(...).removeClass("class")
+   $(...).addClass("class")
+   $(...).toggleClass("class")
+
+3. 添加，删除，替换，复制:
+	添加: 2步: 
+1. 使用HTML代码片段创建新元素
+	var $elem=$("html代码片段")
+	如果代码片段中即包含父元素，又包含子元素，则同时创建
+2. 将新元素挂到DOM树
+   1. 向父元素下添加子元素: 
+     $(parent).prepend($elem) 开头插入
+     $(parent).append($elem)  末尾追加
+   2. 在现有子元素前后插入: 
+     $(child).before($elem) 在child之前插入 elem
+     $(child).after($elem)  在child之后插入elem
+删除: $(...).remove([selector])
+替换: 
+ $("selector").replaceWith($elem/"HTML片段")
+  用右侧的$elem或"HTML片段"，替换左侧查找到的元素
+ $("HTML片段").replaceAll("selector")
+  用左侧的HTML片段替换右侧的selector选中的元素
+克隆: 复制一个元素: 
+ var $elem_copy=$(...).clone();
+  强调: 不带参数的clone方法，只能复制样式和属性，不会复制行为(事件)
+ 如何:即复制属性/样式，又复制行为: $(...).clone(true)
+
+4. 事件: 
+  鄙视: jq中共有几种事件绑定方式: 
+  1. .bind/unbind -> add/removeEventListener
+    $(...).bind("事件名",fn)
+    $(...).unbind("事件名",fn) 移除元素上指定事件绑定的指定函数fn
+      $(...).unbind("事件名") 移除元素上指定事件绑定的所有函数
+      $(...).unbind() 移除元素上绑定的所有事件
+  2. .one: 绑定事件处理函数后，只执行一次，就自动解绑
+  3. 简写: jq对部分常用事件的绑定提供了简写的函数:
+    $(...).事件名(funciton(){...})
+    区分: .mouseover/out vs .mouseenter/leave
+      .mouseover/out: 触发子元素的事件会冒泡到父元素
+      .mouseenter/leave: 触发子元素事件不会再冒泡到父元素
+  4. 利用冒泡: 
+    $(parent).delegate("selector","事件名",fn)
+     "selector" : 过滤只有满足selector的子元素才触发事件
+     this->e.target
+正课:
+1. 事件: 
+2. 动画:
+3. 类数组对象操作:
+
+1. 事件:
+绑定: 
+ 已废弃: $(...).live("事件名",fn)  delegate
+            .die("事件名",fn)
+  将网页中所有事件集中绑定在document上。效率极低
+ 终极简化: $(...).on(...) 绑定
+              .off(...) 解绑
+   $(...).on("事件名",fn)  -> bind
+   $(...).on("事件名","selector",fn) -> delegate
+     强调: on代替delegate，要事件名在前，选择器在后
+
+在绑定事件时，向事件处理函数中传入数据:
+   问题: 不能将自定义数据，直接放入处理函数的参数中，在事件触发时，会被事件对象替换。
+   解决: 使用绑定方法的data参数，传入对象。在对象中携带数据。
+   $(...).on("事件名",data,function(e){
+                   {x:1}
+     e->event
+       e.data.x->1
+         {x:1}
+})
+模拟触发: 用代码模拟触发某个元素上绑定的事件处理函数
+  $(...).trigger("事件名") 触发找到的元素上绑定的事件函数
+页面加载后自动执行: 
+  DOMContentLoaded : DOM内容加载完成就触发
+     HTML和JS加载完成后，就提前触发
+     准备工作包括: 事件绑定，DOM操作
+   如何: $(document).ready(function(){....})
+      简写: $().ready(function(){....})
+           $(function(){....}) 反复$()的fn，默认DOM内容加载后就提前执行
+      其实: 都不用
+        只要放在body结尾的script中的代码，默认DOM内容加载后提前执行。
+  window.onload: 整个页面内容加载完成才触发
+     HTML, JS, CSS, 图片全部完成，才触发
+特殊的事件: hover = mouseover+mouseout
+  何时: 只要同时响应mouseover和mouseout时，可简写：
+  $(...).hover(
+	function(){...mouseover...},
+	function(){...mouseout...}
+	);
+更简化: 如果能够将两个函数统一为一个函数，则可省略第二个函数，表示无论over还是out都执行相同操作。
+
+2. 动画: 
+1. 简单动画: 3种固定效果:
+  1. 显示/隐藏: $(...).show/hide/toggle();
+     问题:如果不给任何参数: display:none， 瞬间显示隐藏
+     解决: 指定参数: speed: 1. 三档("slow","normal","fast")
+  2. 上滑/下滑: $(...).slideUp/slideDown/slideToggle();
+  3. 淡入/淡出: $(...).fadeIn/fadeOut/fadeToggle();
+  缺点: 效果写死在库函数中，无法维护！
+  解决: class+transition
+
+  所有动画API的最后一个参数，都可指定回调函数
+	$(...).show(speed, callback)
+		callback: 在动画结束后自动执行，this->当前元素
+2. 万能动画: 
+	$(...).animate({//目标样式
+	    css属性:值, css属性:值, ...
+	},speed,callback);
+  不足: 只能对单个数值的属性提供渐变
+  并发和排队: 
+   并发: 所有属性同时改变
+	1. 放在同一个animate中的多个css属性
+        2. 不同元素上调用的animate是并发
+   排队: 每个属性先后变化
+     连续链式调用的多个animate的css属性是排队执行
+  练习: 
+	$(...).css("属性",function(i,val){//自动在每个元素上执行
+		i //当前元素的下标
+		val //当前元素的指定属性值
+		this //当前DOM元素...
+		return 要修改给当前元素的属性的值
+	})
+  停止动画: $(...).stop();
+    问题: 只能停止队列中正在执行的一个动画
+          后续动画依然会执行
+    解决: $(...).stop(true); //停止当前动画，清空队列
+    解决: $(...).stop(true,true); //完成队列。可以立即完成动画
+  练习: :animated 选择器 可选择正在播放动画的元素
+  DOM/day04素材/5_3_adv.html  
+3. 类数组对象的操作: 
+ 类数组对象不是数组类型，无法使用数组的API
+ jQuery为类数组对象添加了一组遍历和查找的API
+ $(...).each(function(i){...this//当前正在遍历的DOM元素...})
+   类似于数组的forEach，对每个元素执行相同操作
+ var i=$(elem).index("selector")
+	 在所有满足右侧selector条件的元素中，找elem的位置
+正课:
+插件: 
+ jQueryUI
+ 第三方插件
+***封装自定义插件
+
+jQueryUI: 
+UI: User Interface 包括: 内容HTML, 样式CSS, 行为JS
+jQueryUI是基于jQuery封装的，进一步简化的UI组件库
+UI库: 使用HTML/CSS/JS已经实现的特殊的页面效果/功能的集合
+	有些功能要按照UI库中固定HTML结构书写。
+为什么: 复用功能
+如何: 
+  下载jQueryUI
+  在网页中先引入jQuery.js，再引入jQueryUI.js
+包括: 
+效果: 
+ 1. 对addClass/removeClass/toggleClass添加了动画效果
+ 2. 对show/hide/toggle增加了很多预定义动画的效果
+ 3. 使animate支持颜色动画
+交互:
+ 侵入: UI组件根据自身的需要，向现有元素添加class或事件绑定。
+	缺少的侵入class，需要自行补充完整
+	强调：用UI库时要注意查看HTML结构内容是否侵入class
+部件:
+ 3件事: 
+  1. HTML结构:
+  2. css样式:
+  3. 行为:
+accordion手风琴； 
+ 必须按照固定套路写：
+	HTML: div#myaccordion>(hn+div)*n
+	CSS: 
+	js: $("#myaccordion").accordion();
+autocomplete自动完成:
+ HTML: <input />
+ CSS:
+ js: 2步:
+  1. 定义备选关键词的数组list
+  2. $(...).autocomplete({source:list})
+datepicker日历:
+ HTML: <input />
+ CSS:
+ js: $(...).datepicker({dateFormat:"yy-mm-dd"});
+ H5: <input type="date"/> 问题: 无法修改样式
+button按钮: 让所有按钮保持一致的样式
+ HTML: <button <input type="button" <a
+ CSS:
+ js: $(...).button()
+dialog对话框: 
+ HTML: <div id="my-alert" title="标题"
+ CSS: 
+ JS: 让div变成对话框: $(...).dialog()
+    默认隐藏: $(...).dialog({autoOpen:false})
+      打开/关闭: $(...).dialog("open"/"close")
+    模态: 只要对话框不关闭，就无法操作网页内容
+      $(...).dialog({autoOpen:false, modal:true})
+    添加自定义按钮: 
+	$(...).dialog({...
+		buttons:{
+		  "按钮文本": function(){ this->当前对话框},
+			 ... : ...
+		}
+	});
+Tabs 标签页
+ HTML: 
+  div id="my-tabs"
+    ul
+      li>a href="#divId"
+
+    div id="divId" 内容
+ CSS:
+ JS: $(...).tabs();
+tooltip工具提示: html中的title
+ HTML <ANY title
+ CSS:
+ JS: $(document).tooltip()
+progressbar进度条: 
+	HTML: 
+		<div id="my-pb"><div id="my-label"></div></div>
+	CSS:
+	JS: $(...).progressbar({
+		value: 初始进度值, //去掉%的百分比
+		change(){//在进度条进度改变时自动执行
+			$(this).progressbar("value") //获取当前进度值
+		},
+		complete(){//当进度条进度完成时自动执行}
+	    })
+	    修改进度: $(...).progressbar("value",新值)
+	       其中, 新值也是去掉%的进度值
+
+第三方插件: 
+1. 日历: laydate  不依赖于jQuery
+  HTML: <input id="#id" class="laydate-icon"
+  CSS:
+  JS: laydate({elem:"#id", format:"YYYY年MM月DD日"})
+2. 表单验证: jquery.validate  基于jQuery
+  HTML: 
+  CSS: input.error{ 定义出错的输入框的样式}
+       label.error{ 定义错误提示的label元素的样式}
+  JS: 
+    $(...).validate({
+        rules:{
+		name1: "规则名",
+		name2:{
+			"规则名":值,
+			... : ...,
+		}
+	},
+	messages:{
+		name1: "错误提示",
+		name2:{
+			"规则名":"错误提示",
+			... : ...,
+		}
+	}
+    })
+   规则: 看jquery.validate.js的326行
+   required: true 必填
+   min/maxlength:值 最小/最大长度
+     rangelength: [min,max], 长度的范围
+   min/max:值  最小/最大值
+     range: [min,max] 取值的范围
+   格式验证: email, url, date
+     强调: 格式验证时，不加required，如果为空，则不验证
+   两元素内容相等: equalTo: "#id"
+   
+  添加自定义验证规则: 
+   jQuery.validator.addMethod(
+     "规则名",
+     function(val){ //val会自动获得当前元素的内容
+	return val是否验证通过 // 一般为 /正则/test(val);
+     },
+	"错误提示"
+   )
+ 
+3. masonry彩砖墙
+  HTML: div#container>div*n
+  CSS:
+  JS: $(...).masonry(); 
+
+3. 添加jQuery全局函数: 
+  鄙视: $.each(数组/集合,function(i){...})
+         直接定义在$构造函数对象上
+         对任意数组或类数组对象均可用
+        $(...).each(function(i){...})
+         仅定义在jQuery查询结果对象的原型对象中
+         只能被jQuery查询结果对象使用
+  jQuery函数分两种: 
+   1. jQuery全局函数: 直接定义在jQuery构造函数上的，所有对象都可使用的函数
+   2. jQuery实例函数: 定义在jQuery.fn原型对象上，只有jQuery的查询结果对象才能使用。
+  如果觉得jQuery函数不够用: 可扩展自定义函数
+    如果仅希望jQuery查询结果使用，就定义在jQuery.fn上
+    如果希望jQuery查询结果以及所有数组，类数组对象都能使用，就定义在jQuery构造函数上

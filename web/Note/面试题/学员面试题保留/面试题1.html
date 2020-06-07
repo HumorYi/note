@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8"/>
+  <title>Document</title>
+ </head>
+ <body>
+	<script>
+		/* 字符串的反转
+		function reverse(num){
+			var arr=[];
+			num=num.split("");
+			for(var i=num.length-1;i>=0;i--){
+				arr.push(num[i]);
+			}
+			num=arr.join("");
+			console.log(num);
+		}
+		reverse("我爱林志颖");*/
+		/* add()();--加法的实现1
+		function add(n){
+			return function(m){
+				n+=m;
+				console.log(n);
+			}
+		}
+		add(3)(2);*/
+
+		/* add()();--加法的实现2 */
+		function add(n){
+			//getN=function(){console.log(n);}
+			return function(m){
+				n+=m;
+				console.log(n);
+				arguments.callee.toString=function(){
+					return n;
+				}
+				return arguments.callee;
+			}
+		}
+		add(3)(2)(1)(4);
+	</script>
+ </body>
+</html>

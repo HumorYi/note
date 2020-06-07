@@ -1,0 +1,143 @@
+正课:
+1. BOM常用对象: 
+ history, location, navigator, screen, ***even
+
+1. history: 
+ 什么是: 封装当前窗口打开后成功访问过的url的历史记录栈
+  history.go(n)
+  比如: 前进history.go(1)
+        后退 history.go(-1) 如果go(-1)不管用，可go(-2)
+        刷新 history.go(0) 
+2. location: 封装当前窗口正在打开的url
+ 属性: .href 保存完整url地址
+  .protocol
+  .host (.hostname和.port)
+  .pathname
+  .hash    #xxx
+  .search  ?xxx=xxx&xxx=xxx
+ 方法: 
+  location.assign("url") 在当前窗口打开新url
+    ->location.href="url"
+      ->location="url"
+  location.replace("url")在当前窗口打开新url，禁止后退
+    其实用新url，代替history中当前url
+  location.reload(false/true) 重新加载当前页面
+    参数: force强制: 是否绕过缓存，直接从服务器硬盘获取数据。默认false, 不强制。
+       
+3. navigator: 封装浏览器配置信息的对象 ——没有标准
+  .cookieEnabled 判断是否启用了cookie
+   什么是: 在客户端硬盘持久保存用户私密数据的小文件
+   为什么: 内存中的数据(变量，数组，对象)都是临时的！
+   何时: 只要希望在客户端永久保存用户个人数据时
+  .plugins 封装了浏览器安装的所有插件信息
+   判断是否包含插件: 
+navigator.plugins["插件名"]!==undefined
+  .userAgent: 包含浏览器名称，内核和版本号的字符串
+    鉴别五大浏览器: 
+4. screen: 获得显示设备的分辨率
+***获得屏幕完整分辨率: screen.width/height
+鄙视: 专门用于判断客户端显示设备的类型: screen.width
+     大屏      中屏    小屏    超小屏
+      lg       md     sm      xs
+               pc      pad     phone
+    >=1200  >=992  >=768   <768
+  获得屏幕的可用分辨率: screen.availWidth/availHeight
+     去掉任务栏之后的剩余分辨率
+5. ***event
+ 什么是事件: 浏览器自动触发的或用户手动触发的页面状态的改变
+ 什么是事件处理函数: 当事件发生时自动调用的函数
+ 何时: 只要希望当事件发生时，自动调用一个函数，都要在事件发生前，将函数绑定到事件属性上
+ 如何: 3种: 
+  1. 在html中绑定: <ANY on事件名="js语句"
+   比如: <button onclick="fun()"
+    问题: 不符合内容与行为分离的原则，不便于维护！
+    解决: 在js中动态绑定事件
+  2. 为事件属性赋值一个函数:
+    ANY.on事件名=fun; 
+		强调: 1. fun后不要加()，因为是回调的一种
+        2. fun中的this->ANY 事件绑定到的.前的元素对象
+   问题: 一个事件只能绑定一个处理函数
+   解决: 用addEventListener
+  3. addEventListener
+   ANY.addEventListener("事件名",fun)
+     ANY.removeEventListener("事件名",fun)
+正课: 
+1. event
+ 事件模型:
+ 事件对象:
+   取消冒泡，利用冒泡，取消事件，事件位置, 页面滚动
+
+1. 事件模型: 
+ DOM: 3个阶段: 
+   1. 捕获: 由外向内，记录各级父元素上绑定的相同事件
+     addEventListener("事件",fn,capture)
+				capture: 是否在捕获阶段提前触发，默认false
+   2. 目标触发: 首选触发目标元素上的事件处理函数
+       目标元素: 实际触发事件的元素
+   3. 冒泡: 按照捕获顺序的反向,由内向外，依次触发各级父元素绑定的事件处理函数
+ IE8: 2个阶段: 没有捕获
+   attachEvent("on事件名",fn);
+
+2. 事件对象: 当事件发生时，自动创建的，封装所有事件信息的对象
+   何时: 只要希望操控事件或获得事件相关数据都要用事件对象
+   获取: 
+DOM: 事件对象默认作为事件处理函数的第一个参数传入
+     function 处理函数(e){ 
+... e//在事件发生时自动获得事件对象 ...
+}
+   IE8: 在全局window,定义了一个event
+     function 处理函数(){
+       window.event
+}
+   兼容: function 处理函数(e){
+       e=e||window.event;
+}
+ 操作: 
+  取消冒泡: 停止蔓延
+DOM: e.stopPropagation();
+            IE8: e.cancelBubble=true;
+    兼容: if(e.stopPropagation)
+							e.stopPropagation();
+         else
+            e.cancelBubble=true;
+  利用冒泡: 
+   优化: 尽量少的添加事件监听
+   为什么: 浏览器在事件发生时，会遍历所有注册的事件监听
+       监听越多，遍历就越慢，网页响应速度就越慢
+   解决: 如果多个子元素绑定相同的事件时，只需在父元素集中绑定一次，所有子元素共用即可
+   难题: 1. 如何获得目标元素
+         this->随冒泡向父元素移动
+           解决: e.target 始终保存目标元素，不随冒泡改变
+        2. 如何鉴别目标元素是否想要的
+         解决: 在执行正式操作前，判断目标元素的特征
+  取消事件: 阻止默认行为
+   何时: 当事件发生后，不希望事件再执行浏览器默认行为时
+   如何: e.preventDefault();
+     典型应用: 
+	1. 当用a元素作为按钮使用时，避免url结尾添加锚点地址，要取消默认行为
+	2. 在表单的onsubmit事件中，进行最后一次完整验证，如果未通过，就取消提交
+	3. H5做拖拽效果时，都要取消默认行为 
+
+	练习: 表单: 事件: onsubmit() 在无论以何种方式提交表单之前自动触发。
+
+	事件坐标: 事件发生时，鼠标的位置
+	   相对于屏幕左上角: e.screenX|screenY
+	   相对于文档显示区左上角: e.clientX|clientY
+	   相对于事件绑定的元素: e.offsetX|e.offsetY
+
+	页面滚动: 
+	   事件: document.body.onscroll 
+	   获得页面滚动过的高度: 
+	     document.body.scrollTop
+	      ||document.documentElement.scrollTop
+	    强调: onscroll中的this->window!
+
+
+
+
+
+
+
+
+
+

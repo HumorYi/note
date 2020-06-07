@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+	
+  </style>
+  <script>
+	/*
+		if(window.XMLHttpRequest) alert('ture');
+		else alert('false');
+	*/
+
+	//window.XMLHttpRequest !== undefined ? alert('true') : alert('false');
+	
+	//finally无论前面对与错，都执行
+	//如果下面有finally(return)，无论报不报错，都挂起，执行finally
+	var n=3;
+	function fun(){
+		try{
+			n++;
+			m++;
+			return n;	
+		}catch(err){
+			n++;
+			return n;
+		}finally{
+			n++;
+			return n;
+		}
+	}
+
+	console.log(fun(),n);
+  </script>
+ </head>
+ <body>
+  
+ </body>
+</html>

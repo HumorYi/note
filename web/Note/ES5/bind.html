@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+	
+  </style>
+  <script>
+	//bind的原理还是call，只是把call里面的东西绑定在比闭包中
+	//判断this，只看怎么调用
+	if(Function.prototype.bind === undefined)
+		Function.prototype.bind = function(obj/*,args*/){
+			//args1[obj, 10000, 3000]
+			//fun->this->calc
+			var args1 = Array.prototype.slice.call(arguments,1);	//arguments.slice()
+			var fun = this;
+			return function(){//this->window
+				//args2[4000,5000]
+				var args2 = [].slice.call(arguments);
+				//fun->calc
+				//fun.call(obj);	//obj.fun()		fun.call(obj,10000,3000,4000,5000);		
+				fun.apply(obj,args1.concat(args2));
+			}
+		}
+	
+	function calc(base,subsidy,bonus1,bonus2){
+		document.write(this.name+'总的工资是：'+(base+subsidy+bonus1+bonus2)+'<br />');
+	}  
+
+	var lilei = {name: 'lilei'};
+	var hmm = {name: 'hmm'};
+	//calc.call(lilei, 10000, 4000);	//call临时调用this
+	//calc.call(hmm, 3000, 2000);
+	var lilei_calc = calc.bind(lilei, 10000, 3000);	//bind永久绑定this，创建新值
+	lilei_calc(3000,2000);
+	lilei_calc(6000,4000);
+
+  </script>
+ </head>
+ <body>
+  
+ </body>
+</html>

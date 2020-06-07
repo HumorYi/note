@@ -1,0 +1,29 @@
+/*画布的尺寸只能使用标签属性或对象属性来赋值*/
+	canvas标签的宽高度严格禁止在style标签中定义，因为虽然在style中定义了canvas的宽高度，然而，canvas还是使用浏览器默认赋给它的宽高度300*150;所以，建议canvas的宽高度最好定义在canvas标签中或同过js赋值。
+
+jQuery中没有获取canvas上下文的函数，即$('#canvas').getContext('2d')这个方法是未定义的。
+
+新的语意标签和属性
+表单2.0
+	标签：
+		<datalist id='datalistId'>
+			<option>XXX</option>
+		</datalist>
+			a:同输入框一起使用
+			b:<input type='text' list='datalistId' />
+		<progress value='0~1'></progress>
+		<meter min='' max='' low='' high='' optimum='最优值
+		' value=''></meter>
+		<output></output>(span)
+	input type：
+		email、url、number、range、
+		color、pattern、tel、search、date、month、week
+	属性：autocomplete、required、
+影视频
+canvas
+svg
+拖放API
+地理地位
+web worker
+web storage
+web socket

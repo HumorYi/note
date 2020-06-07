@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+  <title>Document</title>
+
+</head>
+<body>
+<form name="form1">
+<!-- <form name="form1" onsubmit="return foo();"> -->
+<input type="radio" name="radioGroup"/>
+<input type="radio" name="radioGroup"/>
+<input type="radio" name="radioGroup"/>
+<input type="radio" name="radioGroup"/>
+<input type="radio" name="radioGroup"/>
+<input type="submit"/>
+</form>
+<script>
+function foo(){
+	var radio = document.getElementsByName("radioGroup");
+        for (var i = 0; i < radio.length; i++) {
+            if (radio[i].checked == true) {
+                alert("第" + (i+1) + "个单选框选中了");
+                return false;
+            }
+        }
+        alert("您没有选中");
+		return false;
+		/*网络答案
+		 var radios =
+        document.getElementsByName("radioGroup");
+        for (var i = 0; i < radios.length; i++) {
+            if (radios[i].checked == true) {
+                var n = i + 1;
+                alert("第" + n + "个单选框被点击");
+                return false;
+            }
+        }
+        return false;
+		*/
+
+}
+ var button=document.getElementsByName("form1")[0];
+ console.log(button);
+button.onsubmit=foo();
+</script>
+</body>
+</html>

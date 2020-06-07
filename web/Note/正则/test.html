@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+	
+  </style>
+  <script>
+	var pwd = prompt('请输入密码：');
+	if(new RegExp("^\\d{6}$").test(pwd)) alert('验证通过');
+	else alert('密码格式不正确');
+
+	/*if(/^(?![A-Za-z]+$)(?![a-z0-9]+$)[A-Za-z0-9]{6,8}$/.test(pwd)){
+		 alert('验证通过');
+	}else alert('输入格式不正确');*/
+  </script>
+ </head>
+ <body>
+  
+ </body>
+</html>

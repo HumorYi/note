@@ -1,0 +1,20 @@
+前端一些学习笔记： -前端的临栈工程师
+	http://www.cnblogs.com/fsjohnhuang/category/456702.html
+jQuery的进阶： -源码分析
+	http://www.cnblogs.com/aaronjs/p/3279314.html
+WEB组件学习： -阿当
+	http://www.imooc.com/learn/99
+ECMAScript 6 入门： -阮一峰
+	http://es6.ruanyifeng.com/
+技术社区： -掘金网
+	https://gold.xitu.io/welcome/frontend?utm_source=w3cplus&utm_medium=word&utm_content=ganhuo&utm_campaign=q3_personal
+NodeJS的学习： 
+	http://nqdeng.github.io/7-days-nodejs/
+HTML5学习交流平台： 
+	http://www.html5tricks.com/
+jQuery效果学习： -jQuery之家
+	http://www.htmleaf.com/
+JavaScript速成学习： -6周学习计划
+	https://zhuanlan.zhihu.com/p/23412169
+angularJs学习：
+	https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter3/chapter3.html

@@ -1,0 +1,43 @@
+原生js操作css属性的方法：
+className属性：设置或获取元素的class属性。
+   兼容性：包括ie6在内的所有古现代浏览器的支持(但是功能偏弱，仅获取和设置两种)
+   获取：document.body.className;--返回值是元素的class属性值
+   设置：document.body.className="classname"--返回值是设置给元素class属性值。缺陷：会把该元素原本的class属性值给删除，只留下设置的class属性值。
+网上偶然发现的另一个原生js操作css属性的方法--classList
+一、兼容性问题：
+   除IE9及之前版本和移动端的安卓2.3及其以下版本的webview不支持classList外，其他浏览器都很好支持classList属性
+   实时兼容性查看：http://caniuse.com/classlist
+   兼容性更加强大的方法：
+二、classList的API：
+   classList提供了一系列API用于操作css属性，可以自己通过console.dir(document.body.classList)在空白页中的控制台中查看(console.dir主要用来dump某些对象的详细信息，如果需要dump的是一个DOM对象，那么使用console.dirxml()会得到更好的显示效果。用法和console.log方法一样。)
+   1)、length属性：返回元素类名的个数，只读。
+      document.body.classList.length;
+   2)、item(index)方法：返回元素的类名，只接受一个参数，即数字索引index。必须有参数，不然会报错
+      document.body.classList.item(0); --如果index超出范围，则返回null
+   3)、add(string)方法：用于增加元素的类，接受一个类名*字符串*参数。表示往类名列表中新增一个类名；如果类名存在，则添加忽略。-->局限性：一次只能添加一个类，如需一次添加多个，需要自己扩展方法
+      document.body.classList.add("类名");
+   4)、remove(string)方法： 用于删除元素的类，接受一个类名*字符串*参数。表示从类名列表中移除该类名。和add()方法一样，它一次性只能删除一个类。
+      document.body.classList.remove("类名");
+   5)、contains()方法：用于检测元素是否包含某个类，返回Boolean值，接受一个类名*字符串*参数。
+      document.body.classList.contains("类名");--包含返回true，不包含返回false
+   6)、toggle()方法：无则加勉，有则移除之意。若类名列表中有此类名，移除之，并返回false; 如果没有，则添加该类名，并返回true，接受一个类名*字符串*参数。
+      document.body.classList.toggle("类名");--同一段代码，第一遍增加class类，第二遍就删除，反之亦然。
+三、扩展：
+   局限性：
+      1、classList的add()方法和remove()方法由于返回值是undefined，因此无法级联。(级联指的是ele.a().b().c()这种可以连在一起调用方法的写法。)
+      2、add、remove和toggle都不能一次性同时操作多个类名，不然会报错，想要一次操作多个类名的话，只能对classList做扩展以达到自己想要的效果，以下是扩展方法(不建议对原方法进行修改，容易引起不必要的错误)：
+         //一次添加多个类
+         DOMTokenList.prototype.adds = function(adds) {
+            var aData=adds.split(" ");
+            for(var i=0;i<aData.length;i++){this.add(aData[i]);}
+         };
+	 //一次删除多个类
+         DOMTokenList.prototype.removes = function(removes) {
+            var rData=removes.split(" ");
+            for(var i=0;i<rData.length;i++){this.remove(rData[i]);}
+         };
+	 //同时切换多个类
+         DOMTokenList.prototype.toggles = function(toggles) {
+            var tData=toggles.split(" ");
+            for(var i=0;i<tData.length;i++){this.toggle(tData[i]);}
+         };

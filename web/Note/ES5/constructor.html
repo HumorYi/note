@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+	
+  </style>
+  <script>
+	'use strict';
+	//闭包构造器
+	function Emp(id,name,salary,age){
+		//public 自动添加	数据属性
+		this.id = id;
+		this.name = name;
+		this.salary = salary;
+		//private
+		var _age;
+		Object.defineProperties(this, {
+			/*
+				id: {writable: false, configurable: false},
+				name: {configurable: false},
+				salary: {enumerable: false,configurable: false},
+			*/
+			id: {writable: false},
+			salary: {enumerable: false},
+		
+			//已有访问器属性
+			age: {
+				get: function(){return _age},
+				set: function(val){ 
+					if(val<18 || val>65) throw new Error('年龄必须在18到65岁之间');
+					_age = age;
+				},
+				enumerable: true
+			}
+		});//this{id name salary age}
+		//为现有的age属性赋值
+		this.age = age;
+		//防篡改：密封	默认修改configurable: false
+		Object.seal(this);	
+	}
+
+	var eric = new Emp(120,'救护车',0,18);
+	//Object.preventExtensions(eric);	//防扩展：阻止修改
+	//Object.seal(eric);	//密封：防扩展和禁止删除
+	//eric.Age = -2;	//报错
+	//delete eric.name;
+	for(var key in eric){
+		console.log(key+' : '+eric[key]);
+	}
+	console.dir(eric);
+  </script>
+ </head>
+ <body>
+  
+ </body>
+</html>

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+	
+  </style>
+  <script>
+	function days(){
+		var month = parseInt(prompt('请输入您要查看的月份'));
+		switch(month){
+			case 1:
+			case 3:
+			case 5:
+			case 7:
+			case 8:
+			case 10:
+			case 12:
+				alert('该月份有31天');
+				break;
+			case 4:
+			case 6:
+			case 9:
+			case 11:
+				alert('该月份有30天');
+				break;
+			case 2:
+				var year = new Date();
+				if((year%4==0 && year%100!=0) || year%400==0) alert('该月份有29天');
+				else alert('该月份有28天');
+				break;
+			default :
+				alert('您输入的月份有误，请重新输入！');
+		}
+	}
+
+	days();
+  </script>
+ </head>
+ <body>
+  
+ </body>
+</html>

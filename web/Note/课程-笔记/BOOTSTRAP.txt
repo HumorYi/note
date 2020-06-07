@@ -1,0 +1,41 @@
+BOOTSTRAP
+
+第一天：
+一、响应式布局：一个页面可以兼容(不同分辨率的)各种终端
+   -特点：
+      1、流动式布局-使用float属性做成
+      2、具有可伸缩的图片文字
+      3、CSS3 Media Query技术，根据不同设备的高和宽使用不同的CSS样式
+   -如何测试响应式网页：
+      1、使用真实物理设备测试-效果可靠但任务量大，使用手机平板在同一局域网/互联网即可测试
+      2、使用第三方测试/模拟软件测试--效果有待进一步的验证
+      3、使用Chrome子代的浏览器模拟器测试--可以模拟常见的设备、网速、经纬度、加速度等，但是效果有待进一步验证
+   -如何编写响应式布局网页：
+      1、在<head>标签内声明viewport元标签：
+         <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no"/>
+	 width：设备的视口大小，一般使用数值或者device-with(device-width：设备的宽度)
+	 height：设备的视口高度，一般不定义
+	 initial-scale：初始缩放倍率
+	 minimum/maximum-scale：允许最小/最大缩放倍率
+	 user-scale：是否允许用户手动缩放，取值：1、0、yes和no
+      2、所有元素避免使用绝对单位(px)，用相对单位(em,%,auto)代替
+      3、图片大小自适应屏幕：会随着容器的改变而改变，且不会超过图片自身原始大小，防止失真
+         例如：img{max-width:100%}
+
+二、CSS3提供Media Query技术
+   -作用：根据客户端浏览设备的特性，有选择性的执行部分CSS
+   -Media：指浏览网页的设备，如screen(pc/pad/phone)、print、TV、projection、屏幕阅读器等
+   -Query：查询出当前浏览器设备的特性，如类型、宽度、高度、分辨率、色彩位深、方向Orientation(Landscapa/Portrait)等，根据这些特性执行特定的CSS样式
+   -CSS3MediaQuery有两种用法：
+      1、根据媒体的特性，加载不同的外部CSS样式：<liml media="条件" rel="stylesheet" href="XXX.css">
+         -缺点：客户端不管媒体特性是什么，请求所有的CSS文件
+      2、根据媒体的特性，执行某段CSS中的部分内容： @media "screen and 条件"{h1{}.box{}}
+         例如： @media screen and (min-width:768px) and (max-width:989px) {
+                 h1{border-bottom:2px solid #ccc;}.box{border:1px solid #a33;}}
+三、Bootstrap：是一个HTML/CSS/JS框架，适用于移动设备
+   -Bootstrap网页模板的解析：
+      1、lang(language的缩写)：指定当前网页的使用语言
+         作用：让浏览器识别用什么语言翻译当前网页的基础语言
+      2、IE浏览器的兼容性问题：
+         -X-UA-Compatible：Cross-UserAgent-Compitable，该标签只有IE浏览器支持
+	 -<meta http-equiv="X-UA-Compatible" content="IE=edge">

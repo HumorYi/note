@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+	
+  </style>
+  <script>
+	var iphone7=5;
+	var queue=[];
+	for(var i=1; i<=6; i++){
+		queue.push("顾客"+i);
+		console.log(String(queue));
+	}
+	queue.push('你');
+	while (iphone7>0)
+	{
+		var first = queue.shift();
+		iphone7--;
+		console.log(first+' 抢购成功;剩余'+iphone7);
+		console.log(String(queue)+"没抢上");
+	}
+  </script>
+ </head>
+ <body>
+  
+ </body>
+</html>

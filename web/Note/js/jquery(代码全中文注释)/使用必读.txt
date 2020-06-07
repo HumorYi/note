@@ -1,0 +1,33 @@
+
+                        ╭═══════════════╮
+                        ║         〖使用必读〗         ║
+        ╭═══════┤           Ajax中国           ├═══════╮
+        ║              ║    http://www.okajax.com     ║              ║
+        ║              ╰═══════════════╯              ║
+      　║                      ★    关于网站     ★                   ║
+        ║                                                              ║
+    　  ║        |---------------------------------------------|       ║
+        ║                                                              ║
+      　║    您现在使用的代码或软件，由Ajax中国团队收集整理。欢迎您访问║
+        ║我们的网站。                                                  ║
+        ║                                                              ║
+        ║    Ajax中国是专业致力于ajax开发资讯和站长技术交流的专业网站，║
+        ║我们为你提供全面丰富的WEB开发资源和信息。                     ║
+        ║                                                              ║
+        ║    我们的多数资料都是从互联网上收集整理而来，不一定为原创，且║
+        ║注明了出处。仅限参考、教学与个人使用交流！请勿用于商业目的，本║
+        ║站不对您的使用负任何责任！如果您想使用我们收集的下载内容，必须║
+	║同意以上协议！                                                ║
+        ║                                                              ║
+        ║    如果您对该软件的出处或原作有任何异议，请及时联系我们，谢谢║
+        ║                                                              ║
+        ║                  -----------------------                     ║
+    　　║                    Ajax中国: www.okajax.com                  ║
+    　　║                Ajax技术园地: bbs.okajax.com                  ║
+    　　║                    站长信箱: 77376666@qq.com                 ║
+  　  　║--------------------------------------------------------------║
+        ║  感谢您对我们的支持，欢迎您参与到我们中间，同学习、共同进步！║
+        ║                                                              ║
+        ╰═══════════════════════════════╯
+
+

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+	
+  </style>
+  <script>
+	/*
+	var arr = [1,2,3,4,2,1,3];
+	
+	function getMax(arr){
+		for (var i=0, max=arr[0]; i<arr.length; arr[i]>max && (max=arr[i]), i++);
+		return max;
+	}
+
+	console.log(getMax(arr));
+	*/
+
+	var arr = [1,2,3,6,2,1];
+
+	function indexOf(arr, val, fromi){
+		fromi===undefined && (fromi=0);
+		//if(fromi===undefined) fromi=0;
+		for (; fromi<arr.length; fromi++)
+		{
+			if (arr[fromi]==val){
+				return fromi;
+			}			
+		}
+		return -1;
+	}
+
+	console.log(indexOf(arr,2));
+	console.log(indexOf(arr,3,2));
+	console.log(indexOf(arr,6,4));
+	console.log(indexOf(arr,4));
+  </script>  	
+ </head>
+ <body>
+  
+ </body>
+</html>

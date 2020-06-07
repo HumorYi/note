@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+	
+  </style>
+  <script>
+	/*
+		//模仿收银员
+		function getMoney(){
+			var count, price, money,total, change;
+			price = prompt('请输入单价：');
+			count = prompt('请输入数量：');
+			total = count * price;
+			if (total>=500)
+			{
+				total*=0.8;
+				alert('您消费的金额超过500元，给您打8折优惠');
+			}else alert('您共消费'+parseInt(total)+'元');
+			//total>=500 && (total*=0.8);
+			money = prompt("您需要支付："+parseInt(total));
+			change = money - total;
+			alert("收您"+money+'元,'+'需要找您'+change+'元');
+		}
+
+		getMoney()
+	*/
+	
+	/*
+	var msg = '今晚231,w84u';
+	//编码
+	function encode(msg){
+		for(var i=0, code='', u; i<msg.length; i++){
+			//字符串转换成unicode
+			u = msg.charCodeAt(i);
+			//如果u<10000，就自动补齐5位（中文解码为5位）
+			u=(u+100000+'').slice(1);
+			code+=u;
+		}
+		return code;
+	}
+
+	var code = encode(msg);
+
+	console.log(code);
+
+	//解码
+	function decode(code){
+		for(var i=0, msg=''; i<code.length; i+=5){
+			//unicode转字符串
+			//msg+=String.fromCharCode(code.substring(i,i+5));
+			msg+=String.fromCharCode(code.substr(i,5));
+		} 
+		return msg;         
+	}
+
+	var demsg = decode(code)
+	
+	console.log(demsg);
+	*/
+	
+	/*从开始位置查找str中每个no出现的位置	查找全部首选indexOf()*/
+	var str = 'no zuo no die no can no bibi';
+	var i = -1;
+	while((i = str.indexOf('no',i+1)) != -1){
+		console.log('在位置'+i+'发现敏感词');
+	}
+	
+	//从结束位置查找str中每个no出现的位置	如果关键字
+	var j = str.length;
+	while((j = str.lastIndexOf('no',j-1)) != -1){
+		console.log('在位置'+j+'发现敏感词');
+		if(j==0){break;}
+	}
+
+
+  </script>
+ </head>
+ <body>
+  
+ </body>
+</html>

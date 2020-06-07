@@ -1,0 +1,82 @@
+1、浏览器内核：
+      浏览器     内核      排版引擎     脚本引擎
+      IE         Trident   -            Chakra
+      Firefox    Gecko     -            猴子系列
+      Safari     Webkit    Webcore      Nitro
+      Chrome     Webkit    Webcore      V8
+      Opera      Presto    -            Carakan
+      Opera(2013)Webkit    Webcore      V8
+
+2、汉字的范围："\u9fa3"到"\u4e00"之间的
+
+3、类数组转化为数组--才能使用数组API
+   var 数组名 = Array.prototye.slice.call(类数组名);
+
+4、获取键盘按键的编码：
+   document.onkeydown=function(){
+      var e = window.event||arguments[0];//获取时间对象-DOM/IE
+      var code = e.keyCode;
+   }
+
+5、当窗口发生改变是触发的事件
+   window.onresize=function(){console.log(test);}
+
+6、$符封装代码--类似jq的$符的作用
+window.$ = HTMLElement.prototype.$ = function(selector){
+	var r = (this==window?document:this).querySelectorAll(selector);
+	return r.length==0?null:
+		   r.length==1?r[0]:
+						  r;
+}
+7、"王".charCodeAt().toString(2);//"王"字的的Unicode 转化为二进制
+   汉字范围：\u4E00~\u9FA5  //其中\u表示16进制码
+
+8、转义字符：
+   \n : 换行
+   \r : 回车
+   \t : 制表符
+   \" : "
+   \' : '
+   \\ : \
+
+9、rem单位的应用--根据不同分辨率改变html标签的字体大小
+  (function (doc, win) {
+    var docEl = doc.documentElement,
+    resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+    recalc = function () {
+      var clientWidth = docEl.clientWidth;
+      if (!clientWidth) return;
+      docEl.style.fontSize = 100 * (clientWidth / 1242) + 'px';
+    };
+
+    if (!doc.addEventListener) return;
+    win.addEventListener(resizeEvt, recalc, false);
+    doc.addEventListener('DOMContentLoaded', recalc, false);
+  })(document, window);
+
+10、原生js判断滚动条向上还是向下
+  scroll(function(direction) { console.log(direction) });    
+  function scroll( fn ) {
+      var beforeScrollTop = document.body.scrollTop,
+          fn = fn || function() {};
+      window.addEventListener("scroll", function() {
+          var afterScrollTop = document.body.scrollTop,
+              delta = afterScrollTop - beforeScrollTop;
+          if( delta === 0 ) return false;
+          fn( delta > 0 ? "down" : "up" );
+          beforeScrollTop = afterScrollTop;
+      }, false);
+  }
+
+11、jq判断滚动条向上还是向下：
+  var prevTop = 0,currTop = 0;
+  $(window).scroll(function() {
+      currTop = $(window).scrollTop();
+      if (currTop < prevTop) { //判断小于则为向上滚动
+          $("#head").addClass("float");
+      } else {
+          $("#head").removeClass("float");
+      }
+      //prevTop = currTop; //IE下有BUG，所以用以下方式
+      setTimeout(function(){prevTop = currTop},0);
+  });

@@ -1,0 +1,1563 @@
+﻿Css要点：
+	重点：属性选择器的用法和写法
+
+	
+	1、CSS概述
+		1、问题
+			1、设置页面中所有的文本颜色为红色
+			2、设置页面中所有的p元素文本为蓝色
+			3、设置页面中所有的h3元素文本也为蓝色
+			4、将页面中所有的p元素文本颜色改为 绿色
+
+			HTML的不足：
+				1、不同的标记想完成相同的效果使用的是不同的属性
+					<body text="red"> 修改文本颜色
+					<font color="blue"> 修改文本颜色
+				2、样式效果不通用
+			CSS作用：
+				1、以统一的方式实现样式的定义
+					color:red;
+				2、提高页面样式的可重用性和可维护性
+		2、什么是CSS
+			CSS(Cascading Style Sheets)
+			层叠样式表，级联样式表，简称 样式表
+
+			实现了内容(HTML)与表现(CSS)的分离
+		3、CSS 与 HTML 之间的关系
+			HTML : 构建网页结构
+			CSS : 构建HTML元素样式
+		4、HTML属性与CSS样式的使用原则
+			ex:
+				html :<body text="red"> 修改文本颜色
+				css : color:red; 修改文本颜色
+			W3C : 建议尽量使用CSS样式取代HTML属性
+				<td colspan="3"> : colspan属性在css中没有方式能够取代，所以针对跨行跨列来讲，只能使用 html 元素属性，不能使用css属性
+	2、CSS语法
+		1、使用CSS样式表
+			1、CSS样式表的使用方式(重点)
+				1、内联方式
+				2、内部样式表
+				3、外部样式表
+				=============================
+				1、内联方式
+					将样式声明在元素的 style 属性中
+					语法：
+						<ANY style="样式声明;样式声明"></ANY>
+						样式声明：表示一个具体显示效果，多个样式声明之间，用;隔开
+						每个样式声明都由两部分组成: 
+						样式属性:属性值
+						ex:
+							样式属性        属性值
+							color           颜色英文表示法
+							font-size       以px或pt为单位的数
+							background-color 颜色英文表示法
+
+							设置某元素的 文本颜色为红色，文字大小为 24px，背景颜色为 绿色
+							<ANY style="color:red;font-size:24px;background-color:green;"></ANY>
+						
+						练习：设置页面上某一div元素，文本颜色为紫色(purple),文字大小为 18pt，背景颜色为 银灰色(silver)
+				2、内部样式表
+					将 样式声明定义在 页面的 style 元素中
+					1、在 <head>中添加<style></style>元素 
+					2、在 style 中添加任意多 "样式规则"
+						样式规则：
+							选择器{
+								样式声明; /*属性:值;*/
+								样式声明;
+								... ...
+							}
+							
+							选择器：规范了页面中哪些元素能够使用定义好的样式
+							ex:
+								p{
+									color:red;
+									font-size:48px;
+									background-color:green;
+								}
+
+								p{} : 定义页面中所有p元素的样式
+				3、外部样式表
+					步骤：
+						1、创建一个单独的样式表文件保存样式规则
+							**.css
+							只能编写遵循css规范的内容
+						2、在需要的页面上引入样式表文件
+							<head>
+								<link rel="stylesheet" type="text/css" href="css文件url">
+							</head>
+			2、CSS样式表特征
+				1、继承性
+					子级元素可以直接使用父级元素声明好的样式。
+					大部分的css样式属性是可以被继承
+				2、层叠性
+					可以为一个元素声明多个样式规则
+					如果样式不冲突的话，多个样式规则中的样式可以层叠为一个
+				3、优先级
+					样式定义冲突时，按照不同样式使用的"优先级"来应用样式
+					低：浏览器缺省设置(User Agent Stylesheet)
+					中：外部样式表或内部样式表
+						就近原则-谁离元素近，就用谁
+					高：内联样式
+				4、!important 规则
+					作用：显示调整样式的优先级
+					语法：
+						属性名称:值 !important;
+
+					尽量少用
+						1、IE6以及以下浏览器不支持
+						2、打破默认优先级规则
+		2、CSS基础选择器
+			1、作用
+				规范了页面中哪些元素能够使用定义好的样式
+				目的：匹配页面元素
+			2、详解
+				1、通用选择器
+					作用：匹配页面中所有的元素
+					语法：
+						*{样式声明;}
+					缺点：效率较低，尽可能少用
+				2、元素选择器
+					作用：定义页面某一标签的默认样式
+					语法：
+						元素{
+							样式声明;
+						}
+					ex:
+						/*页面上所有的div文字大小为12px*/
+						div{font-size:12px;}
+						/*页面上所有的span元素颜色为红色*/
+						span{color:red;}
+				3、类选择器
+					作用：由css定义好，可以被任意标记的class属性值进行引用的选择器
+					语法：
+						.类名{样式声明;}
+						类名：
+							1、不能以数字开始
+							2、除_,-以外不能有其它特殊符号
+						引用：
+							<ANY class="类名">
+
+
+					引用方式 - 多类选择器的引用
+						可以将多个类选择器，同时应用在一个元素中
+						语法：<ANY class="class1 class2 class3">
+					
+					定义方式 - 分类选择器的定义
+						将元素选择器和类选择器结合起来使用，从而实现对某种元素不同样式的细分控制
+						语法：元素选择器.类选择器{样式声明}
+						ex:
+							1、div.important{}
+								定义 class 为important 的div元素的样式
+				4、ID选择器
+					作用：针对 指定 ID 值的元素去定义样式
+					语法：
+						#ID值{样式声明;}
+						ID值，一定要对应页面某个元素的ID值
+				5、群组选择器
+					作用：选择器声明是以[,]隔开的选择器列表
+					语法：
+						选择器1,选择器2,选择器3,...{}
+					ex:
+						span,.important,#main,div.redColor{
+							color:red;
+							font-size:12px;
+						}
+						页面中所有的span，以及class为important的元素，id为main的元素以及class为redColor的div元素，它们的样式为 color:red,font-size:12px;
+				6、后代选择器
+					后代：只要具备层级关系的元素，被嵌套的都可以称之为 后代元素
+					语法：
+						选择器1 选择器2{样式声明;}
+						ex:
+						1、#d1 span{}
+							作用：匹配 id为d1中的 所有的span
+				7、子代选择器
+					子代：只具备一级层级关系的元素，被嵌套的称之为 子代元素
+					语法：
+						选择器1>选择器2{样式声明}
+						ex:
+						1、#d1>span{}
+							作用：匹配 id为d1中的 下一级 span元素
+				8、伪类选择器
+					作用：匹配页面元素的不同状态的选择器
+
+					分类：
+						1、链接伪类
+							1、:link , 匹配 尚未被访问的超链接状态
+							2、:visited , 匹配 访问后的超链接的状态 
+
+							推荐使用方式：
+							元素:伪类{}
+							
+							匹配 id为anchor的元素未被访问时的样式
+							#anchor:link{}
+							
+							匹配 页面中 id为 myAn元素的 访问过后的 状态
+							#myAn:visited{}
+
+							a:link{
+								
+							}
+						2、动态伪类
+							1、:hover 匹配 鼠标悬停在元素上的状态 
+							2、:active 匹配 元素被激活时的状态
+							3、:focus 匹配 元素获取焦点时的状态(text,password,textarea) 
+						3、目标伪类
+						4、元素状态伪类
+						5、结构伪类
+						6、否定伪类
+
+						练习：
+							比较 :focus 与 :active 之间的区别
+							页面上 添加一个 文本框 
+							设置文本框默认样式，字体为 斜体(font-style:italic;)
+							文本框被激活时 ：字体改为 正常(font-style:normal;)
+							文本框获取焦点时：文字变为 红色
+	3、尺寸与边框
+		1、尺寸属性
+			1、作用
+				用于设置元素的宽度和高度
+				单位为 百分比 或 像素
+			2、宽度属性
+				width : 设置元素的宽度
+				min-width : 设置元素最小宽度
+				max-width : 设置元素最大宽度
+			3、高度属性
+				height : 设置元素的高度
+				min-height : 设置元素最小高度
+				max-height : 设置元素最大高度
+			4、允许被修改宽度和高度的元素
+				1、块级元素允许被修改宽度和高度
+				2、大部分的行内块元素允许被修改尺寸
+					行内块：表单控件元素
+					单选按钮，复选框，无法修改尺寸
+				3、存在 width 和 height 属性的html元素允许被修改尺寸
+					比如：img，table
+			5、溢出
+				使用尺寸属性限制元素大小时，如果内容所需要的空间大小大于元素本身，则会导致溢出的效果
+				溢出后的处理：
+				属性：
+					overflow
+					overflow-x:横向溢出处理
+					overflow-y:纵向溢出处理
+				取值：
+					1、visible
+						默认值，溢出可见
+					2、hidden
+						隐藏，溢出隐藏
+					3、scroll
+						滚动，元素会出现滚动条，当内容溢出时，滚动条可用
+					4、auto
+						自动，内容溢出时显示滚动条并且可用，不溢出没有滚动条
+	==========================================
+	
+	1、边框属性
+		1、边框
+			1、简写方式
+				通过 一个 属性控制 四个方向边框的效果
+				属性：
+					border:width style color;
+						width:宽度，边框粗细，以px为单位
+						style:样式，边框样式，实线，虚线
+							取值：
+								solid : 实线
+								dotted : 虚线
+								dashed : 虚线
+						color:颜色，边框颜色
+							取值：
+								合法的颜色值(#rrggbb,rgb(,,))
+								取值为 transparent (透明)
+				注意：
+					border:none;或border:0; 可以取消元素边框
+			2、单边定义
+				属性：
+					border-方向:width style color;
+					方向：top/right/bottom/left
+					ex:
+						border-left:1px dotted red;
+			3、单属性定义
+				属性：
+					border-属性:值;
+					属性：width/style/color
+					ex:
+						border-color:#00f; /*四个边框颜色*/
+						border-style:dotted;/*四个边框样式*/
+			4、单边单属性定义
+				属性：
+					border-方向-属性:值;
+					ex:
+						border-left-color:red;
+						border-bottom-style:dotted;
+		2、边框倒角
+			将四个方向的角倒成圆角
+			属性：
+				border-radius
+				取值：
+					绝对数值 或 百分比
+				ex:
+					border-radius:5px;
+					border-radius:50%;/*如果 当前元素的宽和高相等的话，则能将当前元素改为圆形*/
+			单独定义：
+				border-top-left-radius:左上角
+				border-bottom-left-radius:左下角
+				border-top-right-radius:右上角
+				border-bottom-right-radius:右下角
+		3、边框阴影
+			属性：box-shadow
+			取值：h-shadow v-shadow blur spread color inset;
+				h-shadow:必须 阴影的水平偏移距离，+，右偏移，-，左偏移
+				v-shadow:必须 引用的垂直偏移距离，+，下偏移，-，上偏移
+				blur:模糊距离
+				spread:阴影尺寸
+				color:颜色
+				inset:值,默认的外阴影更改为内阴影
+		4、轮廓
+		作用：绘制于元素周围的一条线，位于边框之外
+		属性：
+			outline:width style color;
+			outline-widht:轮廓的宽度
+			outline-style:轮廓的样式
+			outline-color:轮廓的颜色
+
+			outline:none;或outline:0;取消元素轮廓
+	2、框模型
+		1、框模型
+			框：页面一切元素皆为框
+			框模型：Box-Model，定义了元素框处理元素内容，内边距以及外边距的方式.
+
+			对象实际宽度=左右外边距 + 左右边框 + 左右内边距 + width;
+
+			对象实际高度=上下外边距 + 上下边框 + 上下内边距 + height
+
+		2、外边距
+			1、什么是外边距
+				围绕在元素边框周围的空白区域就是外边距
+				正常情况下，外边距是不允许被其它元素所占据的
+			2、语法
+				四个方向外边距：
+					margin:value;
+				单边设置：
+					margin-top:上外边距;
+					margin-right:右外边距;
+					margin-bottom:下外边距;
+					margin-left:左外边距
+				取值：
+					1、单位可以为 px
+						margin-top:20px;
+						margin:15px;
+					2、单位可以为 %
+					3、取值为 auto
+						左右外边距可以取值为 auto，允许让块级元素水平居中显示
+					4、取值为 负值
+						移动元素
+						左外边距取值为负：元素向左移动
+						上外边距取值为负：元素向上移动
+
+						左外边距取值为正：元素向右移动
+						上外边距取值为正：元素向下移动
+			3、外边距的简洁写法
+				margin:value;四个方向外边距相同
+				margin:v1 v2;v1上下外边距 v2左右外边距
+				margin:v1 v2 v3;v1上 v2左右 v3下
+				margin:v1 v2 v3 v4;上右下左
+
+				ex:
+					1、margin:5px auto;
+						上下 5px 外边距，左右为 auto
+					2、margin:3px 5px 15px;
+						上外边距 3px
+						左右外边距5px
+						下外边距15px
+			4、默认具备外边距的元素
+				... ...
+				编写网页时，一般会进行CSS重写，即改变一些元素的默认样式。比如 取消某些元素的默认外边距
+			5、外边距特殊处理
+				1、外边距合并
+					当两个垂直外边距相遇时，他们将形成一个外边距，称为外边距合并。
+					合并后的外边距的高度等于两个外边距中高度较大者
+				2、外边距溢出
+					在某些特殊情况下，为子元素设置上下外边距时，有可能会作用到父元素上
+					特殊情况：
+						1、父元素没有上或下边框
+						2、必须为第一个子元素或最后一个子元素设置外边距时
+					解决方案：
+						1、为父元素增加边框(上或下)
+						2、在父元素中增加子元素<table>到第一个子元素位置处
+						3、通过设置父元素的上内边距来取代子元素的上外边距
+				3、外行内元素和行内块元素设置外边距
+					为 行内元素 设置上下外边距 无效
+					为 行内块元素 设置上下外边距 整行内容都跟着变
+		3、内边距
+			1、什么是内边距
+				内容区域与边框之间的距离
+				特点：会扩大元素边框所占用的区域
+			2、语法
+				padding:value;
+				单边设置：
+				padding-top/right/bottom/left:value;
+				取值：
+					1、单位可以为 px
+					2、单位可以为 %
+			3、简洁写法
+				padding:value;四个方向的内边距
+				padding:v1 v2;v1上下 v2左右
+				padding:v1 v2 v3;上 左右 下
+				padding:v1 v2 v3 v4;上 右 下 左
+			4、特殊处理
+				对行内元素和行内块元素设置内边距(上下)时，只会影响自己，并不会影响到其它元素
+		4、box-sizing
+			作用：重新指定元素框模型的计算模式
+				元素边框内占地区域=左右边框+左右内边距+width
+			取值：
+				1、content-box
+					默认值，采用默认计算模式即 内边距以及边框会累加到元素的尺寸中
+				2、border-box
+					元素的尺寸 会包含边框 和 内边距
+	3、背景属性
+		1、背景
+			背景颜色，背景图像
+		2、背景颜色
+			属性：background-color
+			取值：任意合法颜色 或 transparent 
+			注意：背景颜色会填充到元素的 内容区域、内边距区域 以及 边框区域
+		3、背景图像
+			作用：以图像作为元素的背景
+			属性：background-image
+			取值：url(背景图像路径)
+		4、背景重复
+			属性：background-repeat
+			取值：
+				1、repeat
+					默认值，水平垂直方向都平铺
+				2、repeat-x
+					仅在水平方向平铺
+				3、repeat-y
+					仅在垂直方向平铺
+				4、no-repeat
+					不平铺
+		5、背景图片尺寸
+			属性：background-size
+			取值：
+				1、value1 value2
+					指定背景图像的宽度和高度，px为单位
+				2、value1% value2%
+					采用当前元素的宽和高的百分比作为背景图像大小
+				3、cover
+					覆盖
+					将背景图等比放大，直到背景图完全覆盖到元素的所有区域为止
+				4、contain
+					包含
+					将背景图等比放大，直到背景图像的下边或右边有一个边缘碰到元素为止
+		6、背景图片固定
+			属性：background-attachment
+			取值：
+				1、scroll
+					滚动，默认值，背景图会随着文档而滚动
+				2、fixed
+					固定，背景图不会随着页面文档而发生滚动，一直保持在可视化区域中的固定位置处
+		7、背景图片定位
+			作用：改变背景图像在元素中的默认位置
+			属性：background-position
+			取值：
+				1、x y
+					x ：背景图 水平偏移距离 ，取值为正，向右偏移，取值为负，向左偏移
+					y ：背景图 垂直偏移距离 ，取值为正，向下偏移，取值为负，向上偏移
+				2、x% y%
+					0% 0% : 背景图在元素左上角
+					100% 100% : 背景图在元素右下角
+					50% 50% : 背景图在元素的中间
+				3、关键字
+					x : left / center / right
+					y : top / center / bottom
+
+					background-position:center;/*水平和垂直都在 中间位置处*/
+
+					background-position:left top;/*背景图在左上方*/
+
+					background-position:top right;/*背景图在右上方*/
+		8、CSS Sprites
+			雪碧图，精灵图
+			作用：
+				将一些小的背景图，合并到大的背景当中去，以便实现 减少服务器端的 请求次数
+			步骤：
+				1、根据要看的图像大小，创建一个元素
+				2、将 "雪碧图" 作为元素的背景图，再通过 背景图像位置 实现位置偏移，将用户要看的图像，显示在 元素中
+
+			Ctrl + '+':放大图像
+			Ctrl + '-':缩小图像
+			Ctrl + 'D':取消选区(虚线框)
+		9、背景属性
+		属性：background
+		取值：color url() repeat attachment position;
+		注意：如果不设置其中的某个值，将采用默认值。
+		ex:
+			background:red;
+			background:url(a.jpg) -45px -112px;
+
+
+
+
+
+
+
+			作用：绘制于元素周围的一条线，位于边框之外
+			属性：
+				outline:width style color;
+				outline-widht:轮廓的宽度
+				outline-style:轮廓的样式
+				outline-color:轮廓的颜色
+
+				outline:none;或outline:0;取消元素轮廓
+	==========================================
+
+	1、渐变
+		1、什么是渐变
+			两种或多种颜色间平滑过渡的效果
+			分类：
+				1、线性渐变
+				2、径向渐变
+				3、重复渐变
+		2、渐变的组成(元素)
+			色标:决定了渐变的每种颜色及其出现的位置
+
+			每一种渐变效果都是由多个 色标 组成的(2个及以上)
+		3、渐变的语法
+			1、语法
+				属性：background-image
+				值：
+					linear-gradient() : 线性渐变
+					radial-gradient() : 径向渐变
+					repeating-linear-gradient() : 重复线性
+					repeating-radial-gradient() : 重复径向
+			2、线性渐变
+				语法：background-image:linear-gradient(angle,color-point,color-point,..);
+				angle:方向或角度-即渐变的填充方向
+					值：
+						关键字：
+							to top : 从下向上填充
+							to right : 从左向右填充
+							to bottom : 从上向下填充
+							to left : 从右向左填充
+						角度：0deg ~ 360deg
+							0deg ： to top
+							90deg : to right
+							180deg : to bottom
+							270deg : to left
+				color-point : 色标，表示每个颜色值，及其出现的位置，多个色标之间用,分隔
+					ex:
+						1、red 0%
+							开始的时候 是红色
+						2、blue 50px
+							填充到第50像素时，变为 蓝色
+						3、色标的位置可以省略
+							省略位置后，每个将平均分配元素区域
+			3、径向渐变
+				语法：background-image:radial-gradient([size at position],color-point,color-point);
+				size at position: 径向渐变的半径 以及 圆心位置
+				size：圆的半径，px为单位
+				position：圆心位置
+					1、0px 0px
+						将圆心设置在元素的左上角
+					2、50% 50%
+						将圆心设置在元素的中间位置处
+					3、right bottom
+						关键字：top / right / bottom / left / center
+						将圆心设置在元素的 右下角
+		4、浏览器的兼容性
+			各主流浏览器的主流版本 均支持渐变效果
+			对于不支持渐变的浏览器，可以尝试增加 浏览器前缀 去实现渐变的显示。
+			浏览器前缀：
+				Firefox : -moz-
+				Chrome和Safari : -webkit-
+				Opera : -o-
+			前缀的加载位置：
+				1、如果浏览器不支持属性的话，则将前缀加载到属性名称前
+					ex:
+						animation:scroll 5s;
+						-moz-animation:scroll 5s;
+						-webkit-animation:scroll 5s;
+						-o-animation:scroll 5s;
+				2、如果浏览器支持属性，但不支持值的话，则将前缀加载到属性值的前面
+					ex:
+						background-image:linear-gradient();
+						background-image:-webkit-linear-gradient();
+						background-image:-moz-linear-gradient();
+						background-image:-o-linear-gradient();
+	2、文本格式化
+		1、字体属性
+			1、指定字体系列
+				属性：font-family
+				取值：value1,value2,... ...
+				注意：
+					字体取值包含 中文或特殊符号，使用""引起来
+				ex:
+					font-family:"宋体","微软雅黑",Arial;
+			2、字体大小
+				属性：font-size
+				取值：px 或 pt 或 em 
+				ex:
+					font-size:24px;
+			3、字体加粗
+				属性：font-weight
+				取值：
+					1、normal : 正常体
+					2、bold : 粗体
+					3、400~900
+						400 ：normal
+						900 ：bold
+			4、字体样式
+				属性：font-style
+				取值：
+					1、normal ：正常体
+					2、italic ：斜体
+			5、小型大写字母
+				作用：针对英文字符，将小写字符变成大写字符，但是大小与小写一样
+				属性：font-variant
+				取值：
+					1、normal
+					2、small-caps
+			6、字体属性
+				属性：font
+				取值：style variant weight size family
+				注意：使用简写属性时，必须要设置 family的值，否则无效;
+					ex:
+						font:12px; /*无效*/
+						font:12px "微软雅黑";/*通过*/
+		2、文本属性
+			1、文本颜色
+				属性：color
+				取值：任意合法颜色
+			2、文本排列方式
+				作用：指定当前元素中的文本，行内元素，行内块元素的 水平对齐方式
+				属性：text-align
+				取值：left / center / right
+			3、文字修饰
+				作用：指定文本的线条样式
+				属性：text-decoration
+				取值：
+					1、none
+						没有线条显示
+					2、underline
+						下划线 <u></u>
+					3、overline
+						上划线
+					4、line-through
+						删除线 <s></s>
+			4、行高
+				作用：指定元素中一行数据的高度。如果行高的高度高于文字高度本身，那么该行文本将在行高的范围内呈现出 垂直居中 的显示效果
+				场合：
+					1、控制一行文本垂直居中对齐 
+					2、设置行间距
+				属性：line-height
+				取值：以px为单位的数值
+			5、首行文本缩进
+				属性：text-indent
+				取值：缩进的距离,以px为单位的数值
+			6、文本阴影
+				属性：text-shadow
+				取值：h-shadow v-shadow blur color;
+	3、表格
+		1、表格的常用属性
+			1、边距属性:padding
+			2、尺寸属性:width , height
+			3、文本格式化属性:
+				font-*
+				text-align,color,text-indent,... ...
+			4、背景属性
+				背景色，背景图，渐变
+			5、border属性
+			6、vertical-align
+				作用：在单元格中，设置文本的垂直对齐方式
+				取值：
+					top / middle / bottom
+		2、表格的特有属性
+			1、边框合并
+				属性：border-collapse
+				取值：
+					1、separate
+						默认值，即分离边框模式
+					2、collapse
+						边框合并效果
+			2、边框边距
+				作用：单元格之间的距离
+				属性：border-spacing
+				取值：
+					1、指定一个值
+						表示单元格间水平和垂直间距是相同的
+					2、指定两个值
+						第一个值：单元格间的水平间距
+						第二个值：单元格间的垂直间距
+				注意：
+					仅限于边框分离状态时使用，即border-collapse:separate;
+			3、标题位置
+				属性：caption-side
+				取值：
+					1、top：默认值，标题显示在表格之上
+					2、bottom：标题显示在表格之下
+			4、显示规则
+				作用：指定表格的布局方式
+				默认布局方式为 自动表格布局，即单元格的宽度实际上是由内容来决定的，与设定的值无关。
+				属性：table-layout
+				取值：
+					1、auto
+						默认值，即自动表格布局
+					2、fixed
+						固定表格布局，即单元格的宽度以设定的值为主，而不取决于内容
+				自动表格布局 VS 固定表格布局
+					1、自动表格布局
+						1、单元格大小会适应内容大小
+						2、缺点 ：表格复杂时，加载速度慢
+						3、适用于不确定每列大小的情况下使用
+						4、虽然算法较慢，但是能体现传统表格特点
+					2、固定表格布局
+						1、单元格大小取决于td中设置的值
+						2、优点：加载速度较快
+						3、确定每列大小时，可以使用固定表格布局
+						4、算法较快，缺点是不够灵活
+	==========================================
+
+	1、浮动(重难点)
+		1、定位概述
+			所谓的定位，实际上就是定义元素框相对于其正常位置，应该出现的位置在哪。简单的说，定位就是改变元素在页面上的默认位置。
+		2、定位分类
+			1、普通流定位(元素默认定位方式)
+			2、浮动定位
+			3、相对定位
+			4、绝对定位
+			5、固定定位
+		3、定位-普通流定位
+			普通流定位，又称为 "文档流定位"，是页面元素的默认定位方式
+
+			页面中的块级元素按照从上到下的方式排列，而且每个元素独占一行
+
+			页面中的行内元素按照从左到右的方式排列，当前行显示不下所有行内元素时，会自动换行
+
+			问题：如何能够让多个块级元素在一行内显示？？ - 浮动定位
+		4、浮动定位(重点)
+			1、浮动定位概述
+				如果将元素的定位方式设置为浮动定位，那么将具备以下几个特点：
+				1、浮动元素会被排除在文档流之外即脱离文档流，元素不再占据页面空间，其它未浮动元素要上前补位
+				2、 浮动元素会停靠在父元素的左边或右边，或停靠在其他已浮动元素的边缘上
+				3、浮动元素只会在当前行内浮动
+				4、浮动元素依然位于父元素之内
+				5、浮动定位处理的问题-让多个块级元素在一行内显示
+			2、语法
+				属性：float
+				取值：
+					1、none
+						默认值，即无浮动定位效果
+					2、left
+						左浮动，让元素停靠在父元素的左边，或停靠在左侧已有浮动元素的边缘上
+					3、right
+						右浮动，让元素停靠在父元素的右边，或停靠在右侧已有浮动元素的边缘上
+			3、浮动引发的特殊效果
+				1、当父元素的宽度显示不下所有的已浮动子元素时，最后一个将换行(有可能被卡住)
+				2、元素一旦浮动起来之后，那么宽度将变成自适应(非人为指定情况下)
+				3、元素一旦浮动起来之后，那么将变成块级元素，尤其对行内元素影响最大
+					块级：允许修改 尺寸
+					行内：不允许修改 尺寸
+				4、文本，行内元素，行内块元素时采用环绕的方式排列的，是不会被浮动元素压在低下的，会巧妙的避开浮动元素
+			4、清除浮动
+				元素浮动起来之后，除了影响自己的位置之外，还会影响后续元素。
+				如果后续元素不想被前面浮动元素所影响的话，可以使用 清除浮动 的效果来解决影响
+				属性：clear
+				取值：
+					1、none
+						默认值，即不做任何清除操作
+					2、left
+						清除当前元素的前面元素左浮动带来的影响。即当前元素不会上前占位，并且左边不允许有浮动元素。
+					3、right
+						清除当前元素的前面元素有浮动带来的影响。即当前元素不会上前占位，并且右边不允许有浮动元素。
+					4、both
+						清除前面元素左右浮动带来的影响
+			5、浮动元素对父元素带来的影响
+				由于浮动元素会脱离文档流，所以会导致元素不占据父元素的页面空间，所以会对父元素高度带来影响。如果一个元素中所有的子元素全部都浮动了，那么该元素的高度就是0.解决方案如下：
+				1、直接设置父元素高度
+					弊端：必须要知道父元素的准确高度
+				2、设置父元素也浮动
+					弊端：对后续元素会有影响
+				3、为父元素设置 overflow，取值为 hidden 或 auto
+					弊端：如果有子级内容要溢出显示的话，也一同被隐藏了
+				4、父元素中追加空子元素，并设置其clear属性为 both
+	2、显示
+		1、显示方式
+			1、作用
+				显示方式 决定了元素在页面中如何摆放定位
+			2、语法
+				属性：display
+				取值：
+					1、none
+						让生成的元素不显示-隐藏
+						特点：脱离文档流即不占据页面空间
+					2、block
+						让元素变得和块级元素一样
+					3、inline
+						让元素变得和行内元素一样
+					4、inline-block
+						让元素变得和行内块元素一样
+						多个元素在一行显示，允许修改尺寸
+		2、显示效果
+			1、visibility 属性
+				作用：控制元素的可见性(显示/隐藏)
+				属性：visibility
+				取值：
+					1、visible
+						默认值，可见的
+					2、hidden
+						隐藏元素，但依然占据页面空间
+					3、collapse
+						使用在表格元素上，删除一行或一列时，不影响表格整体布局,效果同display:none;不过FF、Opera、IE11浏览器支持，Chrome不支持
+				注意：
+					display:none 和 visibility:hidden区别
+					1、display:none
+						脱离文档流，所以隐藏后不占据页面空间
+					2、visibility:hidden
+						隐藏元素，但并不脱离文档流，导致空间依然占据
+			2、opacity 属性
+				作用：改变元素的透明度
+				属性：opacity
+				取值：0.0(完全透明) ~ 1.0(完全不透明)
+			3、vertical-align 属性
+				属性：vertical-align
+				取值：
+					top/middle/bottom/baseline(默认，基线对齐)
+				作用：
+					1、设置单元格内容的垂直对齐方式
+					2、为行内块元素设置vertcial-align，相当于设置 该元素两端的文本相对于该元素的垂直对齐方式
+					3、设置图片两端的文本相对于图片的垂直对齐方式
+		3、光标
+			属性：cursor
+			取值：
+				1、default
+					默认
+				2、pointer
+					小手
+				3、crosshair
+					+
+				4、text
+					I
+				5、wait
+					等待
+				6、help
+					帮助
+	3、列表
+		1、列表项标识
+			属性：list-style-type
+			取值：
+				1、none
+					无标记
+				2、disc
+					实心圆
+				3、circle
+					空心圆
+				4、square
+					实心方块
+		2、列表项图像
+			作用：由自定义图像作为显示的标识
+			属性：list-style-image
+			取值：url(图像路径)
+		3、列表项位置
+			列表项默认位置是在 列表项内容区域之外，列表的内边距范围内
+			属性：list-style-position
+			取值：
+				1、outside：默认值，列表项标识位置在列表项之外
+				2、inside：将标识放在列表项区域之内
+		4、列表属性
+			属性：list-style
+			取值：type url() position;
+			常用方式：
+				list-style:none;
+		5、列表使用场合
+			列表能够使用在 纵向排列 和 横向排列的元素中
+	4、定位
+		1、定位属性
+			1、position 属性
+				作用：指定元素的定位类型
+				属性：position
+				取值：
+					1、static : 默认值
+					2、relative : 相对定位
+					3、absolute : 绝对定位
+					4、fixed : 固定定位
+			2、偏移属性
+				作用：改变元素在页面中的位置(移动元素)
+				属性：
+					1、top
+					2、bottom
+					3、left
+					4、right
+				取值：偏移距离,以px为单位的数值 
+			3、堆叠顺序
+				作用：在元素出现堆叠效果时，改变他们的顺序
+				属性：z-index
+				取值：没有单位的数字,值越大，越靠上
+		2、定位方式
+			1、相对定位
+				1、什么是相对定位
+					元素会相对于它原来的位置偏移某个距离
+					相对定位元素原本所占的空间会被保留
+				2、语法
+					语法:position:relative;
+					配合着 偏移属性top/bottom/left/right 实现元素的位置移动
+				3、使用场合
+					1、实现元素位置微调时使用
+			2、绝对定位
+			1、什么是绝对定位
+				1、绝对定位的元素会脱离文档流-不占据页面空间
+				2、绝对定位的元素会相对于它最近的已定位的祖先元素实现位置的初始化.如果元素没有已定位的祖先元素，那么元素就会相对于最初的包含块实现位置的初始化,如body,html
+				已定位：absolute/relative/fixed 称之为已定位元素
+				祖先元素：无限父级元素
+			2、语法
+				语法：position:absolute;
+				配合着 偏移属性 实现位置的改变
+			3、特殊效果
+				1、绝对定位元素会变成块级元素
+				2、绝对定位元素依然可以使用margin，正常情况下，auto会失效
+	==========================================
+
+	1、复杂选择器
+		1、兄弟选择器
+			1、特点：
+				1、通过位置关系来匹配元素(平级)
+				2、只能向后找，不能向前找
+			2、兄弟选择器-相邻兄弟选择器
+				1、什么是相邻兄弟
+					紧紧挨在一起的元素，称之为相邻兄弟
+					<div id="d1"></div>
+					<p id="p1"></p>
+					<span id="span"></span>
+				2、语法
+					选择器1+选择器2
+					ex:
+						#d1+p{color:red;}
+			3、兄弟选择器-通用兄弟选择器
+				1、什么是通用兄弟
+					后面所有
+				2、语法
+					选择器1~选择器2
+					ex:
+						#d1~p{color:green;}
+						#d1~.blueColor{color:blue;}
+		2、属性选择器
+			1、属性选择器
+				允许使用元素所附带的属性及其值来匹配页面的元素
+				ex:匹配页面中所有的文本框(匹配页面中所有 type=text 的 input 元素)
+			2、语法
+				[attr=值]
+			3、详解
+				1、[attr]
+					attr:表示某一具体属性名称
+					作用：匹配 附带 attr 属性的元素
+					ex:
+						[id] : 匹配页面中所有 附带 id 属性的元素
+				2、elem[attr]
+					elem:表示页面中某一具体元素
+					ex:
+						div[id]:匹配页面中所有附带id属性的div元素
+				3、[attr1][attr2]... ...
+					作用：匹配 即具备attr1属性同时也具备attr2属性的元素
+					ex:
+						p[id][class]:匹配页面中即有id属性又有class属性的p元素
+				4、[attr=value]
+					value:表示某一具体数值
+					作用：匹配 attr属性值为value的所有元素
+					ex:
+						input[type=text]
+				5、[class~=value]
+					作用：
+						1、用在多类选择器中
+						2、匹配 class 属性值 是以 空格 隔开的值列表，并且 value 是该值列表中的一个独立的值 的元素
+				6、[attr^=value]
+					^= : 以 ... 作为开始
+					作用：匹配 attr 属性值 以 value 作为开始的元素
+				7、[attr*=value]
+					*= : 包含 ... 字符
+					作用：匹配 attr 属性值中 包含 value字符的元素
+				8、[attr$=value]
+					$= : 以 ... 作为结束
+					作用：匹配 attr 属性值 以 value 作为结束的元素
+
+				属性选择器中，所有的值，都可以使用 "" 或 '' 引起来
+				[class="c1"]
+				[class='c1']
+				[class=c1]
+		3、伪类选择器
+			1、目标伪类
+				1、作用
+					突出显示活动的HTML锚元素
+				2、语法
+					elem:target
+			2、元素状态伪类
+				1、作用
+					匹配 元素已启用，被禁用，被选中的状态
+					主要应用在表单控件上
+				2、语法
+					1、:enabled
+						匹配 每个已启用(未被禁用)的元素
+					2、:disabled
+						匹配 每个被禁用的元素
+					3、:checked
+						匹配 每个被选中的元素(radio,checkbox)
+			3、结构伪类
+				1、作用
+					通过元素间的结构关系，来匹配元素
+				2、语法
+					1、:first-child
+						匹配属于其父元素中的首个子元素
+						ex:
+							td:first-child{color:red;}
+					2、:last-child
+						匹配属于其父元素中的最后一个子元素
+						ex:
+							td:last-child{color:green;}
+					3、:nth-child(n)
+						匹配属于其父元素中的第n个子元素
+					4、:empty
+						匹配没有子元素的元素
+						注意：也不能包含文本
+					5、:only-child
+						匹配属于其父元素中的唯一子元素
+						<div id="d1">
+							<p id="p1"></p>
+						</div>
+			4、否定伪类
+				1、作用
+					将 满足条件的 选择器匹配的元素 排除出去
+				2、语法
+					:not(选择器)
+					ex:
+						#tbl td:not(:first-child){
+							color:red;
+						}
+						匹配：除每行第一列以外的剩下所有列
+		4、伪元素选择器
+			伪类：匹配元素的不同状态，匹配到的是元素
+			伪元素：匹配的某个元素中的某部分内容
+			1、:first-letter 或 ::first-letter
+				匹配某元素的首字符
+			2、:first-line 或 ::first-line
+				匹配某元素的首行字符
+			3、::selection
+				匹配被用户选取的部分
+			
+			: 与 ::的区别
+			1、:
+				既能表示 伪类选择器
+				也能表示 伪元素选择器（CSS2）
+			2、::
+				在 CSS3 中 表示伪元素选择器
+				尽量选择 :来使用，即表示伪类也表示伪元素
+	2、内容生成
+		1、伪元素选择器
+			1 、:before 或 ::before
+				匹配 某元素的 内容区域之前
+				<div>(:before)这是一个div</div>
+			2、:after 或 ::after
+				匹配 某元素的 内容区域之后
+				<div>这是一个div(:after)</div>
+		2、属性
+			属性：content
+			取值：
+				1、字符串 : 纯文本
+					使用的话，要用""引起来
+
+					content:"台词：";
+				2、图像 : url()
+					content:url(xxx.jpg);
+				3、计数器
+			
+			demo
+				子曰：学而时习之，不亦乐乎!
+							 -论语
+
+				<span>学而时习之</span>
+				<span>有朋自远方来</span>
+		3、解决的问题
+			1、浮动元素的父元素高度
+				.clear:after{
+					content:"";
+					display:block;
+					clear:both;
+				}
+
+				<div class="clear"></div>
+			2、外边距溢出
+				#d2:before{
+					content:"";
+					display:table;
+				}
+		4、计数器
+			1、什么是计数器
+				使用CSS 动态生成一组 有序的数字并且插入到元素中
+			2、语法
+				1、属性- counter-reset
+					1、作用
+						声明或重置计数器
+					2、语法
+						counter-reset:名 初始值;
+						counter-reset:名1 值1 名2 值2;
+						注意：
+							1、初始值可以省略不写，默认为0
+							2、不能放在使用的元素中声明，大部分情况下，可以将计数器声明在使用元素的父元素上(结合实际情况考虑)
+				2、属性- counter-increment
+					1、作用
+						指定计数器每次出现的增量
+						即每次出现的计数器值的变化范围
+					2、语法
+						counter-increment:名 增量1;
+						counter-increment:名1 增1 名2 增2;
+
+						注意：
+							1、增量值可以为正，也可以为负，也可以省略
+								为正：递增
+								为负：递减
+								省略：默认增量为1
+							2、哪个元素使用计数器，在哪个元素中设置计数器增量
+				3、函数- counter()
+					1、作用
+						在指定元素中，使用计数器的值
+						必须要配合 content 属性一起使用
+						content要配合着 :before 或 :after 一起使用
+					2、语法
+						xx:before{
+							content:counter(名);
+						}
+				
+				demo:
+					1、Web 基础知识(c1) - 声明c2 计数器
+						1.1 基础1 (c1.c2)
+						1.2 基础2 (c1.c2)
+						1.3 基础3 (c1.c2)
+					2、html 快速入门(c1) - c2 复位成 0
+						2.1 入门1 (c1.c2)
+						2.2 入门2 (c1.c2)
+					3、网页中的文本(c1) - c2 复位成 0
+						3.1 文本1 (c1.c2)
+						3.2 文本2 (c1.c2)
+	3、多列
+		1、语法
+			1、分隔列
+				属性：column-count
+				取值：数字
+			2、列间隔
+				属性：column-gap
+				取值：px为单位的数值
+			3、列规则
+				作用：定义每两列之间的线条样式
+				属性：column-rule
+				取值：width style color
+		2、兼容性
+			Chrome & Safari:
+				-webkit-column-count:
+				-webkit-column-gap:
+				-webkit-column-rule:
+			Firefox:
+				-moz-column-count:
+				-moz-column-gap:
+				-moz-column-rule:
+	4、CSS Hack
+		兼容性：主要是框模型margin、padding
+		1、原理
+			使用CSS属性优先级解决兼容性问题
+		2、CSS Hack 的实现方式
+			1、CSS类内部Hack
+				在样式属性名或值的前后增加前后缀以便识别不同的浏览器
+			2、选择器Hack
+				在选择器前增加前缀以便识别不同的浏览器
+				* : IE6 识别
+				*+: IE7 识别
+
+				div{
+					background-color:red;
+				}
+				
+				/*以下浏览器只有在IE6中能识别*/
+				*div{
+					background-color:green;
+				}
+				/*以下浏览器只有在IE7中能识别*/
+				*+div{
+					background-color:blue;
+				}
+			3、HTML头部引用Hack
+				使用HTML条件注释判断浏览器版本
+	==========================================
+
+	1、CSSHack-头部引用Hack
+		1、什么是头部引用Hack
+			使用 IE 条件注释 来解决兼容性问题
+		2、语法
+
+			<!--[if 条件 IE 版本]>
+				要执行的操作
+			<![endif]-->
+			
+			1、版本
+				取值：
+					1、6~10之间的任意数字
+					2、省略版本，判断是否为IE浏览器
+						<!--[if IE 6]>
+							只在 IE6 中要执行的内容
+						<![endif]-->
+
+						<!--[if IE 8]>
+							只在 IE8 中要执行的内容
+						<![endif]-->
+			2、条件
+				1、gt : greater than
+					只在 大于指定版本 的浏览器中解析内容
+					<!--[if gt IE 6]>
+						<h1>该段内容只有在IE6以上浏览器才能显示</h1>
+					<![endif]-->z
+				2、lt : less than
+					只在 小于指定版本 的浏览器中解析内容 
+				3、gte : greater than or equal
+					只在 大于等于指定版本 的浏览器中解析内容
+				4、lte
+					只在 小于等于指定版本 的浏览器中解析内容
+				5、!
+					只在 条件版本以外的 所有版本浏览器中解析内容
+					<!--[if !IE 6]>
+						除IE6以外，均能正常显示
+					<![endif]-->
+				6、省略
+					判断是否为 IE 或 是否为指定版本
+	2、转换
+		1、转换简介
+			1、什么是转换
+				转换是改变元素在页面中的大小，位置，形状，角度的一种方式
+
+				转换分为 2D转换 和 3D转换
+				2D转换：使元素在x轴和y轴进行的转换操作
+				3D转换：增加了z轴上的转换操作
+			2、转换属性
+				1、转换属性
+					属性：transform
+					取值：
+						1、none
+						2、transform-functions
+							一组转换函数,表示一个或多个转换函数，多个的话，用 空格 隔开
+				2、转换的原点
+					属性：transform-origin
+					默认：原点在元素的中心处
+					取值：
+						两个值：值1(x) 值2(y);
+						三个值：值1(x) 值2(y) 值3(z);
+		2、2D转换
+			1、2D位移
+				1、什么是2D位移
+					改变元素在 x轴 和 y轴上的位置
+				2、语法
+					属性:transform
+					函数：
+						translate(x)
+							改变元素在x轴上的位置
+							取值为正 右移
+							取值为负 左移
+						translate(x,y)
+							改变元素在x轴 和 y轴上的位置
+							y，改变在y轴的距离
+							取值为正 下移
+							取值为负 上移
+						translateX(x)
+							改变元素在x轴上的位置
+						translateY(y)
+							改变元素在y轴上的位置
+			2、2D缩放
+				1、什么是缩放
+					改变元素在x轴或y轴上的大小
+				2、语法
+					属性：transform
+					函数：
+						scale(value)
+							value为缩放倍数，如果只给一个值，x轴和y轴是等比缩放
+							取值：
+								默认值为1，即原始大小
+								缩小：0 到 1 之间的小数
+								放大：大于 1 的数值
+								负值：以旋转180度效果显示
+						scale(x,y)
+							分别改变元素在x轴 和y轴上的大小
+						scaleX(x)
+							x轴缩放
+						scaleY(y)
+							y轴缩放
+			3、2D旋转
+				1、语法
+					属性：transform
+					函数：rotate(ndeg)
+						n为旋转角度
+						取值为正 顺时针旋转
+						取值为负 逆时针旋转
+				2、注意
+					1、转换原点
+						旋转围绕着转换原点来做的，所以原点位置不同，转换效果也不同
+					2、旋转时连同坐标轴也一同跟着转
+			4、2D倾斜
+				1、什么是倾斜
+					改变元素在页面中的形状
+					以原点为中心，围绕着x轴和y轴产生的倾斜角度
+				2、语法
+					1、属性
+						transform
+					2、函数
+						skew(xdeg)
+							向横向产生倾斜效果，实际改变的是y轴的倾斜角度
+							值为正，y轴按逆时针角度倾斜
+							值为负，y轴按顺时针角度倾斜
+						skew(xdeg,ydeg)
+							x :横向倾斜
+							y :纵向倾斜
+								值为正，x轴按顺时针角度倾斜
+								值为负，x轴按逆时针角度倾斜
+						skewX(xdeg)
+						skewY(ydeg)
+		3、3D转换
+			1、perspective 属性
+				模拟 人眼 到 3D变换物体 之间的距离
+				该属性要添加在 3D转换元素 的父元素上
+
+				浏览器兼容性：
+					Chrome 和 Safari ：-webkit-perspective:数值;
+			2、3D转换-旋转
+				属性：transform
+				取值：
+					1、rotateX(ndeg)
+					2、rotateY(ndeg)
+					3、rotateZ(ndeg)
+					4、rotate3D(x,y,z,ndeg)
+						x,y,z 
+							取值为0说明该轴不参加旋转
+							取值为1说明该轴参加到旋转操作中
+						rotate3D(1,0,0,45deg)
+						rotate3D(1,1,0,45deg)
+						rotate3D(1,1,1,45deg)
+
+						transform:rotatex(45deg) rotatey(45deg) rotatez(45deg)
+			3、3D转换-位移
+				1、什么是3d位移
+					改变元素在 x，y，z上的位置
+				2、语法
+					1、transform-style 属性
+						如何处理子元素的摆放位置
+						取值：
+						1、flat
+							默认值，不保留子元素的3D位置
+						2、preserve-3d
+							保留子元素的3D位置
+					2、transform 属性
+						取值：
+							translateZ(z);
+							translate3d(x,y,z);
+	3、过渡
+		1、什么是过渡
+			使得CSS属性值，在一段时间内，平缓变化的一个效果
+		2、过渡效果四要素
+			1、指定过渡属性
+				指定哪个属性值在变化时需要使用过渡效果
+			2、指定过渡时间
+				多长时间内完成过渡效果
+			3、指定过渡时间的速率
+				过渡过程中的变化速率(匀速，先快后慢，...)
+			4、指定过渡延迟时间
+				当用户激发操作后，等待多长时间才激发效果
+		3、过渡属性
+			1、指定过渡属性
+				属性：transition-property
+				取值：none | all | property-name
+					property-name:要使用过渡效果的属性名
+				ex:
+					1、transition-property:background;
+					2、transition-property:border-radius;
+				可以设置过渡效果的属性:
+				1、颜色属性
+					color,background-color,border-color
+				2、取值为数值的属性
+					尺寸，background-size，margin，padding
+				3、转换属性
+					transform
+				4、渐变属性
+				5、阴影属性
+				6、visibility
+			2、指定过渡时长
+				属性：transition-duration
+				取值：s | ms  为单位数值
+				注意：默认值为 0s，即没有过渡效果
+			3、指定过渡时间速率
+				属性：transition-timing-function
+				取值：
+					1、ease
+						默认值，先慢后快再慢
+					2、linear
+						匀速
+					3、ease-in
+						慢速开始，快速结束
+					4、ease-out
+						快速开始，慢速结束
+					5、ease-in-out
+						慢速开始结束，中间先快后慢
+			4、过渡延迟
+				属性：transition-delay
+				取值：s | ms 为单位的时间
+			5、过渡属性简写方式
+				transition:property duration timing-function delay;
+
+				transition:transform 2s linear,background 3s;
+	4、动画
+		1、什么是动画
+			使元素从一种样式逐渐变化为另外一种样式的过程
+
+			css中实现动画，会存在兼容性问题，与动画相关的操作尽量加上 浏览器前缀
+		2、使用动画的步骤
+			1、声明动画
+				指定动画名称以及创建动画中的每个状态(关键帧)
+			2、为元素调用动画
+				指定 调用的动画名称，时长，播放次数... ...
+		3、声明动画
+			指定动画名称及各个关键帧
+			关键帧：当前元素状态的 时间点 及 样式
+			语法：
+				在样式表中声明
+				@keyframes 动画名称{
+					0% | from{
+						动画开始时的 样式
+					}
+
+					... ...
+					50%{
+						动画执行到一半的时候的 样式
+					}
+
+					100% | to{
+						动画结束时的 样式
+					}
+				}
+		4、调用动画(动画属性)
+			1、animation-name
+				作用：指定调用动画名称
+			2、animation-duration
+				作用：指定动画完成一个周期所用时间s|ms
+			3、animation-timing-function
+				作用：指定动画的速率
+				取值：ease,linear,ease-in,ease-out,ease-in-out
+			4、animation-delay
+				作用：指定动画的延迟s|ms
+			5、animation-iteration-count
+				作用：指定动画播放次数
+				取值：
+					1、具体数值
+					2、infinite : 无限次播放
+			6、animation-direction
+				作用：指定动画播放方向
+				默认：由0% 播放到 100%
+				取值：
+					1、normal
+						默认播放
+					2、reverse
+						逆向播放(100% ~ 0%)
+					3、alternate
+						轮流播放
+						奇数次数：0% ~ 100%
+						偶数次数：100% ~ 0%
+			7、简写
+				属性：animation
+				取值：name duration timing-function delay iteration-count direction;
+			8、animation-fill-mode
+				作用：规定动画播放前后的填充效果
+				取值：
+					1、none ：默认，即无填充效果
+					2、forwards ：动画播放完成后，会保持在最后一个帧的状态上
+					3、backwards ：动画播放前，应用在第一个帧的状态上(只有在延迟(delay)时间内才会显示在 第一帧上 )
+					4、both ：动画播放前后，分别采用对应的填充状态
+			9、animation-play-state
+				作用：规定动画是播放还是暂停
+				取值：
+					1、paused
+						暂停
+					2、running
+						播放
+	5、CSS优化
+	
+	<a></a>
+		规定顺序：
+			a:link - 普通的、未被访问的链接 
+			a:visited - 用户已访问的链接 
+			a:hover - 鼠标指针位于链接的上方 
+			a:active - 链接被点击的时刻 
+
+		text-decoration取值：
+			none          默认。定义标准的文本
+			underline     定义文本下的一条线
+			overline      定义文本上的一条线
+			line-through  定义穿过文本下的一条线
+	文本属性：
+		word-break 属性规定自动换行的处理方法	
+			normal 使用浏览器默认的换行规则。 
+			break-all 允许在单词内换行。 
+			keep-all 只能在半角空格或连字符处换行。 
+		white-space 属性设置如何处理元素内的空白
+			normal   默认。空白会被浏览器忽略。 
+			pre      空白会被浏览器保留。其行为方式类似 HTML 中的 <pre> 标签。 
+			nowrap   文本不会换行，文本会在在同一行上继续，直到遇到 <br>标签为止。 
+			pre-wrap 保留空白符序列，但是正常地进行换行。 
+			pre-line 合并空白符序列，但是保留换行符。 
+			inherit  规定应该从父元素继承 white-space 属性的值。
+		letter-spacing 属性增加或减少字符间的空白（字符间距）
+			normal 默认。规定字符间没有额外的空间。 
+			length 定义字符间的固定空间（允许使用负值->实现文本逆序）。 
+			inherit 规定应该从父元素继承 letter-spacing 属性的值。 
+		word-spacing 属性增加或减少单词间的空白（即字间隔）
+			normal：   默认。空白会被浏览器忽略。 
+			pre：      空白会被浏览器保留。其行为方式类似 HTML 中的 <pre> 标签。 
+			nowrap：   文本不会换行，文本会在在同一行上继续，直到遇到 <br>：标签为止。 
+			pre-wrap： 保留空白符序列，但是正常地进行换行。 
+			pre-line： 合并空白符序列，但是保留换行符。 
+			inherit：  规定应该从父元素继承 white-space 属性的值。
+		word-wrap 属性允许长单词或 URL 地址换行到下一行。
+			normal 只在允许的断字点换行（浏览器保持默认处理）。 
+			break-word 在长单词或 URL 地址内部进行换行。
+
+	vertical-align 属性设置元素的垂直对齐方式
+
+	列表项标记-list-style：list-style-type list-style-position list-style-image；一般只是写list-style:none;
+
+	外边距合并：
+		定义：外边距合并指的是，当两个垂直外边距相遇时，它们将形成一个外边距。
+		合并后的外边距的高度等于两个发生合并的外边距的高度中的较大者。
+
+		注释：只有普通文档流中块框的垂直外边距才会发生外边距合并。行内框、浮动框或绝对定位之间的外边距不会合并。
+	
+	批量解决
+		浮动对父级的影响：
+			类名:after{
+				content: '';
+				display: block;
+				clear:both;
+			}
+			去掉<p style='clear:both;'></p>
+			原理：
+				1、父元素中的最后一个子元素
+				2、内容为空
+				3、必须为块级元素
+				4、clear:both;
+		外边距溢出：
+			类名:before{
+				content: '';
+				display: table;
+			}
+			原理：
+				1、第一个元素处
+				2、内容为空
+				3、显示方式为 table
+	css多类紧接写法：.类名1.类名2.类名n 
+		多个类名之间必须紧紧相连，中间不能有空格。
+	
+	CSS 定义中，a:hover 必须位于 a:link 和 a:visited 之后，a:active 必须位于 a:hover 之后，这样才能生效！
+	
+	//为当前第一个子标签之后的所有同级指定标签插入文本
+	.breadcrumb > li + li:before {
+	  content: "文本";
+	}
+
+	以后书写css文件时，强烈建议使用x.less书写，在x.less中@import导入其他css文件，然后再经less解析器翻译为css文件，即可减少浏览器多次请求css文件的次数，实现对网页请求速度的提升。
+
+	background的值的顺序是background-color，background-image，background-repeat，background-attachment，background-position

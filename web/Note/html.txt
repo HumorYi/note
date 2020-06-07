@@ -1,0 +1,1239 @@
+ 赵旭 
+ zhaoxu@tedu.cn
+
+ 1、WEB前端
+	WEB -> 网页
+	网页开发：
+		1、WEB设计(UI)
+		2、前端开发
+			1、网页内容
+			2、网页样式
+			3、网页动效(特效)
+			4、网页数据验证
+		3、程序开发(后端开发)
+ 2、相关技术
+	1、基本技能
+		HTML5，CSS3，Javascript(JS)
+	2、框架
+		jQuery,Bootstrap,AngularJS,React,....
+	3、服务器技术
+		Php,NodeJS,... ...(JSP)
+ 3、课程设置
+	1、阶段1
+		1、HTML5Basic
+		2、CSS3Basic
+		3、PROJECT1 京东首页
+		4、CSS3Core
+		5、PROJECT2 京东详情页
+		6、JavaScript Basic
+	2、阶段2
+		1、JavaScript Core
+			JS + DOM + BOM
+		2、jQuery
+	3、阶段3
+		1、HTML5Core
+		2、服务器端(HTTP,php)
+		3、AJAX
+		4、Bootstrap(响应式布局)
+	4、阶段4
+		1、Angular JS
+		2、微信
+		3、框架
+============================================
+HTML5(H5) Basic
+1、WEB基础知识
+2、HTML快速入门(重点)
+3、文本标记(重点)
+============================================
+1、WEB基础知识
+	1、Web 与 Internet
+		1、Internet
+			Internet是一个全球性的计算机互联网络，中文名称“因特网”，“国际互联网”，“网际网”，“交互网络”
+			Internet 提供的主要服务：
+				Telnet，Email，WWW(World Wide Web)，BBS，FTP
+
+			基本实现技术：
+				1、分组交换原理
+				2、TCP/IP协议簇
+		2、Web
+			Web是运行在Internet上最流行的应用之一 ,Web就是 网页。
+
+			Web:
+				又称为 万维网 或 环球网 即(WWW)
+				W3C : World Wide Web Consortium(万维网联盟)，专门负责制定和推广Web的规范
+			Web能够将各类型信息和服务进行连接，并提供 图形用户 界面
+				信息：文字，图像，视频，音频，文件
+				服务：WWW，Email，BBS，... ...
+	2、Web的工作原理
+		1、基于 B/S 结构模式的程序
+			计算机程序的模式：
+			1、C/S
+				C : Client 客户端
+				S : Server 服务器
+				只能通过指定的客户端去访问服务器数据的一种方式
+				ex:
+					QQ,微信
+			2、B/S
+				B : Browser 浏览器
+				S : Server 服务器
+				通过 浏览器 去访问服务器数据的一种方式
+		2、由 web服务器(Server)，浏览器(Browser)，通信协议组成
+			通信协议采用的是：http
+				HTTP：(Hyper Text Transfer Protocal)
+				超级文本传输协议
+				规范了数据是如何打包 以及 数据是如何传递的
+		3、Web 服务器
+			1、作用
+				1、存储Web页面上的内容信息,提供管理环境
+				2、处理浏览器的请求，执行服务器端程序，给出 响应
+				3、具备基本安全性功能
+			2、产品
+				TOMCAT
+				IIS
+				Apache
+				... ...
+		4、Web 浏览器
+			1、作用
+				1、代理用户提交请求(User Agent : UA)
+				2、作为 HTML，CSS，JS 解释器
+				3、以图形化的方式显示文档内容
+			2、产品
+				1、Microsoft Internet Explorer(IE)
+				2、Mozilla Firefox(火狐)
+				3、Google Chrome(谷歌)
+				4、Apple Safari(苹果)
+				5、Opera(欧朋)
+	3、Web的相关技术
+		1、服务器端技术
+			主要运行于服务器的技术
+
+			php
+			jsp
+			asp
+			asp.net
+
+		2、客户端技术
+			运行于客户端，由浏览器负责解释运行
+			HTML
+			CSS
+			Javascript(JS)
+2、HTML快速入门
+	1、HTML概述
+		HTML(Hyper Text Markup Language)
+		超文本标记语言
+		超文本：具备特殊功能的文本
+			普通文本：a
+			超文本：a，功能为超链接
+
+			普通文本：b
+			超文本：b，加粗显示文本
+		标签：Markup，规范了 超文本的组成形式
+			超文本a：<a>
+			超文本b：<b>
+		语言：Language，具备特定的语法规范
+		
+		HTML是网页的设计语言，由HTML编写的语言的文件 以 .html 或 .htm 结尾。并且由浏览器负责运行
+		HTML开发及运行工具：
+			1、开发工具
+				记事本,超级记事本(Editplus)
+			2、运行环境(工具)
+				各款浏览器(IE,Firefox,Chrome,Safari,Opera)
+	2、HTML基础语法
+		1、标记语法
+			1、什么是标记
+				在HTML中，用于描述功能的符号称为 标记
+
+				标记在使用过程中，必须用 <> 括起来
+				标记分为：
+					1、封闭类型标记
+					2、非封闭类型标记
+			2、标记语法
+				1、封闭类型标记
+					必须成对出现
+					<标记>内容</标记>
+					注意：封闭类型标记必须有结束 </>
+					ex:
+						1、a标记
+							<a>百度</a>
+							<a>百度</a>
+				2、非封闭类型标记
+					也称为 空标记，单标记
+					语法：
+						<标记>
+						或
+						<标记/>
+					ex:
+						<br/>
+						<hr/>
+						<img>
+		2、元素
+			元素，即标记
+			ex:<a>百度</a>
+			1、元素嵌套
+				在一个元素中，允许出现另一个元素，形成更为复杂的语法结构
+				ex:
+					<a>
+						<img>
+					</a>
+				注意：
+					1、嵌套时注意顺序
+						<p><a></p></a> 错误
+					2、嵌套格式-缩进
+						被嵌套的内容前要通过 Tab 键表示缩进
+						<div>
+							<p>
+								<span></span>
+							</p>
+						</div>
+		3、属性和值
+			属性用来修饰元素的
+			语法：
+				<标记 属性="值" 属性="值"></标记>
+				ex:
+					<p align="center"></p>
+						属性：align：当前元素的文本的水平对齐方式
+						值：center：居中对齐
+			标准属性：
+				又称为通用属性，页面上所有的标记都会具备的属性
+				1、id
+					页面元素独一无二的标识
+				2、title
+					鼠标移入到元素上时所以是的内容
+				3、class(css中用)
+					定义元素的类选择器
+				4、style(css中用)
+					定义元素行内样式
+		4、注释
+			注释是不会被浏览器所解释运行的
+			<!-- 这里面的内容，
+			都是被注释掉的 -->
+			注意：
+				1、注释不能嵌套注释
+					<!-- 
+						<!--
+							<!--
+							
+							-->
+						-->
+					-->
+				2、注释不能位于 <> 中
+					<a<!-- -->></a>
+		5、HTML 和 XHTML
+			1、HTML4.01
+				1999年12月24日 发布HTML4.01标准
+			2、XHTML1.0
+				2000年01月26日 发布XHML1.0标准
+
+				与 HTML4.01几乎相同
+				更严格，更纯净的HTML版本
+
+				要求单标记必须有结束:
+				<br/>
+				<br> xhtml1.0 错误
+
+				<p align=center></p> xhtml1.0 中错误
+			3、HTML5
+				目标：实现更为简洁的HTML
+					能少写就少写
+					能不写就不写
+				<p align="right"></p> 正确
+				<p align=right></p> 正确
+
+				<input readonly> 正确
+				<input readonly="readonly">正确 
+	3、文档结构
+		1、文档类型声明
+			作用：指定文档的版本和类型
+			语法：
+				页面最顶端
+				<!doctype html>
+		2、html页面
+			语法：<html></html>
+			又称为 html根标记 
+			内容：
+				即两个子元素
+				1、<head></head>
+					网页头部
+					作用：定义页面中的全局信息
+					包含如下内容：
+					1、<title>网页标题</title>
+					2、<meta charset="utf-8">
+						作用：指定网页的编码格式为utf-8
+							告诉浏览器按照utf-8的方式解析内容
+						注意：网页文件的编码也必须为 utf-8
+				2、<body></body>
+					网页主体
+					包含的是显示个用户去看的内容
+					属性：
+						1、text
+							控制整个页面的文本颜色
+						2、bgcolor
+							控制整个页面的背景颜色 
+		3、练习
+			创建一个文档，将其后缀名改为 .html,设置其标题为 ， 我的第一个html练习，网页的编码格式为 utf-8，页面中显示文字：我的第一个html练习内容...，黑色(black)的背景颜色，黄色(yellow)的文本颜色
+3、文本标记
+	1、特殊字符
+		1、在html中，任意多个空格，和回车，最后都会被解析成1个空格
+		2、由<>所包裹的文本，会当成标记被解析
+		3、通过 转义字符 的特殊表现方式表示特殊效果
+			&lt; : <  (less than)
+			&gt; : >  (greater than)
+			&nbsp; : 空格
+			&copy; : ©
+			&yen; : ￥
+	2、文本标记
+		1、文本样式
+			<b></b> 加粗
+			<i></i> 斜体
+			<u></u> 下划线
+			<s></s> 删除线
+			<sup></sup> 上标
+			<sub></sub> 下标
+		2、标题元素
+			作用：以标题的方式显示文本
+			表现方式：
+				1、垂直的空白距离
+				2、不同的标题字体大小不同,加粗显示
+				3、独占一行
+			语法：
+				<hn></hn>
+				n : 1~6
+
+				<h1></h1> : 1级标题
+				<h6></h6> : 6级标题
+		3、段落元素
+			作用：在页面中表示一段独立的文本
+			表现形式：
+				1、具备垂直空白
+				2、独占一块
+			语法：
+				<p></p>
+		4、换行元素
+			语法：<br>
+		5、分割线元素
+			作用：在页面中显示线条
+			语法：
+				<hr>
+			属性：
+				1、size ：尺寸，大小(以 px 为单位)
+				2、width ：宽度 (以 px 为单位)
+				3、align ：线条的水平对齐方式，取值,left,center,right
+				4、color：颜色
+		6、预格式化
+			作用：保留源文档中的格式。即保留源文档中所有的 回车和空格
+			语法： <pre></pre>
+		7、块分区元素 - div
+			作用：为元素分组，实现网页布局
+			表现形式：
+				1、独占一行
+			语法：
+				<div></div>
+		8、行内分区元素 - span
+			作用：设置同一行文本的不同样式
+			语法：
+				<span></span>
+		9、行内元素 和 块级元素
+			1 、块级元素
+				默认情况下，每个块级元素独占一行，即元素前后都会有换行
+				如：p,div,h1~h6,pre,... ...
+				作用：用在布局
+			2、行内元素
+				不会换行，可以和其它的行内元素或文本在一行内显示
+				如：span,s,b,i,u,sup,sub,... ...
+				作用：处理文本样式
+快捷键：
+	F2 : 重命名
+	Ctrl + s : 保存
+	Ctrl + c : 复制
+	Ctrl + v : 粘贴
+
+补充:
+	1、p标记不能嵌套块级元素的
+	2、<head>中的补充内容
+		元数据
+		1、<meta name="keywords" content="关键词1,关键词2,关键词3,关键词4,关键词5"> : 定义网页关键字
+		2、<meta name="description" content="描述信息"> : 定义网页描述信息
+
+		以上两点，主要针对 "搜索引擎"
+=============================================
+1、图像和链接
+	1、URL
+		1、目录
+			WEB站点中存储文件的文件夹名称
+		2、URL
+			URL:(Uniform Resource Locator) 即 统一资源定位器,用来标识网络中的资源位置 - 路径
+			资源：网页中要用到的文件，都叫资源
+		3、三种表现形式
+			1、绝对路径
+				1、什么是绝对路径
+					从文件所在的最高级目录下开始的完整路径
+				2、分类
+					1、访问互联网上的资源
+						1、协议名称 : https
+						2、主机名(IP地址/域名) : www.baidu.com
+						3、目录路径 : img
+						4、文件名 : bd_logo1.png
+
+						协议名和主机名 用 :// 作为分隔
+						从主机名与后续的内容使用 /作为分隔
+						https://www.baidu.com/img/bd_logo1.png
+					2、访问本机资源
+						从 盘符(C盘，D盘，E盘等) 所在位置处 一直到 资源文件所经过的路径 
+			2、相对路径
+				1、什么是相对路径
+					指 从当前文件所在位置开始 查找 资源文件所在位置所经过的路径
+				2、分类
+					1、当前文件与资源文件在同目录下
+						直接通过名称进行引用
+					2、资源文件在 当前文件的 子目录中
+						先进入，再引用
+					3、资源文件在 当前文件的 父目录中
+						先返回，再引用
+						../表示 向上返回一级
+						../../../ : 向上返回三级
+			3、根相对路径(服务器上使用)
+				表现：/作为开始
+				ex:
+					/images/btn_register.jpg
+	2、图像
+		1、图像格式
+			在web中所支持的图像格式有以下几种：
+			1、jpeg
+				*.jpg
+			2、gif
+				特点：支持动画
+				*.gif
+			3、png
+				特点：
+					无损压缩，有8位，24位，32位 3中形式
+					支持透明色
+				*.png
+		2、图像元素
+			1、语法
+				标记：<img>
+				属性：
+					1、src : 指定要显示的图像url
+					2、width : 宽度，以px或%为单位，单位可以省略，省略的话默认单位为 px.
+					3、height : 高度，同上。
+					注意：如果只改变width 或 height 中的一个属性的话，那么另一个属性会跟着等比缩放
+
+				注意：
+					1、url 严格区分大小写-服务器严格区分。本机开发则无所谓。
+					2、url 中不能出现中文
+		3、链接
+			1、链接语法
+				1、标记
+					<a>内容</a>
+				2、属性
+					1、href : 链接的URL
+					2、target :
+						目标，指定打开新网页的形式
+						取值：
+							_blank : 在新标签页中打开
+							_self : 在自身页面中打开(默认值)
+			2、链接的表现形式
+				1、链接目标为资源下载
+					<a href="xxx.zip/rar">内容</a>
+				2、链接目标为电子邮件链接
+					<a href="mailto:zhaoxu@tedu.cn">联系我们</a>
+				3、返回页面顶部的空链接
+					<a href="#">返回顶部</a>
+				4、链接到Javascript
+					<a href="javascript:js脚本">内容</a>
+			3、锚点
+				1、作用
+					在网页的任意位置处做记号。可由任意位置跳转到该记号位置处。
+				2、使用方式
+					1、定义锚点
+						1、使用 a 元素的 name 属性
+							<a name="锚点名称">内容</a>
+						2、任意标记的 id 属性 
+							<div id="an1">测试锚点</div>
+					2、链接到锚点
+						<a href="#锚点名称">内容</a>
+
+						<a href="页面URL#锚点名称">内容</a>
+2、表格
+	1、表格的作用
+		按照一定的格式摆放数据
+		表格是由一些被称为 “单元格”的矩形框，按照从左到右，从上到下的顺序 排列到一起组成的
+	2、创建表格
+		1、定义表格：<table></table>
+		2、创建表行：<tr></tr>
+		3、创建列(单元格):<td></td>
+	3、表格属性
+		1、table 属性
+			1、width ：宽度
+			2、height ：高度
+			3、align ：设置表格的对齐方式(left|center|right)
+			4、border ：边框宽度,px作为单位，可以省略px
+			5、cellpadding : 单元格内边距(单元格边框与内容之间的距离)
+			6、cellspacing : 单元格外边距(单元格之间的距离)
+			7、bgcolor : 背景颜色
+		2、tr 属性
+			1、align ：设置该行内容的水平对齐方式
+			2、valign ：设置该行内容的垂直对齐方式,取值：top|middle|bottom
+			3、bgcolor
+		3、td 属性
+			1、align
+			2、valign
+			3、width
+			4、height
+			5、colspan ：设置单元格跨列
+			6、rowspan ：设置单元格跨行
+	4、表格标题
+		<caption>标题</caption>
+		默认：表格上方居中显示
+		注意：
+			1、<caption> 必须 紧随 <table> 之后
+			2、每个表格最多只能有一个 标题
+	5、表格复杂应用
+		1、行分组
+			html中允许将表格内容划分为3个部分
+			1、表头行分组
+				<thead></thead>
+			2、表主体行分组
+				<tbody></tbody>
+			3、表尾行分组
+				表格中最下方的一行或几行，可以放在表尾行分组
+				<tfoot></tfoot>
+			注意：
+				每个行分组中，都允许包含一对或多对 tr 标记
+		2、不规则表格
+			1、跨列
+				从指定单元格位置处开始，横向向右合并几个单元格(包含自己)。被合并掉的单元格应该从tr中删除
+
+				属性：
+					设置 td的 colspan属性
+					取值：合并单元格的数量
+			2、跨行
+				从指定的单元格位置处开始，纵向向下合并几个单元格(包含自己),被合并掉的要删除
+				属性：
+					设置 td的 rowspan属性
+					取值：合并单元格的数量
+		3、表格的嵌套
+			在单元格中允许放置另一个表格
+			<table>
+				<tr>
+					<td>
+						<div></div>
+					</td>
+					<td>
+						<table>
+							<tr>
+								<td></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+3、列表
+	1、作用
+		按照一定的格式显示数据的元素
+		默认显示方式为 从上到下的 显示
+	2、列表的组成
+		所有的列表都由"列表类型"和"列表项"组成
+		列表类型：有序列表 和 无序列表
+		列表项：具体显示在列表里面的内容
+	3、列表的使用
+		1、有序列表
+			1、语法
+				列表类型：<ol></ol>  -- Order List
+				列表项：<li></li> -- List Item
+			2、属性
+				1、type
+					作用：指定有序列表的列表类型
+					取值：
+						1、1 ：指定类型为数字(默认)
+						2、a ：指定类型为 小写字母
+						3、A ：指定类型为 大写字母
+						4、i ：指定类型为 小写罗马数字
+						5、I ：指定类型为 大写罗马数字
+				2、start
+					作用：指定 起始编号
+					取值：数字
+		2、无序列表
+			1、语法
+				列表类型：<ul></ul>  -- Unorder List
+				列表项：<li></li>
+			2、属性
+				1、type
+					指定 列表类型
+					取值：
+						1、disc : 实心圆(默认值)
+						2、circle : 空心圆
+						3、square : 实心矩形
+						4、none : 没有，不显示列表项
+		3、列表的嵌套
+			被嵌套的列表要放在li中
+			ex:
+				<ul>
+					<li>列表项1</li>
+					<li>
+						列表项2
+						<ol>
+							<li></li>
+						</ol>
+					</li>
+				</ul>
+	4、定义列表
+		1、作用
+			用于要给出一类事物的定义情形，如：名词解释等
+		2、语法
+			<dl></dl> -- 定义一个定义列表
+				<dt></dt> -- 定义列表中的 "术语"
+				<dd></dd> -- 定义列表中对术语的"解释"
+		3、使用场合
+			在 "图文混排"时优先使用 定义列表
+
+https://www.baidu.com/img/bd_logo1.png
+
+1、结构标记
+2、表单(重难点)
+3、其它标记
+===============================
+1、结构标记
+	1、作用
+		html5中 新提出的一组标记，专门用于构建网页结构
+	2、常用结构标记
+		1、<header>元素
+			1、语法
+				<header></header>
+			2、作用
+				用于定义文档的页眉，即位于页面或某区域的顶部信息
+
+				用于取代 <div id="header"></div> 作用
+		2、<nav>元素
+			1、语法
+				<nav></nav>
+			2、作用
+				用于标识页面的导航链接模块
+
+				用于取代 <div id="nav"></div>
+		3、<section>元素
+			1、语法
+				<section></section>
+			2、作用
+				标识 内容的小节
+				可以表示页面的主体内容模块
+				取代：<div id="main"></div>
+		4、<article>元素
+			1、语法
+				<article></article>
+			2、作用
+				定义独立于文档的其它内容
+				比如：论坛中的帖子，博客或微博中的条目，用户评论，音视频，新闻信息
+				取代：<div id="article"></div>
+		5、<footer>元素
+			1、语法
+				<footer></footer>
+			2、作用
+				用于定义页面的 底部信息
+				取代：<div id="footer"></div>
+		6、<aside>元素
+			1、语法
+				<aside></aside>
+			2、作用
+				定义页面或某某块的边栏信息
+				取代：
+					<div id="left_side"></div>
+					<div id="right_side"></div>
+2、表单
+	1、表单作用
+		用于显示、收集信息，并提交信息到服务器
+		表单在页面中处于隐藏状态的。
+
+		完整的表单是由两部分组成：
+		1、可以和用户交互的表单控件
+		2、表单元素
+	2、表单元素
+		1、作用
+			收集信息，并且提交给服务器
+		2、语法
+			<form></form>
+		3、属性
+			1、action
+				定义表单被提交时发生的动作，即提交给服务器处理程序的地址(url)
+				默认提交给本页
+			2、method
+				定义表单数据的提交方式
+				取值
+				1、get
+					1、明文提交，即所提交的数据是可以显示在地址栏上的
+					2、安全性较低
+					3、有长度限制,最大为2KB
+					4、场合：向服务器要数据时使用get
+				2、post
+					1、隐式提交，所提交的数据是不显示在网页的任何位置处
+					2、安全性较高
+					3、没有长度限制
+					4、场合：
+						1、数据提交给服务器进行处理时使用post
+						2、安全性较高的地方，必须用post
+				3、put
+				4、delete
+				5、... ...
+			3、enctype
+				作用：指定表单数据的编码方式(指定将什么样的数据提交给服务器)
+				取值：
+					1、application/x-www-form-urlencoded
+						默认值，允许将普通字符以及特殊字符 提交给服务器
+					2、multipart/form-data
+						允许将 上传的文件 提交给服务器
+						场合：上传文件时使用
+					3、text/plain
+						只允许将普通数据提交给服务器，特殊字符不行
+			4、name
+				定义表单的名称
+	3、表单控件
+		1、作用
+			接收用户输入的数据，并且通过表单将其提交给服务器
+
+			表单控件：
+			1、input元素
+			2、textarea - 多行文本域
+			3、select 和 option -选择框(下拉，滚动)
+			4、其它元素
+		2、表单控件详解
+			1、input元素
+				1、语法
+					1、标记
+						<input>
+					2、主要属性
+						1、type
+							页面会根据不同的type值，来创建各种不同的输入控件
+						2、name
+							标识控件的名称，提交给服务器使用。
+						3、value
+							当前控件的值，提交给服务器的数据
+						4、disabled
+							禁用控件,用户不能操作，并且也不能提交给服务器
+							注意：该属性无值，只作为标识
+							<input disabled>
+				2、文本框 与 密码框
+					文本框:<input type="text">
+					密码框:<input type="password">
+
+					属性：
+						1、maxlength
+							最大长度
+						2、readonly
+							只读，不允许修改,允许被提交
+							无值属性，只做标识
+							<input type="text" readonly>
+						3、name
+							表示控件名称，采用的是"匈牙利命名法",由控件缩写+控件作用 组成
+							文本框与密码框缩写：txt
+							ex:
+								1、表示用户姓名的文本框
+									name="txtName"
+								2、表示用户年龄的文本框
+									name="txtAge"
+								3、表示用户密码的密码框
+									name="txtPassword"
+									name="txtPwd"
+				3、单选按钮 与 复选框					
+					单选按钮：<input type="radio">
+					复选框：<input type="checkbox">
+
+					属性：
+						1、name
+							radio 缩写：rdo
+							checkbox 缩写：chk
+
+							一组的单选按钮 或 一组的复选框 name 属性值要一致
+						2、value
+							必给
+						3、checked
+							设置默认被选中
+				4、按钮
+					作用：代替用户执行一组动作
+					1、提交按钮
+						type="submit"
+						作用：将表单的控件数据提交给服务器
+					2、重置按钮
+						type="reset"
+						作用：将表单控件的值恢复到初始化状态
+					3、普通按钮
+						type="button"
+						作用：可自定义功能(Javascript)
+					属性：
+						1、name ：名称,缩写：btn
+						2、value ：按钮上的文本
+				5、隐藏域 与 文件选择框
+					1、隐藏域：type="hidden"
+						作用：要提交给服务器但是不想给用户去看的数据，可以放在隐藏域中
+
+						缩写：txt
+					2、文件选择框
+						作用：上传文件时使用
+						type="file"
+						属性：
+							name ：控件的名称
+						注意：
+							1、表单的 method 属性必须为 post
+							2、表单的 enctype 属性必须为 multipart/form-data
+			2、textarea
+				1、作用
+					允许用户输入多行数据
+				2、语法
+					<textarea></textarea>
+				3、属性
+					1、name
+						控件的名称，缩写为 txt
+					2、readonly
+						只读
+					3、cols
+						指定文本域的列数
+						变相设置元素的宽度
+					4、rows
+						指定文本域的行数
+						变相设置元素的高度
+			3、select 和 option
+				1、语法
+					1、选择框
+						<select></select>
+						属性：
+							1、name
+								名称，缩写 sel
+							2、size
+								默认显示的选项数量
+								如果大于1的话，则为 滚动列表
+							3、multiple
+								设置多选
+					2、选项
+						<option>显示的数据</option>
+						属性：
+							1、value
+								当前选项的值
+							2、selected
+								预选中，无值
+			4、其它元素
+				1、为控件分组
+					1、作用
+						将一些控件放在一起，并提供一个组名
+					2、语法
+						<fieldset></fieldset>-为控件分组
+						<legend></legend>-为分组指定标题
+				2、关联文本与表单控件元素
+					语法：
+						<label>关联的文本</label>
+					属性：
+						for:与该文本关联的控件的ID值
+3、其它标记
+	1、浮动框架
+		1、作用
+			允许在一个浏览器窗口中显示多个html文档
+		2、语法
+			<iframe>文本</iframe>
+		3、属性
+			1、src
+				要引入的页面url
+			2、width
+				宽度
+			3、height
+				高度
+			4、frameborder
+				浮动框架边框，如果不想要边框，设置为0
+	2、摘要与细节
+		1、作用
+			允许通过用户的点击操作完成页面的内容的伸展(显示)与收缩(隐藏)
+		2、语法
+			<details>
+				<summary>摘要与细节的标题</summary>
+				<!-- 显示的内容 -->
+			</details>
+	3、度量元素
+		1、作用
+			在页面中定义一个度量衡，主要用于显示比例信息如：投票比例，任务完成比例... ...
+		2、语法
+			<meter>您的浏览器不支持meter</meter>
+		3、属性
+			1、min
+				度量范围的最小值，默认为0
+			2、max
+				度量范围的最大值，默认为1
+			3、value
+				度量元素显示的值，默认为0
+	4、时间元素
+		1、作用
+			关联时间的不同表现形式
+		2、语法
+			<time>文本</time>
+			属性：
+				1、datetime
+					取值：
+						1、只表示 日期 : yyyy-mm-dd
+						2、只表示 时间 : hh:mm:ss
+						3、表示日期和时间:yyyy-mm-ddThh:mm:ss
+	5、高亮显示文本
+		语法：
+			<mark></mark>
+
+	xxx.jsp?控件名=值&控件名=值
+	xxx.jsp?uName=sanfeng&age=28
+
+	xxx.jsp?txtName=sanfeng&txtPwd=123456&rdoGender=1&chkHobby=drink&chkHobby=play
+
+	xxx.jsp?txtName=sanfeng&txtPwd=123456&rdoGender=0&chkHobby=drink&chkHobby=play&txtUserID=100056887963
+
+	以后凡是分隔路径，都要用斜线'/' 
+		注释: / 全部操作系统共用，\ window独用
+
+
+	<!Doctype html>：文档声明
+		关于HTML的Doctype和严格模式与混杂模式
+		
+		什么是 标准模式 和 混杂模式、过度模式？
+			标准模式：就是根据w3c制定的标准去解析代码
+			混杂模式：就是各个浏览器根据自己内核的特性解析代码
+			过度模式：
+		如何触发：
+			标准模式：添加文档声明
+			混着模式：去掉文档声明
+			过度模式：
+
+	　　 DOCTYPE标签是一种标准通用标记语言的文档类型声明，它的目的是要告诉标准通用标记语言解析器，它应该使用什么样的文档类型定义（DTD）来解析文档。
+
+	　　Doctype可声明三种DTD类型，分别表示严格版本、过渡版本以及基于框架的 HTML 文档。
+
+	　　以下主要介绍超文本标记语言以及可扩展超文本标记语言两种集合
+
+	　　（一）超文本标记语言
+
+	　　超文本严格文档类型定义：
+	　　如果需要干净的标记，免于表现层的混乱，则使用此类型。请与层叠样式表配合使用：
+	　　（公共标识符称为：“-//W3C//DTD HTML 4.01//en”。）
+	　<!DOCTYPE HTML
+	　　PUBLIC "-//W3C//DTD HTML 4.01//en"
+	　　"http://www.w3. org/TR/html4/strict.dtd">
+	　　超文本过渡文档类型定义：
+	　　可包含万维网联盟所期望移入样式表的呈现属性和元素。如果读者使用了不支持层叠样式表的浏览器以至于不得不使用超文本标记语言的呈现特性时，则使用此类型：
+	（公共标识符称为：“-//W3C//DTD HTML 4.01 Transitional//en”。）
+	<!DOCTYPE HTML
+	PUBLIC "-//W3C//DTD HTML 4.01 Transitional//en"
+	"http://www.w3. org/TR/html4/loose.dtd">
+	　　超文本框架集文档类型定义：
+	　　框架集文档类型定义应当被用于带有框架的文档。除 frameset 元素取代了 body 元素之外，等同于过渡文档类型定义：
+	　　（公共标识符称为：“-//W3C//DTD HTML 4.01 Frameset//en”。）
+	<!DOCTYPE HTML
+	PUBLIC "-//W3C//DTD HTML 4.01 Frameset//en"
+	"http://www.w3. org/TR/html4/frameset.dtd">
+	　　（二）可扩展超文本标记语言
+
+	　　可扩展超文本标记语言严格文档类型定义：
+	　　（公共标识符称为：“-//W3C//DTD XHTML 1.0 Strict//en”。）
+	<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Strict//en"
+	"http://www.w3. org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+	　　可扩展超文本标记语言过渡文档类型定义：
+	　　可包含 W3C 所期望移入样式表的呈现属性和元素。如果您的读者使用了不支持层叠样式表（CSS）的浏览器以至于您不得不使用 XHTML 的呈现　　特性时，请使用此类型：
+	　　（公共标识符称为：“-//W3C//DTD XHTML 1.0 Transitional//en”。）
+	<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//en"
+	"http://www.w3. org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+	　　
+
+	　　可扩展超文本标记语言框架集文档类型定义：
+	　　当您希望使用框架时，请使用此文档类型定义！
+	　　（公共标识符称为：“-//W3C//DTD XHTML 1.0 Frameset//en”。）
+	<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//en"
+	"http://www.w3. org/TR/xhtml1/DTD/xhtml1-frameset.dtd">	 
+
+	     当浏览器厂商开始创建与标准兼容的浏览器时，他们希望确保向后兼容性。为了实现这一点，他们创建了两种呈现模式：标准模式和混杂模式
+
+	　　>>在标准模式中，浏览器以其支持的最高标准呈现页面。
+
+	　　>>在混杂模式中，页面以一种比较宽松的向后兼容的方式显示。混杂模式通常模拟老式浏览器的行为以防止老站点无法工作。	 
+
+	　　关于模式触发
+	　　浏览器根据DOCTYPE是否存在以及使用的哪种DTD来选择要使用的呈现方法。
+
+	　　如果XHTML、HTML 4.01文档包含形式完整的DOCTYPE，那么它一般以标准模式呈现。
+
+	　　包含过渡DTD和URI的DOCTYPE也导致页面以标准模式呈现，但是有过渡DTD而没有URI会导致页面以混杂模式呈现。
+
+	　　DOCTYPE不存在或形式不正确会导致HTML和XHTML文档以混杂模式呈现。
+
+	　　html5既然没有DTD，也就没有严格模式与宽松模式的区别，html5有相对宽松的语法，实现时，已经尽可能大的实现了向后兼容。
+
+	 网页META标签的标准写法
+		最近，Danny Sullivan谈到了如何处理的搜索引擎meta标签的问题，以下是一些关于在Google中如何处理这些问题的答案。
+
+		多内容数值
+
+		我们建议你把所有的Meta标签内容放在一个meta中。这将使得meta标签更易于读取并降低发生错误的概率。例如：
+
+		<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+
+		如果一行包含对个meta标签，我们将会累加标签的内容，例如，我们会将
+
+		<META NAME="ROBOTS" CONTENT="NOINDEX">
+		<META NAME="ROBOTS" CONTENT="NOFOLLOW">
+
+		理解为：
+
+		<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+
+		如果内容的数值有冲突，我们将使用最严格的那个。所以，如果有个页面包含下面的meta标签：
+
+		<META NAME="ROBOTS" CONTENT="NOINDEX">
+		<META NAME="ROBOTS" CONTENT="INDEX">
+
+		我们将只遵守noindex的数值。
+
+		单词拼写规范
+
+		Googlebot可以理解任何大小写的组合，所有大小写都是同样的效果。如果包含多内容的数值，数值之间需要使用逗号分隔。
+
+		同时使用robots.txt和robots meta标签
+
+		如果你同时使用了robots.txt文件和robots meta标签，如果robots.txt和meta标签有冲突，googlebot将使用限制更严的。具体来说：
+
+		如果你在robots.txt里禁止了某一页，Googlebot永远也不会去索引那一页，也不会读取那一页的任何标识。
+
+		如果你在robot.txt中允许，但是在页面中使用 meta 标签对其进行限制，那么Googlebots会访问那一页，读取里面的标签，但不会对其进行索引。
+
+		有效的meta标签数值
+
+		Googlebot可以对下面的标签进行如下的解读：
+
+		NOINDEX - 阻止页面被列入索引。
+
+		NOFOLLOW - 阻止对于页面中任何超级链接进行索引。（注，这不同于超级链接上的nofollow属性，那个属性只是组织索引单独的链接）
+
+		NOARCHIVE - 不保存该页面的网页快照。
+
+		NOSNIPPET - 不在搜索结果中显示该页面的摘要信息，同时不保存该页面的网页快照。
+
+		NOODP - 在搜索结果中不使用Open Directory Project中的描述信息作为其摘要信息。
+
+		NONE - 相当于“NOINDEX, NOFOLLOW”。
+
+		数值NONE的含义
+
+		据robotstxt.org的定义，下面的标记等价于 NOINDEX, NOFOLLOW 。
+
+		<META NAME="ROBOTS" CONTENT="NONE">
+
+		不过，有些网站站长使用这个标签来限制和组织所有搜索引擎来的内容索引。
+
+		 
+
+		<META http-equiv=Content-Type content="text/html; charset=gb2312">
+		//设定页面语言为简体中文
+		 
+
+		<META content="关键字" name="keywords">
+		//设定关键字
+
+		<META content="内容描述" name="description">
+		//设定描述
+
+		<META http-equiv="Refresh" Content="30">
+		//设定该页面30秒自动刷新
+
+		<META name="robots" content="index, follow" />
+		//设定允许搜索引擎可以检索，页面上链接可以查询
+
+		<META name="googlebot" content="index, follow" />
+		//针对google的搜索机器人设定允许搜索引擎可以检索，页面上链接可以查询
+
+		<META name="Author" Content="酷站代码 www.5icool.org">
+		//页面作者
+
+		<META name="Copyright" Content="All Rights Reserved icediary">
+		//页面版权
+
+		<META name="revisit-after" CONTENT="1 days" >
+		//设定回访为1天
+
+
+		META标签分两大部分：HTTP标题信息(HTTP-EQUIV)和页面描述信息(NAME)。
+
+		一、HTTP-EQUIV
+
+		HTTP-EQUIV类似于HTTP的头部协议，它回应给浏览器一些有用的信息，以帮助正确和精确地显示网页内容。常用的HTTP-EQUIV类型有：
+
+		1、Content-Type和Content-Language (显示字符集的设定)
+
+		用法：<Meta http-equiv="Content-Type" Content="text/html; Charset=gb2312">或<Meta http-equiv="Content-Language" Content="zh-CN">
+
+		设定页面使用的字符集，用以说明主页制作所使用的文字或语言，浏览器会根据此来调用相应的字符集显示页面内容。简体中文一般为GB2132，繁体中文为BIG5，日文的字符集是iso-2022-jp，韩文的是ks_c_5601等。
+
+		2、Refresh (刷新)
+
+		用法：<Meta http-equiv="Refresh" Content="30">或<Meta http-equiv="Refresh" Content="5; Url=http://www.5icool.org">
+
+		让网页多少秒刷新自己，或在多少秒后让网页自动链接到其它网页。
+
+		3、Expires (期限)
+
+		用法：<Meta http-equiv="Expires" Content="0">或<Meta http-equiv="Expires" Content="Wed, 26 Feb 1997 08:21:57 GMT">
+
+		指定网页在缓存中的过期时间，一旦网页过期，必须到服务器上重新调阅。注意：必须使用GMT的时间格式。
+
+		4、Pragma (cach模式)
+
+		用法：<Meta http-equiv="Pragma" Content="No-cach">
+
+		网页不保存在缓存中，每次访问都刷新页面。这样设定，访问者将无法脱机浏览。
+
+		5、Set-Cookie (cookie设定)
+
+		<Meta http-equiv="Set-Cookie" Content="cookievalue=xxx; expires=Wednesday,21-Oct-98 16:14:21 GMT; path=/">
+
+		浏览器访问某个页面时会将它存在缓存中，下次再次访问时就可从缓存中读取，以提高速度。当你希望访问者每次都刷新你广告的图标，或每次都刷新你的计数器，就要禁用缓存了。通常HTML文件没有必要禁用缓存，对于ASP等页面，就可以使用禁用缓存，因为每次看到的页面都是在服务器动态生成的，缓存就失去意义。如果网页过期，那么存盘的cookie将被删除。必须使用GMT的时间格式。
+
+		6、Window-target (显示窗口的设定)
+
+		用法：<Meta http-equiv="Widow-target" Content="_top">
+
+		强制页面在当前窗口以独立页面显示。这个属性是用来防止别人在框架里调用你的页面。Content选项：_blank、_top、_self、_parent。
+
+		7、Pics-label (网页RSAC等级评定)
+
+		用法：<META http-equiv="Pics-label" Contect="(PICS－1.1'http://www.bazhan.NET' I gen comment 'RSACi North America Sever' by
+
+		'inet@microsoft.com' for 'http://www.microsoft.com' on '1997.06.30T14:21－0500' r(n0 s0 v0 l0))">
+
+		在IE的Internet选项中有一项内容设置，可以防止浏览一些受限制的网站，而网站的限制级别就是通过该参数来设置的。
+
+		8、Page-Enter、Page-Exit (进入与退出)
+
+		用法：<Meta http-equiv="Page-Enter" Content="blendTrans(Duration=0.5)"> <Meta http-equiv="Page-Exit" Content="blendTrans(Duration=0.5)">
+
+		或者：<Meta http-equiv="Page-Enter" Content="revealTrans(duration=x, transition=y)"> <Meta http-equiv="Page-Exit" Content="revealTrans(duration=x, transition=y)">
+
+		这个是页面被载入和调出时的一些特效。注意：blendTrans是动态滤镜的一种，产生渐隐效果。另一种动态滤镜RevealTrans也可以用于页面进入与退出效果: Duration 表示滤镜特效的持续时间(单位：秒)；Transition 滤镜类型。表示使用哪种特效，取值为0-23。
+
+		9、IE6 (页面生成器)
+
+		用法：<Meta http-equiv="IE6" Content="Generator">
+
+		页面生成器generator，是ie6。
+
+		10、Content-Script-Type (脚本相关)
+
+		用法：<Meta http-equiv="Content-Script-Type" Content="text/JavaScript">
+
+		注意：这是近来W3C的规范，指明页面中脚本的类型。
+
+		 
+
+		二、NAME变量
+
+		name是描述网页的，对应于Content（网页内容），以便于搜索引擎机器人查找、分类（目前几乎所有的搜索引擎都使用网上机器人自动查找meta值来给网页分类）。
+
+		11、Keywords (关键字)
+
+		用法：<Meta name="Keywords" Content="关键词1,关键词2,关键词3,关键词4">
+
+		为搜索引擎提供的关键字列表。注意：各关键词间用英文半角逗号“,”隔开。关键词数量最好保持在5个以内，关键词要和页面内容相关。
+
+		12、Description (简介)
+
+		用法：<Meta name="Description" Content="你网页的简述,如酷站代码 www.5icool.org">
+
+		Description用来告诉搜索引擎你的网站或该页面的主要内容，描述内容要和页面内容相关，字数在150个字以内。
+
+		13、Robots (机器人向导)
+
+		用法：<Meta name="Robots" Content="All|None|Index|Noindex|Follow|Nofollow">
+
+		说明：Robots用来告诉搜索机器人哪些页面需要索引，哪些页面不需要索引。Content的参数有all、none、index、noindex、follow、nofollow。默认是all。
+		　　　
+		all：文件将被检索，且页面上的链接可以被查询；none：文件将不被检索，且页面上的链接不可以被查询；(和 "noindex, no follow" 起相同作用)；index：文件将被检索；（让robot/spider登录）；follow：页面上的链接可以被查询；noindex：文件将不被检索，但页面上的链接可以被查询；(不让robot/spider登录)；nofollow：文件将不被检索，页面上的链接可以被查询。(不让robot/spider顺着此页的连接往下探找)。
+
+		14、Author (作者)
+
+		用法：<Meta name="Author" Content="酷站代码,www.5icool.org">
+
+		标注网页的作者或制作组。Content可以是：你或你的制作组的名字或Email。
+
+		15、Copyright (版权)
+
+		用法：<Meta name="Copyright" Content="本页版权归酷站代码所有。All Rights Reserved icediary">
+
+		标注版权。
+
+		16、Generator (编辑器)
+
+		用法：<Meta name="Generator" Content="PCDATA|FrontPage|">
+
+		编辑器的说明。
+
+		17、revisit-after (重访)
+
+		用法：<META name="revisit-after" CONTENT="7 days" >
+
+	为什么要设置title标签
+
+	　　title标签也就是标题标签,一个网站可能有几百个甚至是上千上万个页面，那么我们就需要为 
+	这些页面单独地定义一个title标签，而不是重复的使用默认标题。从用户体验的角度上看，单一的标题不利于用户快速地去了解页面的信息。而从SEO优化的角度上看，显然重复的标题几乎是无法创造出长尾关键词的。
+
+	　　当然并不是说为每个页面添加完title标签就可以了，在设置我们更需要一些小技巧，这样才能发挥title标签的作用。
+
+	title标签怎样设置
+
+	　    首先第一是除首页以外无论怎样设置都需要把你网站名称放到最后面。为什么首页可以除外呢，毕竟我们还是要突然自己网站的“品牌效应”，当别人记不住你的网站域名或者是当你的关键词排名还没发挥作用的时候，往往大家都是通过搜索你的网站名称进入到你的网站。而其他页面则是相反，特别是当涉及到产品页面的时候，网站名称可完全忽略掉。
+
+	　　大家日常的搜索应该也有这样的体验，一般搜索结果相关性强且关键词匹配结果接近吻合的，往往关键词靠前的排名会比较靠前。我们这样设置的原则主要还是遵从了百度对关键词搜索的算法，这也是百度发布的搜索引擎2.0所提到的关键词应该尽可能靠左靠前。
+
+	　　其次是针对不同行业对标题的设置应该也需要灵活应用，因为我们设置标题不单单是为了搜索引擎更是为了用户更加直白地去了解你这个页面的信息。为了更好说明title标签设置技巧，下面举个实例：
+
+	title标签设置实例
+
+	　 
+	　我现在负责的是我们公司商城的SEO优化，所以我这里也讲下我对这个商城产品页面的标题是怎样设置的。我们公司网站主要是做打印机/碎纸机/传真机等办
+
+	公设备，大家都知道一般涉及到OA或者是IT设备的产品在百度上搜索某个产品型号的时候，基本上返回的结果都是中关村、太平洋、IT168、泡怕网、电脑
+	之家等这些大型的IT网站，甚至还有亚马逊、京东商城、1号店等购物网站。所以你要把某个产品优化到这些网站之前难度是非常大的。
+
+	　　首先中关村基本上就无法超越，因为中关村是和百度合作一个叫"阿拉丁"的项目，很多IT产品基本上都是中关村排名第一，曾经被邀请去参加过中关村的一个经销商培训会，据说该项目耗资千万，这个是题外话了。
+
+	　　其次是品牌商自己做的付费广告，最后就是上面提到跟未提到的各大IT网站。为了不让文章篇幅过长，下面我们直接进入正题!
+
+	　　首先我给每个产品都重新加入了专门针对SEO优化的标题、描述、关键词，如下图所示：
+
+	　　titel标签设置实例-1
+
+	　　针对产品详细页面的信息，来做标题是最好的。你既要让用户了解又不能让搜索引擎觉得你在作弊，那么标题就必须与主题息息相关，但切记一定不能堆积关键。
+
+	　　我们商城的详细页面比较单一，主要有产品价格、产品详情、规格参数、成交记录以及评价详情。那么针对产品详细页的信息我们就能够简单地勾画出一个合理的title标题出来了。
+
+	　　首先是产品价格，这个是用户非常关心的，所以必须要有关键词“价格”，其次就是规格参数，用户在购买产品的时候都会特别注意产品的参数，所以“参数”也有必要嵌入，其他的以此类推，有必要的留，没必要的就不要添加.
+
+	　　titel标签设置实例-2
+
+	　 
+	　这种title标题设置方法在太平洋、天极网、泡泡网上面也体现出来了。但他们的标题一般还会设置为诸如论坛、最新报价或者是以提问的方式“怎么样”来
+
+	设置。但他们这类的设置我不会采取，一我们商城没开设论坛，二我们商城也没有问答平台去做“怎么样，好不好”这类。个人觉得这样不但有作弊行为还严重影响
+
+	了用户体验。而标题的设置更不应该跟这些大平台一模一样，自己的产品详细页有哪些内容就相应的去设置，尽量和主题相关就可以了。最后搜索该产品结果后，如
+	下图：
+
+	　　title标签设置实例-3
+
+	　　大家可以看到，我把这款公司主推的产品优化到了百度第二仅次于中关村，前面提到了中关村基本上是无法超越的。所以能够排到中关村之后也能说明我们这种标题设置方法还是比较符合百度搜索引擎的。
+
+	　 
+	　需要特别注意的是，并不是简单地设置好title标签就能够让关键词排名靠前了，这点希望大家不要误会了。中间对产品页面的设置以及与你网站的权重等等
+	各种优化都是密不可分的，由于篇幅的原因，这里就不再一一描述，但请切记，title标签一旦定下来了，就不要轻易去改动!
+
+	　　本来是要把三大标签都写出来的，但看到title标签就写了那么多了就不再在文章中阐述了，后面小编会继续就keywords以及description标签写点自己的见解，欢迎继续关注下一把SEO博客。
+	
+	<link /> 和 @import 的区别：
+		相同：外部导入css文件
+
+		区别1：link标签是XHTML标签，除了加载css文件之外，还可以定义RSS等其他事务；
+			@import属于css范畴，只能在css文件内部加载其他css。
+		区别2：link基本无兼容性问题,@import是CSS2.1提出的，低版本浏览器不支持。
+		区别3：link引用css时，在页面载入时同时加载；
+			@import需要页面网页完全载入以后加载。
+		区别4：link支持使用js控制DOM去改变样式；
+			@import不支持。
+
+	

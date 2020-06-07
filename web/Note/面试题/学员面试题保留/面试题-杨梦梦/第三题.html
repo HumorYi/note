@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8"/>
+  <title>第三题</title>
+ </head>
+ <body>
+  <select name="img_list" onchange="showImg(this.value)">
+<option value="1.png">1</option>
+<option value="2.png">2</option>
+<option value="3.png">3</option>
+</select>
+
+<img src="1.png" id="pic" />
+<script>
+function showImg(oSel){
+	console.log(1);
+	console.log(oSel);
+document.getElementById('pic').src = oSel;
+}
+//var aa=document.getElementById('sel');aa.onchange=showImg(this.value);
+//oSel是方法传入的值
+//this.value获取选中的option的value值
+</script>
+ </body>
+</html>

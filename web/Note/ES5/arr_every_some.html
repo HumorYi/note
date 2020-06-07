@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+	
+  </style>
+  <script>
+	var arr1 = [4,1,2,5,3];
+	var arr2 = [0,2,4,6,8];
+	var arr3 = [9,7,5,3,1];
+	if(Array.prototype.every === undefined)
+		Array.prototype.every = function(callback){
+			for(var i=0; i<this.length; i++){
+				if(i in this){
+					if(!callback(this[i],i,this)) return false+'<br />';
+				}
+			}
+			return true+'<br />';
+		}
+	
+	//判断奇偶性
+	document.write(
+		//every 匹配全部 相当于&&
+		arr1.every(function(val){return val%2==1}),	//false
+		arr2.every(function(val){return val%2==1}),	//false
+		arr3.every(function(val){return val%2==1})	//true
+	);
+
+	if(Array.prototype.some === undefined)
+		Array.prototype.some = function(callback){
+			for(var i=0; i<this.length; i++){
+				if(this[i] !== undefined){
+					if(!callback(this[i],i,this)) return false+'<br />';
+				}
+			}
+			return true+'<br />';
+		};
+	/**/
+	document.write(
+		//some 匹配局部 相当于||
+		arr1.some(function(val){return val%2==1}),	//false
+		arr2.some(function(val){return val%2==1}),	//false
+		arr3.some(function(val){return val%2==1})	//true
+	);
+	/*判断升降序 数组下标越界，返回undefined*/
+	document.write(
+		//every 匹配全部 相当于&&
+		arr1.every(function(val,i,arr){return i<arr.length-1 ? val<=arr[i+1] : true;}),	//false
+		arr2.every(function(val,i,arr){return i<arr.length-1 ? val<=arr[i+1] : true;}),	//true
+		arr3.every(function(val,i,arr){return i<arr.length-1 ? val<=arr[i+1] : true;})	//false
+	);
+  </script>
+ </head>
+ <body>
+  
+ </body>
+</html>

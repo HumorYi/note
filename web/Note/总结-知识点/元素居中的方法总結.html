@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>元素居中的方法总结</title>
+	<style>
+	.someone {background: #f60;color: #fff;text-decoration: none;text-align: center;}
+
+	.somewrap {display: table;width: 100%;height: 200px;border: 1px solid #000;border-radius: 10px;}
+	.somewrap .somein1 {display: table-cell;text-align: center;vertical-align: middle;}
+
+	.block {
+		height: 200px;
+		text-align: center;
+		background: #ccc;
+		font-size: 0;
+		vertical-align: middle;
+	}
+	.block:before {
+		content:'';
+		display: inline-block;
+		height: 100%;
+		vertical-align: middle;
+		/*margin-right: -0.25em;*/
+	} 
+	.centered {
+		display: inline-block;
+		vertical-align: middle;
+		width: 300px;
+		border:1px solid #fc0;
+		border-radius: 8px;
+		font-size: 14px;
+	}
+
+	.somewrap2 {position: relative;height: 200px;margin:10px auto;background: #ccc;}
+	.somewrap2 .somein2 {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 300px;
+		height: 100px;
+		transform:translate(-50%, -50%);  /* 也可margin */
+		border:1px solid #f60;
+	}
+
+	.somewrap3 {
+		display: flex;
+		justify-content: center;  /* 主轴 */
+		align-items: center;	/* 侧轴 */
+
+		height: 200px;
+		margin:10px auto;
+		background: hsl(240, 100%, 97%);
+		
+		/*display: -webkit-box;*/ /* 弹性盒模型 display:box;  */ 
+		/*-webkit-box-align: center;/*上下*/
+		/*-webkit-box-pack: center;/* 左右 */
+	}
+	.somewrap3 .somein3 {
+
+	}
+
+
+	.somewrap4 {
+		position: relative;
+		height: 200px;
+		margin:10px auto;
+		background: hsl(100, 70%,60%);
+	}
+	.somewrap4 .somein4 {
+		position: absolute;
+		top: calc(50% - 20%);
+		left: calc(50% - 20%);
+		width: 40%;
+		height: 40%;
+		background: hsl(80, 90%, 90%);
+	}
+
+	.somewrap5 {
+		position: relative;
+		width: 80%;
+		height: 500px;
+		margin: 10px auto;
+		background: hsl(20, 80%, 80%);
+	}
+	.somewrap5 .somein5 {
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		overflow: hidden;
+		width: 10%;
+		min-width: 200px;
+		height: auto;
+		margin: auto;
+		 
+		background: hsl(70, 90%, 50%);
+	}
+
+	/* 
+		弹性容器
+			弹性子元素的父元素。 通过设置display 属性的值为flex 或 inline-flex将其定义为弹性容器。
+		弹性子元素
+			弹性容器的每一个子元素变为一个弹性子元素。弹性容器直接包含的文本变为匿名的弹性子元素。
+		轴
+			每个弹性盒布局以两个轴来排列。弹性子元素沿着主轴依次相互排列。侧轴垂直于主轴。
+				属性 flex-direction 定义主轴方向。
+				属性 justify-content 定义了弹性子元素如何在当前线上沿着主轴排列。
+				属性 align-items 定义了弹性子元素如何在当前线上沿着侧轴排列。
+				属性 align-self 覆盖父元素的align-items属性，定义了单独的弹性子元素如何沿着侧轴排列。、
+		
+	 */
+	</style>
+</head>
+<body>
+	<!-- 1.  table -->
+	<table style="width:100%;height:200px;background:#ccc;">
+		<tr>
+			<td style="text-align:center;vertical-align:middle;">
+				<a class="someone">我是要居中的！<br>tabel</a>
+			</td>
+		</tr>
+	</table>
+
+	<!-- 2.  css 模拟 table -->
+	<div class="somewrap">
+		<a class="somein1">我是要居中的！<br>table-cell</a>
+	</div>
+
+	<!-- 3. 添加 display:inline-block;元素对齐 verticle-align:middle; / 父元素设置text-align:center -->
+	<div class="block">
+		<div class="centered">我是要居中的！<br>inline-block</div>
+	</div>
+
+
+	<!-- 4. css 50% 设置 （ margin 负值 | css3属性 translate ） -->
+	<div class="somewrap2">
+		<div class="somein2">我是要居中的！<br>transform</div>
+	</div>
+
+	<!-- 5. 弹性盒模型 布局 （flex|box） -->
+	<div class="somewrap3">
+		<div class="somein3">萌萌哒~~<br>flex</div>
+	</div>
+
+	<!-- 6. calc -->
+	<div class="somewrap4">
+		<div class="somein4">我是自己的~~<br>calc</div>
+	</div>
+
+	<!-- position:absolute -->
+	<div class="somewrap5">
+		<!-- <div class="somein5">I cry ~~ <br>absolute</div> -->
+		<img src="head.jpg" alt="" class="somein5">
+	</div>
+
+</body>
+</html>

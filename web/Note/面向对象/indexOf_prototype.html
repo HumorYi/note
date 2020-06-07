@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+	
+  </style>
+  <script>
+	if(Array.prototype.indexOf===undefined){
+		Array.prototype.indexOf = function(val, fromi){
+			document.write('自定义的Array.prototype.indexOf');
+			//!fromi && (fromi=0);
+			fromi = fromi || 0;
+			for(;fromi<this.length; fromi++){
+				if(this[fromi] === val) return fromi;
+			}
+			return -1;
+		}
+	}
+
+	var arr = [1,2,3,2,1];
+	document.write(arr.indexOf(2)+'<br />');//1
+	document.write(arr.indexOf(2,2)+'<br />');//3
+	document.write(arr.indexOf(2,4)+'<br />');//-1
+	document.write(arr.indexOf(4)+'<br />');//-1
+  </script>
+ </head>
+ <body>
+  
+ </body>
+</html>

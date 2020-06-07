@@ -1,0 +1,6 @@
+笔试题：
+1、内置对象：ES标准中规定的，浏览器已经实现的对象--11个(默写出来)
+   String Number Boolean Array Math Date RegExp Error Function Object Global(在浏览器中呗替换为window)
+
+面试题：
+1、包装类型：

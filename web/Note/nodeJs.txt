@@ -1,0 +1,5 @@
+交互模式下：chrome或window Dos 下执行es语句，
+例如：
+	var name = 'luoxing';	//点击回车
+	luoxing
+	undefined	//为什么会有undefined？ 回车就是输出一个语句的返回值，在而是中，一切没有返回值的语句都返回undefined。

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8"/>
+  <title>Document</title>
+ </head>
+ <body>
+	<script>
+	/*
+		13
+		5
+		3
+		-4
+		object
+		NaN
+		number
+		10
+		123
+		60
+		undefined
+		[5,6]
+		object
+		0
+	*/
+		function test(num){
+			if(arguments.length>1||typeof(arguments[0])!="number"){
+				return "NULL";
+			}
+			return function (){
+				console.log(num.toString(2));
+			};
+		}
+		var aa=test(5);
+		aa();
+	</script>
+ </body>
+</html>

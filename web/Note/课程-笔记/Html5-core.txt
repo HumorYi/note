@@ -1,0 +1,513 @@
+Html5-core
+
+第一天：
+
+一、概念:
+   -HTML5目前最新的规范(标准)是2014年十月推出的,2005年左右出现HTML5版本(非标准)
+   -HTML5现在在社会上使用比例不高，但是会是未来主流，html5永远不可能脱离JavaScript
+   -HTML5在移动端支持好于PC端
+二、HTML5新标签：
+   1、input新类型：
+      -<input type="email">：email类型
+         作用-提交表单时,验证是否包含"@"和其后面有无内容，验证逻辑并不完整(这样也可以验证通过： “124@11” )
+      -<input type="search">：搜索类型
+      -<input type="url">：URL类型
+         作用 - 提交表单时,验证是否包含"http://"，验证逻辑并不完整(这样的结构也可以通过验证："12http://")
+      -<input type="tel">：电话号码类型
+         注意-效果只能在手机端出现：因为键盘锁定问题，手机只能输入数字，PC机上没有锁定只能输入数字，所以效果只能在手机端出现
+      -<input type="number">：数字类型
+         注意：其属性有：min-设置最小值、max-设置最大值、step-设置步长,默认值为1
+      -<input type="range">
+         注意：其属性有：min-设置最小值、max-设置最大值、step-设置步长、value-设置当前值
+      -<input type="color">：颜色类型
+      -  <input type="date">：日期类型（这三个类型，掌握日期类型就好了，下面两个不太好用，了解即可）
+         <input type="month">：月份类型
+         <input type="week">：星期类型
+   2、新表单元素：
+      -<datalist>元素：定义备选项(并不显示)
+         -效果与<select>下拉列表类似，其选项单元也是使用<option>定义
+	 -一般配合<input>元素使用，但是<input>元素必须定义list属性：属性值等于<datalist>元素的id属性值
+	 -特点：数据与结构的分离
+	    数据-预定义数据内容<datalist>
+	    结构-显示在HTML页面中的元素<input>
+	 -优点-使用<datalist>元素定义的数据,可以重复使用
+      -<progress>元素：进度条--可用于定义加载进度
+         注意：其属性有：max-设置进度条的最大值、没有min属性-最小值为0、value-表示当前的进度值
+      -<meter>元素：刻度--可用于定义电池充电进度(设定低预警值)
+	 注意：其属性有：min-最小值、max-最大值、value-当前值、low-低预警值、high-高预警值
+      -<output>元素：输出--通常用于显示表单元素处理的结果值(了解)
+         在元素内定义for值，for的属性值等于要计算的表单元素的值(必须是数字类型)
+   3、表单新属性：
+      -placeholder属性：
+         -作用：类似于value属性
+	 -区别：value属性值-显示为黑色，确实存在文本框中;placeholder属性值-显示为灰色，类似于背景存在
+      -multiple属性：作用是允许输入多个值，多个值之间使用","隔开，用法上只定义属性名，没有属性值
+      -autofocus属性：作用是自动获得焦点，用法上只定义属性名，没有属性值
+      -form属性：作用是允许将表单元素定义在表单(<form>元素)外，但是表单外的表单元素必须使用form属性，其属性值必须等于表单的id属性值
+   4、表单新验证属性：
+      -required属性：验证当前元素值是否为空，属性值不用设置
+      -pattern属性：使用正则表达式验证当前元素值是否匹配--注意：此属性不能验证当前元素值是否为空
+      -max属性和min属性：验证当前元素值最小值或最大值，一般用于number、range等元素
+      -minlength属性：验证当前元素值的最小长度(输入值时允许小于指定值，提交表单时验证元素值最小长度)
+         注意：minlength并不是HTML5的新属性(并没有哪个版本能证明其存在，但却实际存在)
+      -maxlength属性：验证当前元素值最大长度，输入值时长度不能大于指定值
+      -vilidity属性：表单验证HTML5提供一种有效状态，有效状态通过validityState对象获取到，validityState对象可通过validity属性得到
+   5、验证状态：
+      -验证(有效)状态：validityState对象提供了一系列的有效状态，通过这些有效状态,进行判断
+         注意：所有验证状态必须配合上述的验证属性使用
+	 作用：用来替换原本手工实现的逻辑
+      -valid：
+         作用-判断当前元素值是否正确
+	 注意：该状态返回true,表示验证成功，该状态返回false,表示验证失败
+      -valueMissing：
+         作用-判断当前元素值是否为空
+	 用法-配合required属性使用
+      -typeMismatch：
+         作用-判断当前元素值的类型是否匹配
+         用法-配合email、number、url等
+      -patternMismatch
+         作用-判断当前元素值是否与指定正则表达式匹配
+         用法-配合pattern属性使用
+      -tooLong
+         作用-判断当前元素值的长度是否正确
+         用法-配合maxlength属性
+         注意：使用maxlength属性后,实际不可能出现长度大于maxlength的值，tooLong很难出现这种情况
+      -rangeUnderflow
+         作用-判断当前元素值是否小于min属性值
+         用法-配合min属性
+         注意-并不能与max属性值进行比较
+      -stepMismatch
+         作用-判断当前元素值是否与step设置相符
+         用法-配合step使用
+         注意-并不能与min或max属性值进行比较
+      -customError
+         用法-配合setCustomValidity()方法，如果使用该方法,该状态返回true
+      -setCustomValidity()方法
+         作用-设置自定义的错误提示内容
+         问题-使用该方法设置错误信息
+	    当输入正确时,调用该方法将信息设置为空("")，不能使用上述*有效状态*的任何一种判断输入是否正确(所有状态返回false)，所以要使用：user.value!=""&&user.value!=null这样的结构
+扩展内容
+   代码的编写-逻辑的完整性
+     判断value值是否为空：value==""||value==null
+     tooLong状态
+
+第二天：
+
+一、音视频处理
+   -视频处理
+      1、基本内容
+         -使用Flash技术处理HTML页面中的视频内容：包含音频、动画、网页游戏等
+	    优缺点：浏览器原生不支持(IE浏览器要求安装ActiveX组件)，性能不好(不能过多地使用)，智能移动端并不支持Flash技术
+         -目前用于替代Flash技术最好的选择 - HTML5(<video>元素)：几乎所有浏览器原生支持<video>元素，性能更高，智能移动端支持非常好
+      2、HTML5如何实现视频处理：<video>元素--如果当前浏览器不支持<video>元素，则在<video>元素内编写提示内容
+	 -<video>元素的属性
+	    1、src：引入视频文件的路径
+	    2、autoplay：自动播放视频
+	    3、controls：提供控制面板
+	    4、loop：表示循环播放
+	    5、poster：设置播放之前显示的图片
+	    6、width和height：设置显示视频的宽度和高度
+	    7、preload：预加载
+	       -auto：(默认值)自动加载
+	       -none：不加载
+	       -metadata - 只加载视频的基本信息(不含视频)
+	 -使用<source>元素：使得video可以同时引入多个视屏文件
+            <video>
+	       <source src="一种视频格式" />
+	       <source src="一种视频格式" />
+	       <source src="一种视频格式" />
+	    </video>
+	 -<video>支持的视频格式：(PPT中的支持表格具有时效性，更新速度很快自己留意)
+            1、MP4格式：目前比较主流
+            2、OGG格式：多用于移动端
+            3、WebM格式：在HTML页面中支持超高清格式(HTML5)目前唯一支持超高清格式--由Google公司推出的
+	 -高级内容
+	    1、方法
+               -play()：播放视频
+               -pause()：暂停视频
+               -load()：加载视频
+               -canPlayType()：判断当前浏览器是否支持指定视频格式
+	       注意：利用video事件完成广告效果的BUG-不能全屏
+	          -video元素与其他元素的定位是相对定位时存在的问题问题：
+		     当video视频全屏时,浏览器认为video最前端，图片是有显示的,被视频覆盖了
+	          -解决方案:
+		     1、利用video元素提供的高级编程自己实现
+		     2、使用目前封装好的video的JS库
+		     3、等待HTML5更新
+	    2、事件--前四个比较常用
+               -play：当视频播放时被触发
+               -pause：当视频暂停时被触发
+               -ended：当视频结束时被触发
+               -error：当视频错误时被触发
+               -canplay：不考虑整体情况下,只要能播放,就播放
+               -canplaythrough：考虑整体情况下,只要能播放,就播放
+               -progress：表示视频加载的进度
+	 -属性：用于判断
+	    -paused：表示判断当前视频是否暂停，返回Boolean值,true表示暂停,false表示播放
+	    -ended：表示判断当前视频是否播放完毕，返回Boolean值,true表示完毕
+	    -duration：表示当前视频的时长
+	    -currentTime：表示当前视频播放的位置
+   -音频处理：<audio>元素
+      -用法：
+         1、第一种：只支持一种音频格式：<audio src="音频文件的路径"></audio>
+         2、第二种：同时引入多个音频格式
+	    <audio>
+	       <source src="一种音频格式" />
+	       <source src="一种音频格式" />
+	       <source src="一种音频格式" />
+	    </audio>
+      -<audio>元素支持的音频格式：(PPT中的支持表格具有时效性，更新速度很快自己留意)
+         -MP3：目前最主流格式
+	 -OGG:
+	 -WAV:
+二、****Canvas(画布)****
+   1、基本内容：简单来说,HTML5提供的新元素<canvas>
+      -Canvas在HTML页面提供画布的功能，在画布中绘制各种图形
+      -Canvas绘制的图形与HTML页面无关：
+         无法通过DOM获取绘制的图形，无法为绘制的图形绑定DOM事件，只能使用Canvas提供的API
+   2、Canvas用途：
+      -在HTML页面中绘制图表(例如柱状图、饼状图等)
+      -网页游戏 ：Flash技术(之前)，使用HTML5中的Canvas(现在)
+   3、如何使用Canvas
+      -在HTML页面中定义<canvas>元素
+         注意：<canvas>元素默认宽度和高度 - 300px * 150px--效果类似于<div>元素
+	存在问题：定义<canvas>元素的宽度和高度
+	   CSS样式方式 - 高宽比绘制出来是不对的
+	      使用style属性设置-有问题：style="width:;height:;"
+	      使用<style>元素-没有问题：<style>width="";height="";<style>
+	   属性方式-没有任何问题:<canvas width="" height=""></canvas>
+      -在javascript代码中获取<canvas>元素
+      -创建画布对象：getContext('2d')方法--目前基本上都是2d效果(3d效果的API没有2d好)
+         注意：getContext()方法返回值,就是画布对象：比如var context = canvas.getContext("2d");
+	    参数：表示创建的是2D效果还是3D效果--参数类型是string类型,必须是"2d"或"3d"(固定写法,大写也不行)
+      -使用Canvas提供的API绘制图形
+         1、绘制矩形：Canvas绘制图形的默认颜色 - 黑色
+	    -fillRect(x,y,width,height);--实心矩形
+	       -x和y-矩形的左上角坐标值
+	       -width-设置矩形的宽度
+	       -height-设置矩形的高度
+	       比如：context.fillRect(10,10,100,100);
+	    -strokeRect(x,y,width,height);--空心矩形
+	       -x和y-矩形的左上角坐标值
+	       -width-设置矩形的宽度
+	       -height-设置矩形的高度
+	       比如：context.strokeRect(10,10,100,100);
+	    -clearRect(x,y,width,height);--清除指定区域的矩形
+	       -x和y-矩形的左上角坐标值
+	       -width-设置矩形的宽度
+	       -height-设置矩形的高度
+	       比如：context.clearRect(10,10,100,100);
+         2、设置颜色：颜色设置在绘制图形之前，要不同颜色就得设置一个颜色绘制一个图像
+	    -fillStyle-设置填充颜色
+	    -strokeStyle-设置描边颜色
+	    -globalAlpha-设置透明度(0-1)
+         3、设置渐变
+	    -线型渐变：createLinearGradient(x1,y1,x2,y2)--该方法返回渐变对象
+	       比如：var grd = context.createLinearGradient(0,0,canvas.width,canvas.height);
+	       -具有基准线：起点(x1,y1)和终点(x2,y2)
+	       -通过渐变对象设置渐变颜色：addColorStop(postion,color)方法
+	          -postion-设置渐变颜色的位置，该值的范围为 0-1，color-设置渐变的颜色
+		  比如：grd.addColorStop(0,"red");--可以设置多个
+	    -扇形(射线)渐变：createRadialGradient(x1,y1,r1,x2,y2,r2)--该方法返回渐变对象
+	       比如：var grd = context.createRadialGradient(0,0,0,0,0,0);
+	       -具有柱形(锥形)：两个圆的面积
+	       -x1和y1-第一个圆的圆心坐标值
+	       -r1-第一个圆的半径
+	       -x2和y2-第二个圆的圆心坐标值
+	       -r2-第二个圆的半径
+	       -设置渐变颜色和线性渐变方法一样
+         4、绘制文字：
+	    -fillText(text,x,y);--实心文字
+               text-绘制的文字内容;x和y-绘制的坐标值
+	    -strokeText(text,x,y);--空心文字
+	    -属性：
+	       1、font-类似CSS中的font属性
+	       2、textAlign：设置文字的水平方向对齐
+	          left-左对齐;center-水平居中;right-右对齐
+	       3、textBaseline：设置文字的垂直方向对齐
+	          top-上对其;middle-垂直居中;bottom-下对齐;hanging-悬挂基线(水平方向基线); alphabetic-字母基线(垂直方向基线)
+	    注意:
+	       无论是水平方向还是垂直方向对齐,基准线对齐,并不是文字对齐
+	       无论是水平方向还是垂直方向对齐,并不是必要的属性(不使用也是可以的)
+	 5、阴影效果：
+	    -shadowColor - 设置阴影颜色
+	    -shadowOffsetX - 设置水平方向阴影
+	    -shadowOffsetY - 设置垂直方向阴影
+	    -shadowBlur - 设置阴影的模糊程度
+扩展内容
+   Web前端 - 移动端
+      -移动智能终端
+       * iPhone - IOS系统 - Object-c|Swfit
+       * Android系统 - Java
+       * Windows Mobile系统 - .net平台
+       * BlackBerry系统 - 企业级应用 QNX
+       * WebOS系统 - 全键盘+触摸屏
+       * 塞班 - 诺基亚
+       * MeeGo - Inter和诺基亚
+      -移动跨平台-HTML|CSS|JAVASCRIPT：一次编写,到处运行(phoneGap)
+   -游戏分类(画面)
+     * 2D效果
+     * 2.5D效果 - 实际还是2D技术,模拟3D效果
+     * 3D效果
+   -作为前端Web开发人员的原则：眼见为实 - 不适用我们前端人员
+   -HTML5的难度：HTML5的核心API相对来讲,都不难，HTML5的案例真正难在逻辑(JS代码)
+      总结：HTML5离不开javascript
+   -回答疑问
+      -第二阶段的javascript,抓紧复习
+       * 个人并不建议 - 留级
+       * 编写简历 - 项目经验：多做网上的案例
+       * 建议买哪些书籍：个人不建议任何书籍
+      -如何成为优秀的程序员
+       * 自学能力很强：网上的案例，网上的资料
+       * 善于归纳总结：师傅领进门,修行在个人
+      -英文对于开发功能的影响：英文=书面+口语
+       * 口语 - 外企+合资
+       * 计算机英文与不同语言不同
+          * class - 类|教室
+          * bug - 错误|臭虫
+          * ant - 版本|蚂蚁
+
+第三天：
+一、创建路径
+   -(标识)方法
+      beginPath()-表示开始创建路径
+         问题:每次绘制图形前是否需要再次调用beginPath()?需要编写
+      closePath()-表示结束创建路径
+   -设置方法
+      1、rect(x,y,width,height)-设置矩形形状
+         x和y-设置矩形的左上角坐标值，width和height-设置矩形的宽度和高度
+      2、arc(x,y,radius,startAngle,endAngle,direction)-设置圆形形状
+	 -x和y-设置圆形的圆心坐标值
+         -radius-设置圆形的半径
+         -startAngle和endAngle-设置圆形的起始位置
+	 -direction-按照顺时针或逆时针绘制
+      3、绘制方法
+         -stroke()-绘制轮廓
+	 -fill()-绘制填充
+   -绘制线条(直线和折线、多边形)-创建路径
+      -moveTo(x,y)-设置这条线的起点坐标值
+      -lineTo(x,y)-设置这条线的终点(折点)坐标值
+   -设置线条：
+      -lineWidth：设置线条的宽度，默认值是1px
+      -lineCap：设置线条端点的形状
+         butt：平直，默认值
+	 round：圆角
+	 square：正方向
+      -lineJoin：设置两条线交点的形状
+         miter：尖角，默认值
+	 round：圆角
+	 bevel：斜角
+      -miterLimit：配合lineJoin使用
+         -lineJoin设置为miter，该属性值设置尖角的延伸范围
+二、canvas处理图片：
+   -绘制图片：两个方法
+      1、drawImage(img,x,y);--按照图片原大小加载
+         img：当前加载(绘制)的图片--可以是image元素、video元素和js中的image对象
+	 x和y：绘制图片的坐标值(左上角)
+      2、drawImage(img,x,y,width,height);--按照指定大小加载图片
+         img：当前加载(绘制)的图片--可以是image元素、video元素和js中的image对象
+	 x和y：绘制图片的坐标值(左上角)
+	 width和height：设置绘制图片显示的宽度和高度
+      注意：必须保证图片加载完毕后(onload事件)再绘制图片
+      3、平铺：
+         -createPattern(img,type)
+            -img：平铺的图片
+            -type：平铺的方式--repeat-平铺，no-repeat-不平铺，repeat-x-水平方向平铺，repeat-y-垂直方向平铺
+            注意:必须保证图片加载完毕(onload事件)后,再绘制图片
+         -切割图片:clip() - 切割(按照创建路径使用)
+         -画布方法
+            1、scale(x,y)：缩放(缩小或放大)--x-表示水平方向的缩放，y-表示垂直方向的缩放
+               -参数的取值：如果为1的话,表示不缩放(原大小)，如果小于1的话,表示缩小，如果大于1的话,表示放大
+            2、translate(x,y)：重新定位(x,y)--x和y-表示新的坐标值
+               注意 - x和y是相对于上次定位坐标值
+            3、rotate(旋转角度)-旋转画布--旋转角度公式为 degrees * Math.PI / 180;
+   -Chart.js-Canvas的JS库
+      -作用：提供各种图表
+      -如何使用
+         1、在HTML页面中引入Chart.js文件
+         2、在HTML页面中定义<canvas>元素
+         3、在javascript代码中
+            -获取<canvas>元素
+            -创建画布对象：var context = canvas.getContext("2d");
+            -通过画布对象,创建Chart对象：var chart = new Chart(context);
+            -利用Chart对象调用API方法：var data = [];chart.Pie(data);
+      -提供6种图表
+         -柱状图 - Bar(data,options)
+         -饼状图 - Pie(data,options)
+         -曲线图 - Line(data,options)
+         -环形图 - Doughnut(data,options)
+         -雷达图 - Radar(data,options)
+         -极地区域图 - PolarArea(data,options)
+ * 作业
+   * 位置、大小、颜色都随机的圆形
+   * 将Chart.js其他4种图表实现一遍
+
+扩展内容
+   -前端Web开发时,建议使用以下几种浏览器
+      -Chrome - 两个版本 - 版本更新过于频繁
+         开发版本：功能较新，不稳定
+         正式版本：功能较旧，稳定
+         Chrome OS：
+      -Firefox - 两个版本
+         开发版本 - (开发)功能多
+         正式版本
+         FireFox OS - 移动操作系统：开发使用HTML|CSS|JAVASCRIPT
+      -Safari-比较少用，主要是苹果移动端较多
+   -内向问题：面试 - 你认为你的性格,是外向还是内向?--内向加外向
+      -内向 - 沟通能力比较差,团队协作出问题
+      -外向 - 担心工作时,不够专心
+   -良好的沟通能力
+      * 程序员 - 形成程序员思维
+      * 都是学习和培养
+   -Markdown编辑器：支持Markdown文件的扩展名为".md"
+   -前面的内容忘记：个人建议 - 在案例中复习
+
+第五天：
+一、SVG
+   -基本内容：
+      -SVG并不属于HTML5专有内容，在HTML5出现之前,就有SVG内容，HTML5提供有关SVG原生的内容
+      -SVG,简单来说就是矢量图，SVG文件的扩展名为".svg"，SVG使用的是XML语法
+   -概念：SVG是一种使用XML技术描述二维图形的语言
+   -使用：在HTML页面中使用svg标签的元素：<svg></svg>--类似于<canvas>元素的作用
+      -默认大小 300px * 150px
+      -设置宽度和高度-高宽属性和style属性定义
+      -利用svg绘制所有图形,必须定义在<svg>元素内--利用svg绘制的图形是与HTML页面有关的
+   -SVG的特点：
+      -SVG绘制图形可以被搜索引擎抓取，SVG在图片质量不下降的情况下,被放大
+      -<svg>元素中可以包含多个图形元素
+      -SVG在使用过程中：
+         SVG提供的所有元素，都能绑定DOM事件
+	 SVG提供的元素的特殊属性，并不能像HTML元素的属性一样去操作
+   -SVG与Canvas的区别
+      -SVG：不依赖分辨率，支持事件绑定，大型渲染区域的程序(例如百度地图)，不能用来实现网页游戏
+      -Canvas：依赖分辨率，不支持事件绑定，最合适网页游戏，保存为".jpg"格式的图片
+   -用途：网页中一些小的图标，网页中动态特效(动画效果)
+   -绘制图形--注意：svg绘制的图形,使用style方式设置样式,使用的不是CSS属性,而是SVG属性
+      1、矩形元素：<rect x="" y="" width="" height="" />
+         -x和y：绘制矩形的左上角坐标值
+	 -width和height：绘制矩形的宽度和高度，必须使用属性方式,不能使用style样式方式
+	 -设置颜色：既可以使用属性,还可以使用样式(默认颜色为黑色)
+	    fill：设置填充颜色
+	    stroke：设置描边颜色
+	    stroke-width：设置线条宽度
+      2、圆形元素：<circle cx="" cy="" r="" />
+         -cx和cy：圆形的圆心坐标值
+	 -r：圆形的半径
+      3、椭圆元素：<ellipse cx="" cy="" rx="" ry="">
+         -cx和cy：椭圆的圆心坐标值
+	 -rx：椭圆的水平半径
+	 -ry：椭圆的垂直半径
+      4、直线元素：<line x1="" y1="" x2="" y2="" />
+         -x1和y1：直线的起始坐标
+	 -x2和y2：直线的终点坐标
+      5、折线元素：<polyline points="">
+         -points属性：用于设置折线的起点，折点和终点x和y坐标，x和y之间使用","分隔，多个点之间使用空格分隔
+	 例如：<polyline points="10,10 200,10 200,200 10,200 10,10" stroke-width="5" stroke="black" fill="white"/>
+      6、多边形元素：<polygon points="" /> 
+         -points属性：用于设置多边形每个角x和y坐标，x和y之间使用","分隔，多个点之间使用空格分隔
+二、特效元素
+   -渐变-渐变元素定义在<defs>元素内
+      1、线型渐变：<linearGradient>--具有基准线，
+         -该元素是起始元素：  <linearGradient></linearGradient>
+         -起点坐标值 - x1和y1
+	 -终点坐标值 - x2和y2
+	 注意：x1和y1、x2和y2的值都是百分值(只有0%可以省略百分号)
+	 -使用<stop>元素设置渐变的颜色
+	    -offset：设置渐变颜色的位置，该值也是百分值
+	    -stop-color：设置渐变颜色
+	    -stop-opacity：设置渐变颜色的透明度
+	 - 将设置线型渐变,添加在绘制的图形中：使用fill属性,值为url(#渐变元素的id值)
+	 例如：
+	    <linearGradient id="mygrd" x1="%" y1="%" x2="%" y2="%">
+	       <stop offset="%" stop-color="color" />
+	    </linearGradient>
+	    <rect x="0" y="0" width="400" height="400" fill="url(#mygrd)" />
+      2、扇形(射线)渐变：<radialGradient>
+   -滤镜-高斯模糊：滤镜使用<filter>元素
+      -高斯模糊<feGaussianBlur>元素
+      -in="SourceGraphic"--固定写法：定义了由整个图像创建效果
+      -stdDeviation--设置模糊程度
+      -注意：滤镜-高斯模糊定义在<defs>元素中
+      -如何将高斯模糊与绘制的图像进行关联：使用filter属性,值为url(#filter元素的id)
+      例如：
+         <defs>
+		<filter id="myfilter">
+			<feGaussianBlur in="SourceGraphic" stdDeviation=5 />
+		</filter>
+	 </defs>
+	 rect x="100" y="100" width="100" height="100" filter="url(#myfilter)" fill="green" />
+三、TWO.js
+   -基本内容
+      1、JS库介绍
+         -three.js：专门用于绘制三维图形
+         -two.js ：专门用于绘制二维图形
+      2、two.js支持的格式：SVG(默认)，Canvas，WebGL-专门用于绘制图像
+      3、如何使用two.js
+         1、在HTML页面中引入two.js文件
+         2、在HTML页面中定义容器(<div>)
+         3、在javascript代码中
+            -获取HTML页面中的容器--<canvas></canvas>，<svg></svg>，<div></div>(推荐)
+            -创建Two对象,将该对象添加到容器中：new Two(params).appendTo(Element);
+            -使用two.js提供的API方法进行绘制
+               -利用two.js提供的方法,设置图形
+               -利用update()方法进行绘制
+   -创建Two对象
+      1、构造器：new Two(params)
+         -params参数：设置当前对象的信息-Object类型 {}
+            -type-设置当前使用的格式(Two.Types.svg)：svg(默认值)，canvas，webgl
+         -width和height：设置宽度和高度
+         -fullscreen：设置是否全屏--Boolean值,true表示全屏
+      2、图形方法
+         -makeLine();-绘制线条
+         -makeRectangle(x,y,width,height);-绘制矩形
+	    -x和y：表示绘制矩形的坐标值(中心点)
+	    -width和height：表示绘制矩形的宽度和高度
+         -makeCircle(x,y,radius);-绘制圆形
+	    -x和y：表示绘制圆形的坐标值(中心点)
+	    -radius：表示绘制圆形的半径
+         -makeEllipse();-绘制椭圆
+      3、动画方法：
+         -动画效果：two.bind("update",function(){实现动画逻辑代码}).play();--类似setInterval(function(){实现动画逻辑 },时间)
+         -update() - 更新动画
+         -play() - 添加动画(循环)
+         -pause() - 删除动画
+      4、设置绘制图形的样式
+         -调用Two对象的绘制方法绘制图形时,返回该图形对象
+         -通过该图形对象,设置相关属性值
+         -分组操作：Two.Group
+	 <!--
+	 如果在HTML页面绘制多个图形,并且每个图形设置样式相同或类似
+	 * * 默认方式 - 每个图形重新设置一次(代码重复)
+	 * * 分组操作(Two.Group) - 当前案例
+	 *   * 将绘制的圆形和矩形分为一组
+	 *   * 针对这一组,统一设置显示样式
+	 * * 实际操作
+	 *   * 利用Two对象的makeGroup(objects)方法进行分组
+	 *     * objects - 设置分为一组的图形
+	 *       * 格式 - 允许传递多(不定)个参数
+	 *     * 该方法返回Group对象
+	 *   * 通过Group对象,统一针对这一组设置样式
+	 -->
+      5、动画效果：bind(event,callback)方法-事件绑定
+         -event：绑定事件名称
+         -update：对应update()方法的作用，所有的DOM事件都可以绑定
+         -callback - 事件处理函数
+ 
+ 扩展内容
+    -前端开发工具
+       Aptana Studio 3 - 代码提示
+       Webstrom - 国内前端开发人员神器
+    -实际开发中
+       -多用SVG：不失真，可被搜索，页面优化-减少外部链接<a href=""><img src="">
+       -Canvas-HTML绘制图形：实际运行中,是以图片方式出现(.png)，不能被搜索引擎抓取，放大后失真
+    -SVG内容：内容量非常大，网上关于SVG的资料很少(没有书籍)
+       -静态绘制图形
+       -动态动画效果
+       -专门提供事件
+       -SVG的规范(W3C英文)
+    -SVG或CANVAS在HTML页面中定义：
+       在一个HTML页面可以定义多个<svg>或<canvas>元素，SVG还是CANVAS都是允许同时定义(绘制)多个图形
+    -在实际开发中的使用
+       -SVG在将来的工作开发,使用率并不高
+       -SVG图片一般都是由UI设计师来完成
+       -SVG即使是我们自己来设计(绘制)--目前网络上很多专门提供现成的SVG图片的网站

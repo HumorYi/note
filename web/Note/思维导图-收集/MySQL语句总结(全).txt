@@ -1,0 +1,126 @@
+数据库结构操作
+
+1.查看数据库
+show databases;
+2.创建数据库
+create database 数据库名;
+3.进入数据库
+use 数据库名;
+4.创建表
+craete table 表名(字段1,字段2,字段3,...);
+5.查看表结构
+desc 表名;
+6.查看表
+select * from 表名;
+7.删除数据库
+drop database 数据库名;
+8.删除表
+drop table 表名;
+*值得注意的是：用drop删除的都不可恢复
+9.删除表的某一列
+alter table 表名 drop cloumn 列名;
+
+删除语句：
+delete from 表名 where 条件;
+
+修改语句：
+update 表名 set 字段名=值 where 条件;
+
+添加语句：
+insert into 表名(字段1,字段2,字段3,...) value(字段1,字段2,字段3,...);
+
+查询语句：
+1.条件查询
+当...时
+where
+select * from table where 条件表达式;
+当..时(与上面的区别是这里可以多个条件，用逗号隔开)
+where in
+select * from table where in (条件表达式1,条件表达式2...);
+当...和...时(这里只能有2个条件表达式)
+where and
+select * from table where 条件表达式1 and 条件表达式2;
+where or当...或...时
+select * from table where 条件表达式1 or 条件表达式2;
+当不是...时
+where not in
+select * from table where not in (条件表达式1,条件表达式2...);
+当在...和...之间时
+where between
+select * from table where 条件表达式1 between 条件表达式2;
+当不在...和...之间时
+where not between
+select * from table where 条件表达式1 between 条件表达式2;
+当...为null时
+where is null
+select * from table where 字段1 is null;
+where is not null
+select * from table where 字段1 is not null;
+
+非值查询
+not
+select * from table where not 条件表达式;
+select * from table where 条件表达式1<>条件表达式2;
+select * from table where 条件表达式1!=条件表达式2;
+
+2.模糊查询---关键字like关键符%
+查找第3个为i的字段的信息
+select * from table where 字段1 like '__i';
+查找以i开头的字段的信息
+select * from table where 字段1 like 'i%';
+查找以i结尾的字段的信息
+select * from table where 字段1 like '%i';
+
+3.字段控制
+去重
+select DISTINCT 字段1 from table where 条件表达式;
+某两列之和若有null则置为0
+select *,字段1+字段2(comn,0) from table where 条件表达式;
+
+4.排序
+ASC升序
+select * from table where 条件表达式 order by 字段1 asc;
+DESC降序
+select * from table where 条件表达式 order by 字段1 desc;
+
+5.分组
+group by
+select * from table where 条件表达式 group by 字段1;
+可以添加having以对分组进行进一步筛选
+select * from table where 条件表达式 group by 字段1 having 条件表达式;
+
+6.多表连接
+自连接
+select * from table inner join table on table.xx=table.xx;
+外链接
+左外链接
+select * from table left outer join table on table1.xx=table2.xx;
+右外链接
+select * from table right outer join table on table1.xx=table2.xx;
+全外链接
+select * from table full outer join table on table1.xx=table2.xx;
+
+7.从第n条开始查找到第m条(下标从0开始)
+select * from table limit 0,5;
+
+常用函数
+平均数：avg()
+和：sum()
+最大值：max()
+最小值：min()
+计数：count()
+
+最简单的综合语句：
+select * from table
+       where 语句1 /and/between 语句1.5 
+       group by 语句2
+       having 语句3
+       order by 语句4 desc;
+        select语句的顺序是：
+Where先对数据进行筛选
+→
+group by然后分组
+→
+Having对分组进行筛选
+→
+order by对分组进行排序
